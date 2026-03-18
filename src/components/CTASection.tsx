@@ -25,7 +25,7 @@ const CTASection = () => {
           ¿Listo para descubrir Marbella desde el mar?
         </h2>
         <p className="font-body text-base md:text-lg text-primary-foreground/75 max-w-xl mx-auto mb-10">
-          Escríbenos por WhatsApp y te enviaremos disponibilidad, precios y recomendaciones personalizadas.
+            Comunicate con nosotros y te enviaremos disponibilidad, precios y recomendaciones personalizadas.
         </p>
         <a
           href={WHATSAPP_URL}
