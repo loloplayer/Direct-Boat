@@ -26,7 +26,7 @@ const ExperienceSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}>
           
-          <h2 className="text-3xl md:text-5xl text-primary-foreground mb-6 font-serif font-extralight">
+          <h2 className="text-3xl md:text-5xl text-primary-foreground mb-6 font-serif font-normal">
             La experiencia Marbella desde el mar
           </h2>
           <p className="font-body text-base md:text-lg text-primary-foreground/75 max-w-2xl mx-auto mb-14">
