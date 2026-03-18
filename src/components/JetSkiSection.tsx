@@ -18,8 +18,8 @@ const JetSkiSection = () => {
             ref={ref}
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
+            transition={{ duration: 0.8 }}>
+            
             <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-6">
               Motos de agua
             </h2>
@@ -40,9 +40,9 @@ const JetSkiSection = () => {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-accent/90 transition-colors"
-            >
-              Reservar moto de agua por WhatsApp
+              className="inline-block px-8 py-4 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-accent/90 transition-colors">
+              
+              RESERVAR
             </a>
           </motion.div>
 
@@ -51,25 +51,25 @@ const JetSkiSection = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4"
-          >
+            className="grid grid-cols-2 gap-4">
+            
             <img
               src={jetski1}
               alt="Moto de agua en acción"
               className="rounded-lg w-full h-64 object-cover"
-              loading="lazy"
-            />
+              loading="lazy" />
+            
             <img
               src={jetski2}
               alt="Motos de agua en marina"
               className="rounded-lg w-full h-64 object-cover mt-8"
-              loading="lazy"
-            />
+              loading="lazy" />
+            
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default JetSkiSection;
