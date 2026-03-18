@@ -19,8 +19,8 @@ const CTASection = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
-        className="relative z-10 container mx-auto px-6 text-center"
-      >
+        className="relative z-10 container mx-auto px-6 text-center">
+        
         <h2 className="font-display text-3xl md:text-5xl font-medium text-primary-foreground mb-6">
           ¿Listo para descubrir Marbella desde el mar?
         </h2>
@@ -31,13 +31,13 @@ const CTASection = () => {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-10 py-4 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-accent/90 transition-colors"
-        >
-          Hablar por WhatsApp
+          className="inline-block px-10 py-4 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-accent/90 transition-colors">
+          
+          ​CONTACTANOS   
         </a>
       </motion.div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default CTASection;
