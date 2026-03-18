@@ -22,7 +22,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="font-display text-4xl sm:text-5xl md:text-7xl font-medium text-primary-foreground leading-tight mb-6">
+          className="text-4xl sm:text-5xl md:text-7xl text-primary-foreground leading-tight mb-6 font-serif font-light">
           
           Alquiler de Barcos{" "}
           <br className="hidden sm:block" />
@@ -32,7 +32,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="font-body text-base md:text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-10">
+          className="text-base md:text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-10 font-serif">
           
           Descubre Marbella desde el mar con nuestros barcos y motos de agua
           disponibles por hora.
