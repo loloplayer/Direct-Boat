@@ -53,7 +53,7 @@ const HeroSection = () => {
           </a>
           <a
             href="#flota"
-            className="inline-block px-8 py-4 text-primary-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold border-b-2 border-primary-foreground/40 hover:border-primary-foreground transition-colors">
+            className="inline-block px-8 py-4 text-primary-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold border-b-2 border-primary-foreground/40 hover:border-primary-foreground transition-colors bg-primary">
             
             Ver nuestra flota
           </a>
