@@ -29,7 +29,7 @@ const ExperienceSection = () => {
           <h2 className="text-3xl md:text-5xl text-primary-foreground mb-6 font-serif font-normal">
             La experiencia Marbella desde el mar
           </h2>
-          <p className="font-body text-base md:text-lg text-primary-foreground/75 max-w-2xl mx-auto mb-14">
+          <p className="text-base md:text-lg text-primary-foreground/75 max-w-2xl mx-auto mb-14 font-serif">
             Desde paseos al atardecer hasta días inolvidables navegando por la costa, ofrecemos barcos y motos de agua premium para quienes quieren vivir Marbella de una manera exclusiva.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-10 md:gap-16">
