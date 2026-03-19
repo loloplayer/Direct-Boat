@@ -42,7 +42,7 @@ const JetSkiSection = () => {
               rel="noopener noreferrer"
               className="inline-block px-8 py-4 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-accent/90 transition-colors">
               
-              RESERVAR
+              Reservar moto de agua por WhatsApp
             </a>
           </motion.div>
 

@@ -49,7 +49,7 @@ const HeroSection = () => {
             rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-primary text-primary-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-primary/90 transition-colors">
             
-            Consultar disponibilidad 
+            Consultar disponibilidad por WhatsApp
           </a>
           <a
             href="#flota"
