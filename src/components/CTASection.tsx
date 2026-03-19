@@ -25,7 +25,7 @@ const CTASection = () => {
           ¿Listo para descubrir Marbella desde el mar?
         </h2>
         <p className="text-base md:text-lg text-primary-foreground/75 max-w-xl mx-auto mb-10 font-serif">
-            Comunicate con nosotros y te enviaremos disponibilidad, precios y recomendaciones personalizadas.
+          Escríbenos por WhatsApp y te enviaremos disponibilidad, precios y recomendaciones personalizadas.
         </p>
         <a
           href={WHATSAPP_URL}
@@ -33,7 +33,7 @@ const CTASection = () => {
           rel="noopener noreferrer"
           className="inline-block px-10 py-4 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-accent/90 transition-colors">
           
-          ​CONTACTANOS   
+          Hablar por WhatsApp
         </a>
       </motion.div>
     </section>);
