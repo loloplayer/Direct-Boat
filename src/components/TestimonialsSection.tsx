@@ -13,7 +13,7 @@ const TestimonialsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section id="testimonios" className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-6">
         <motion.h2
           ref={ref}
