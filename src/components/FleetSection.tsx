@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Gauge, Ruler } from "lucide-react";
+import { Users, Gauge, Ruler, MessageCircle, Mail } from "lucide-react";
 import boat1 from "@/assets/boat1.jpg";
 import boat2 from "@/assets/boat2.jpg";
 import boat3 from "@/assets/boat3.jpg";
@@ -10,12 +10,12 @@ import jetski1 from "@/assets/jetski1.jpg";
 import jetski2 from "@/assets/jetski2.jpg";
 
 const fleet = [
-  { name: "Marbella Catamaran 42", type: "Catamarán", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m" },
-  { name: "Azure Pearl 38", type: "Yate de motor", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "11.6 m" },
-  { name: "Solmare 31", type: "Sport Cruiser", price: "260", image: boat3, passengers: 8, power: "260 CV", length: "9.4 m" },
-  { name: "Golden Wave 27", type: "Day Boat Premium", price: "190", image: boat4, passengers: 6, power: "200 CV", length: "8.2 m" },
-  { name: "Moto de Agua Sport", type: "Moto de Agua", price: "150", image: jetski1, passengers: 2, power: "130 CV", length: "3.4 m" },
-  { name: "Moto de Agua Touring", type: "Moto de Agua", price: "120", image: jetski2, passengers: 2, power: "110 CV", length: "3.2 m" },
+  { name: "Marbella Catamaran 42", type: "Catamarán", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "000000000001", email: "catamaran42@example.com" },
+  { name: "Azure Pearl 38", type: "Yate de motor", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "11.6 m", whatsapp: "000000000002", email: "azurepearl@example.com" },
+  { name: "Solmare 31", type: "Sport Cruiser", price: "260", image: boat3, passengers: 8, power: "260 CV", length: "9.4 m", whatsapp: "000000000003", email: "solmare31@example.com" },
+  { name: "Golden Wave 27", type: "Day Boat Premium", price: "190", image: boat4, passengers: 6, power: "200 CV", length: "8.2 m", whatsapp: "000000000004", email: "goldenwave@example.com" },
+  { name: "Moto de Agua Sport", type: "Moto de Agua", price: "150", image: jetski1, passengers: 2, power: "130 CV", length: "3.4 m", whatsapp: "000000000005", email: "jetskisport@example.com" },
+  { name: "Moto de Agua Touring", type: "Moto de Agua", price: "120", image: jetski2, passengers: 2, power: "110 CV", length: "3.2 m", whatsapp: "000000000006", email: "jetskitouring@example.com" },
 ];
 
 const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => {
@@ -51,7 +51,6 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
             {boat.name}
           </h3>
 
-          {/* Specs */}
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Users className="w-3.5 h-3.5" />
@@ -67,19 +66,30 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-4">
             <p className="font-body text-sm">
               <span className="text-muted-foreground">Desde </span>
               <span className="text-accent font-bold text-lg">€{boat.price}</span>
               <span className="text-muted-foreground text-xs"> /hora</span>
             </p>
+          </div>
+
+          <div className="flex items-center gap-2">
             <a
-              href={`https://wa.me/000000000000?text=${encodeURIComponent(waMsg)}`}
+              href={`https://wa.me/${boat.whatsapp}?text=${encodeURIComponent(waMsg)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-primary text-primary-foreground font-body text-[10px] uppercase tracking-[0.12em] font-semibold rounded-md hover:bg-primary/90 transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground font-body text-[10px] uppercase tracking-[0.12em] font-semibold rounded-md hover:bg-primary/90 transition-colors"
             >
-              Consultar
+              <MessageCircle className="w-3.5 h-3.5" />
+              WhatsApp
+            </a>
+            <a
+              href={`mailto:${boat.email}?subject=${encodeURIComponent(`Consulta: ${boat.name}`)}&body=${encodeURIComponent(waMsg)}`}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 border border-border text-foreground font-body text-[10px] uppercase tracking-[0.12em] font-semibold rounded-md hover:bg-muted transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              Email
             </a>
           </div>
         </div>
