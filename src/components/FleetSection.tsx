@@ -4,18 +4,12 @@ import { useRef } from "react";
 import { Users, Gauge, Ruler, MessageCircle, Mail } from "lucide-react";
 import boat1 from "@/assets/boat1.jpg";
 import boat2 from "@/assets/boat2.jpg";
-import boat3 from "@/assets/boat3.jpg";
-import boat4 from "@/assets/boat4.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
-import jetski2 from "@/assets/jetski2.jpg";
 
 const fleet = [
   { name: "Marbella Catamaran 42", type: "Catamarán", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "000000000001", email: "catamaran42@example.com" },
-  { name: "Azure Pearl 38", type: "Yate de motor", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "11.6 m", whatsapp: "000000000002", email: "azurepearl@example.com" },
-  { name: "Solmare 31", type: "Sport Cruiser", price: "260", image: boat3, passengers: 8, power: "260 CV", length: "9.4 m", whatsapp: "000000000003", email: "solmare31@example.com" },
-  { name: "Golden Wave 27", type: "Day Boat Premium", price: "190", image: boat4, passengers: 6, power: "200 CV", length: "8.2 m", whatsapp: "000000000004", email: "goldenwave@example.com" },
-  { name: "Moto de Agua Sport", type: "Moto de Agua", price: "150", image: jetski1, passengers: 2, power: "130 CV", length: "3.4 m", whatsapp: "000000000005", email: "jetskisport@example.com" },
-  { name: "Moto de Agua Touring", type: "Moto de Agua", price: "120", image: jetski2, passengers: 2, power: "110 CV", length: "3.2 m", whatsapp: "000000000006", email: "jetskitouring@example.com" },
+  { name: "Azymut 12m", type: "Yate", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "12 m", whatsapp: "000000000002", email: "azymut@example.com" },
+  { name: "Jet Ski", type: "Jet Ski", price: "120", image: jetski1, passengers: "1–2", power: "130 CV", length: "3.4 m", whatsapp: "000000000003", email: "jetski@example.com", note: "Alquiler de 1 o 2 unidades" },
 ];
 
 const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => {
@@ -47,9 +41,12 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
         </div>
 
         <div className="p-5">
-          <h3 className="font-display text-lg font-medium text-foreground mb-3">
+          <h3 className="font-display text-lg font-medium text-foreground mb-1">
             {boat.name}
           </h3>
+          {boat.note && (
+            <p className="font-body text-xs text-accent font-medium mb-3">{boat.note}</p>
+          )}
 
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center gap-1.5 text-muted-foreground">
@@ -116,7 +113,7 @@ const FleetSection = () => {
             Nuestra Flota
           </h2>
           <p className="font-body text-muted-foreground max-w-lg mx-auto">
-            Barcos y motos de agua premium para vivir Marbella desde el mar.
+            Barcos y jet skis premium para vivir Marbella desde el mar.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

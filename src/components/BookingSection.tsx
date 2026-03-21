@@ -9,16 +9,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 import boat1 from "@/assets/boat1.jpg";
 import boat2 from "@/assets/boat2.jpg";
-import boat3 from "@/assets/boat3.jpg";
-import boat4 from "@/assets/boat4.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
 const vessels = [
   { id: "catamaran-42", name: "Marbella Catamaran 42", type: "Catamarán", image: boat1 },
-  { id: "azure-38", name: "Azure Pearl 38", type: "Yate de motor", image: boat2 },
-  { id: "solmare-31", name: "Solmare 31", type: "Sport Cruiser", image: boat3 },
-  { id: "golden-27", name: "Golden Wave 27", type: "Day Boat Premium", image: boat4 },
-  { id: "jetski", name: "Moto de Agua", type: "Moto de Agua", image: jetski1 },
+  { id: "azymut-12", name: "Azymut 12m", type: "Yate", image: boat2 },
+  { id: "jetski", name: "Jet Ski", type: "Jet Ski", image: jetski1 },
 ];
 
 const timeSlots = [
@@ -76,7 +72,7 @@ const BookingSection = () => {
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">1</span>
               <h3 className="font-display text-xl text-foreground">Elige embarcación</h3>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {vessels.map((v) => (
                 <button
                   key={v.id}
