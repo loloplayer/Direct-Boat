@@ -57,9 +57,20 @@ const BookingSection = () => {
           <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-4">
             Reserva Tu Experiencia
           </h2>
-          <p className="font-body text-muted-foreground max-w-xl mx-auto">
+          <p className="font-body text-muted-foreground max-w-xl mx-auto mb-6">
             Elige tu embarcación, fecha y horario favoritos. Te confirmaremos la disponibilidad al instante por WhatsApp.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 max-w-2xl mx-auto">
+            {[
+              { icon: "🔒", text: "Contacto directo con el propietario" },
+              { icon: "💰", text: "Sin comisiones ni intermediarios" },
+              { icon: "✅", text: "Pagos seguros directo al dueño" },
+            ].map((item) => (
+              <span key={item.text} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 font-body text-xs text-foreground">
+                <span>{item.icon}</span>{item.text}
+              </span>
+            ))}
+          </div>
         </motion.div>
 
         <div className="max-w-4xl mx-auto space-y-12">
