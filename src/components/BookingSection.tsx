@@ -18,6 +18,7 @@ const vessels = [
 ];
 
 const timeSlots = [
+  { id: "hourly", label: "Por Hora", desc: "Mínimo 1 hora" },
   { id: "morning", label: "Mañana", desc: "9:00 – 13:00" },
   { id: "afternoon", label: "Tarde", desc: "14:00 – 18:00" },
   { id: "fullday", label: "Día Completo", desc: "9:00 – 18:00" },
