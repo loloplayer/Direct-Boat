@@ -21,11 +21,14 @@ const CTASection = () => {
         transition={{ duration: 0.8 }}
         className="relative z-10 container mx-auto px-6 text-center">
         
-        <h2 className="text-3xl md:text-5xl font-medium text-primary-foreground mb-6 font-serif">
-          ¿Listo para descubrir Marbella desde el mar?
+        <h2 className="text-3xl md:text-5xl font-medium text-primary-foreground mb-4 font-serif">
+          ¿Listo para navegar sin intermediarios?
         </h2>
-        <p className="text-base md:text-lg text-primary-foreground/75 max-w-xl mx-auto mb-10 font-serif">
-          Escríbenos por WhatsApp y te enviaremos disponibilidad, precios y recomendaciones personalizadas.
+        <p className="text-base md:text-lg text-primary-foreground/75 max-w-xl mx-auto mb-3 font-serif">
+          Habla directamente con el propietario de la embarcación que te interesa. Sin comisiones, sin recargos — solo el mejor precio y trato personalizado.
+        </p>
+        <p className="text-sm text-accent font-body uppercase tracking-widest mb-10">
+          Contacto directo · Pago seguro · Confianza total
         </p>
         <a
           href={WHATSAPP_URL}

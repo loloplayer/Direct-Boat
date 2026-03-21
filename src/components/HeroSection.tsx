@@ -32,10 +32,17 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="text-base md:text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-10 font-serif">
+          className="text-base md:text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-4 font-serif">
           
-          Descubre Marbella desde el mar con nuestros barcos y motos de agua
-          disponibles por hora.
+          Contacta directamente con los propietarios de barcos y Jet Ski en Marbella.
+          Sin intermediarios, sin comisiones — tú eliges, tú negocias, tú disfrutas.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.45, ease: "easeOut" }}
+          className="text-sm text-accent font-body uppercase tracking-widest mb-10">
+          Alquiler por horas · media jornada · día completo
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

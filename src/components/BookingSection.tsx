@@ -18,6 +18,7 @@ const vessels = [
 ];
 
 const timeSlots = [
+  { id: "hourly", label: "Por Hora", desc: "Mínimo 1 hora" },
   { id: "morning", label: "Mañana", desc: "9:00 – 13:00" },
   { id: "afternoon", label: "Tarde", desc: "14:00 – 18:00" },
   { id: "fullday", label: "Día Completo", desc: "9:00 – 18:00" },
@@ -56,9 +57,20 @@ const BookingSection = () => {
           <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-4">
             Reserva Tu Experiencia
           </h2>
-          <p className="font-body text-muted-foreground max-w-xl mx-auto">
+          <p className="font-body text-muted-foreground max-w-xl mx-auto mb-6">
             Elige tu embarcación, fecha y horario favoritos. Te confirmaremos la disponibilidad al instante por WhatsApp.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 max-w-2xl mx-auto">
+            {[
+              { icon: "🔒", text: "Contacto directo con el propietario" },
+              { icon: "💰", text: "Sin comisiones ni intermediarios" },
+              { icon: "✅", text: "Pagos seguros directo al dueño" },
+            ].map((item) => (
+              <span key={item.text} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 font-body text-xs text-foreground">
+                <span>{item.icon}</span>{item.text}
+              </span>
+            ))}
+          </div>
         </motion.div>
 
         <div className="max-w-4xl mx-auto space-y-12">
@@ -146,7 +158,7 @@ const BookingSection = () => {
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">3</span>
               <h3 className="font-display text-xl text-foreground">Elige horario</h3>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {timeSlots.map((slot) => (
                 <button
                   key={slot.id}
