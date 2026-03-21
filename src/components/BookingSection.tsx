@@ -158,7 +158,7 @@ const BookingSection = () => {
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">3</span>
               <h3 className="font-display text-xl text-foreground">Elige horario</h3>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {timeSlots.map((slot) => (
                 <button
                   key={slot.id}
