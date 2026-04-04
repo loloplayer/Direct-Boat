@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Gauge, Ruler, MessageCircle, Mail } from "lucide-react";
+import { Users, Gauge, Ruler, MessageCircle, Mail, Tag } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import boat1 from "@/assets/boat1.jpg";
 import boat2 from "@/assets/boat2.jpg";
@@ -12,9 +12,9 @@ import jetski1 from "@/assets/jetski1.jpg";
  * To change a vessel's contact, just update these fields:
  */
 const fleet = [
-  { name: "Marbella Catamaran 42", type: "Catamarán", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "34641992624", email: "catamaran42@example.com" },
-  { name: "Azymut 12m", type: "Yate", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "12 m", whatsapp: "34641992624", email: "azymut@example.com" },
-  { name: "Jet Ski", type: "Jet Ski", price: "120", image: jetski1, passengers: "1–2", power: "130 CV", length: "3.4 m", whatsapp: "34641992624", email: "jetski@example.com" },
+  { name: "Marbella Catamaran 42", type: "Catamarán", originalPrice: "390", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "34641992624", email: "catamaran42@example.com" },
+  { name: "Azymut 12m", type: "Yate", originalPrice: "470", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "12 m", whatsapp: "34641992624", email: "azymut@example.com" },
+  { name: "Jet Ski", type: "Jet Ski", originalPrice: "135", price: "120", image: jetski1, passengers: "1–2", power: "130 CV", length: "3.4 m", whatsapp: "34641992624", email: "jetski@example.com" },
 ];
 
 const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => {
@@ -41,9 +41,16 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
             className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
-          <div className="absolute top-3 left-3">
+          <div className="absolute top-3 left-3 flex items-center gap-2">
             <span className="inline-block px-3 py-1.5 bg-background/90 backdrop-blur-sm text-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-medium">
               {boat.type}
+            </span>
+          </div>
+          {/* Discount badge */}
+          <div className="absolute top-3 right-3">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-accent text-accent-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-bold">
+              <Tag className="w-3 h-3" />
+              -10%
             </span>
           </div>
         </div>
@@ -74,6 +81,7 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
           <div className="flex items-center justify-between mb-4">
             <p className="font-body text-sm">
               <span className="text-muted-foreground">{t("fleet.from")} </span>
+              <span className="text-muted-foreground/60 line-through text-sm mr-1">€{boat.originalPrice}</span>
               <span className="text-accent font-bold text-lg">€{boat.price}</span>
               <span className="text-muted-foreground text-xs"> {t("fleet.perHour")}</span>
             </p>
@@ -118,6 +126,10 @@ const FleetSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/15 border border-accent/30 mb-6">
+            <Tag className="w-4 h-4 text-accent" />
+            <span className="font-body text-sm font-bold text-accent">{t("fleet.discountBanner")}</span>
+          </div>
           <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-4">
             {t("fleet.title")}
           </h2>
