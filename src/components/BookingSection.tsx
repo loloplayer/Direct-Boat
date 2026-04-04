@@ -1,9 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { format } from "date-fns";
 import { es, enUS } from "date-fns/locale";
-import { CalendarIcon, Ship, Clock, MessageCircle } from "lucide-react";
+import { CalendarIcon, Ship, Clock, MessageCircle, Tag } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
@@ -22,7 +21,10 @@ const BookingSection = () => {
   const [date, setDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState<string>();
   const [selectedVessel, setSelectedVessel] = useState<string>();
+  const [calendarOpen, setCalendarOpen] = useState(false);
   const sectionRef = useRef(null);
+  const step2Ref = useRef<HTMLDivElement>(null);
+  const step3Ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const { lang, t } = useLanguage();
 
@@ -37,6 +39,26 @@ const BookingSection = () => {
 
   const vessel = vessels.find((v) => v.id === selectedVessel);
   const time = timeSlots.find((ts) => ts.id === selectedTime);
+
+  // Auto-advance: vessel selected → open calendar & scroll
+  useEffect(() => {
+    if (selectedVessel && !date) {
+      setTimeout(() => {
+        step2Ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => setCalendarOpen(true), 400);
+      }, 200);
+    }
+  }, [selectedVessel]);
+
+  // Auto-advance: date selected → scroll to time
+  useEffect(() => {
+    if (date && !selectedTime) {
+      setCalendarOpen(false);
+      setTimeout(() => {
+        step3Ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 200);
+    }
+  }, [date]);
 
   const whatsappUrl = useMemo(() => {
     const vesselName = vessel?.name ?? "[...]";
@@ -67,9 +89,14 @@ const BookingSection = () => {
           <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-4">
             {t("booking.title")}
           </h2>
-          <p className="font-body text-muted-foreground max-w-xl mx-auto mb-6">
+          <p className="font-body text-muted-foreground max-w-xl mx-auto mb-4">
             {t("booking.desc")}
           </p>
+          {/* Discount banner */}
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/15 border border-accent/30 mb-6">
+            <Tag className="w-4 h-4 text-accent" />
+            <span className="font-body text-sm font-bold text-accent">{t("booking.discount")}</span>
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-4 max-w-2xl mx-auto">
             {[
               { icon: "🔒", text: t("booking.badge1") },
@@ -119,12 +146,12 @@ const BookingSection = () => {
           </motion.div>
 
           {/* Step 2 */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }}>
+          <motion.div ref={step2Ref} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">2</span>
               <h3 className="font-display text-xl text-foreground">{t("booking.step2")}</h3>
             </div>
-            <Popover>
+            <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
               <PopoverTrigger asChild>
                 <button
                   className={cn(
@@ -142,7 +169,7 @@ const BookingSection = () => {
                 <Calendar
                   mode="single"
                   selected={date}
-                  onSelect={setDate}
+                  onSelect={(d) => { setDate(d); }}
                   locale={dateFnsLocale}
                   disabled={(d) => d < new Date()}
                   initialFocus
@@ -153,7 +180,7 @@ const BookingSection = () => {
           </motion.div>
 
           {/* Step 3 */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.3 }}>
+          <motion.div ref={step3Ref} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.3 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">3</span>
               <h3 className="font-display text-xl text-foreground">{t("booking.step3")}</h3>

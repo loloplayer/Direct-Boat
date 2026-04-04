@@ -26,6 +26,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "hero.subtitle": "Alquiler por horas · media jornada · día completo",
     "hero.cta": "Consultar disponibilidad por WhatsApp",
     "hero.fleet": "Ver nuestra flota",
+    "hero.discount": "🔥 10% de descuento reservando por esta web",
 
     // Fleet
     "fleet.title": "Nuestra Flota",
@@ -33,6 +34,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "fleet.from": "Desde",
     "fleet.perHour": "/hora",
     "fleet.jetskiNote": "Alquiler de 1 o 2 unidades",
+    "fleet.discountBanner": "10% de descuento reservando por esta web",
 
     // Booking
     "booking.title": "Reserva Tu Experiencia",
@@ -40,6 +42,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "booking.badge1": "Contacto directo con el propietario",
     "booking.badge2": "Sin comisiones ni intermediarios",
     "booking.badge3": "Pagos seguros directo al dueño",
+    "booking.discount": "🔥 10% dto. exclusivo reservando por esta web",
     "booking.step1": "Elige embarcación",
     "booking.step2": "Selecciona fecha",
     "booking.step3": "Elige horario",
@@ -108,6 +111,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "hero.subtitle": "Hourly rental · Half day · Full day",
     "hero.cta": "Check availability on WhatsApp",
     "hero.fleet": "See our fleet",
+    "hero.discount": "🔥 10% off when you book through this website",
 
     // Fleet
     "fleet.title": "Our Fleet",
@@ -115,6 +119,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "fleet.from": "From",
     "fleet.perHour": "/hour",
     "fleet.jetskiNote": "Rental of 1 or 2 units",
+    "fleet.discountBanner": "10% off when you book through this website",
 
     // Booking
     "booking.title": "Book Your Experience",
@@ -122,6 +127,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "booking.badge1": "Direct contact with the owner",
     "booking.badge2": "No commissions or middlemen",
     "booking.badge3": "Secure payments to the owner",
+    "booking.discount": "🔥 Exclusive 10% off when you book here",
     "booking.step1": "Choose vessel",
     "booking.step2": "Select date",
     "booking.step3": "Choose time",

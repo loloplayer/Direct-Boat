@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Tag } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const WHATSAPP_NUMBER = "34641992624";
@@ -17,9 +18,11 @@ const HeroSection = () => {
         <img
           src={heroBg}
           alt="Puerto Banús marina en Marbella"
+          width={1920}
+          height={1080}
           className="w-full h-full object-cover animate-hero-ken-burns"
         />
-        <div className="absolute inset-0" style={{ background: "var(--navy-overlay)" }} />
+        <div className="absolute inset-0 bg-foreground/40" />
       </div>
 
       {/* Content */}
@@ -46,10 +49,20 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.45, ease: "easeOut" }}
-          className="text-sm text-accent font-body uppercase tracking-widest mb-10"
+          className="text-sm text-accent font-body uppercase tracking-widest mb-4"
         >
           {t("hero.subtitle")}
         </motion.p>
+        {/* Discount hook */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/20 border border-accent/40 backdrop-blur-sm mb-10"
+        >
+          <Tag className="w-4 h-4 text-accent" />
+          <span className="font-body text-sm font-bold text-accent">{t("hero.discount")}</span>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
