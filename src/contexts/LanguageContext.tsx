@@ -111,6 +111,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "hero.subtitle": "Hourly rental · Half day · Full day",
     "hero.cta": "Check availability on WhatsApp",
     "hero.fleet": "See our fleet",
+    "hero.discount": "🔥 10% off when you book through this website",
 
     // Fleet
     "fleet.title": "Our Fleet",
