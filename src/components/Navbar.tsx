@@ -1,23 +1,27 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Flota", href: "#flota" },
-  { label: "Experiencia", href: "#experiencia" },
-  { label: "Galería", href: "#galeria" },
-  { label: "Testimonios", href: "#testimonios" },
-  { label: "Contacto", href: "#contacto" },
-];
+import { Menu, X, Globe } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { lang, setLang, t } = useLanguage();
+
+  const navLinks = [
+    { label: t("nav.fleet"), href: "#flota" },
+    { label: t("nav.experience"), href: "#experiencia" },
+    { label: t("nav.gallery"), href: "#galeria" },
+    { label: t("nav.testimonials"), href: "#testimonios" },
+    { label: t("nav.contact"), href: "#contacto" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const toggleLang = () => setLang(lang === "es" ? "en" : "es");
 
   return (
     <>
@@ -50,22 +54,47 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+
+            {/* Language toggle */}
+            <button
+              onClick={toggleLang}
+              className={`flex items-center gap-1.5 text-xs font-body font-medium uppercase tracking-[0.15em] transition-colors hover:text-accent ${
+                scrolled ? "text-foreground" : "text-primary-foreground"
+              }`}
+              aria-label="Change language"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              {lang === "es" ? "EN" : "ES"}
+            </button>
+
             <a
               href="#reservar"
               className="px-5 py-2.5 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.12em] font-semibold rounded-md hover:bg-accent/90 transition-colors"
             >
-              Reservar
+              {t("nav.book")}
             </a>
           </div>
 
           {/* Mobile toggle */}
-          <button
-            className={`md:hidden ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            <button
+              onClick={toggleLang}
+              className={`flex items-center gap-1 text-xs font-body font-semibold ${
+                scrolled ? "text-foreground" : "text-primary-foreground"
+              }`}
+              aria-label="Change language"
+            >
+              <Globe className="w-4 h-4" />
+              {lang === "es" ? "EN" : "ES"}
+            </button>
+            <button
+              className={scrolled ? "text-foreground" : "text-primary-foreground"}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -87,7 +116,7 @@ const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
                 className="px-6 py-3 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.12em] font-semibold rounded-md"
               >
-                Reservar ahora
+                {t("nav.bookNow")}
               </a>
             </div>
           </div>
@@ -100,7 +129,7 @@ const Navbar = () => {
           href="#reservar"
           className="flex items-center justify-center w-full py-3.5 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.15em] font-bold rounded-lg hover:bg-accent/90 transition-colors"
         >
-          Reservar ahora
+          {t("nav.bookNow")}
         </a>
       </div>
     </>

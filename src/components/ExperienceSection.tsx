@@ -1,18 +1,20 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Anchor, Clock, MessageCircle, ShieldCheck, Banknote, UserCheck } from "lucide-react";
+import { Clock, ShieldCheck, Banknote, UserCheck } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroBg from "@/assets/hero-bg.jpg";
-
-const features = [
-  { icon: UserCheck, label: "Trato directo con el propietario", desc: "Habla sin intermediarios con quien realmente conoce su embarcación." },
-  { icon: Banknote, label: "Sin comisiones ocultas", desc: "El precio que ves es el precio que pagas. Sin sorpresas ni recargos." },
-  { icon: ShieldCheck, label: "Pagos seguros y directos", desc: "Toda transacción es directamente con el dueño. Máxima confianza." },
-  { icon: Clock, label: "Flexible: por horas o por día", desc: "Desde 1 hora hasta un día completo. Tú decides cuánto tiempo navegar." },
-];
 
 const ExperienceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
+
+  const features = [
+    { icon: UserCheck, label: t("exp.f1.label"), desc: t("exp.f1.desc") },
+    { icon: Banknote, label: t("exp.f2.label"), desc: t("exp.f2.desc") },
+    { icon: ShieldCheck, label: t("exp.f3.label"), desc: t("exp.f3.desc") },
+    { icon: Clock, label: t("exp.f4.label"), desc: t("exp.f4.desc") },
+  ];
 
   return (
     <section id="experiencia" className="relative py-24 md:py-32 overflow-hidden">
@@ -29,18 +31,17 @@ const ExperienceSection = () => {
           className="text-center mb-14"
         >
           <h2 className="text-3xl md:text-5xl text-primary-foreground mb-4 font-serif font-normal">
-            ¿Por qué reservar con nosotros?
+            {t("exp.title")}
           </h2>
           <p className="text-base md:text-lg text-primary-foreground/75 max-w-2xl mx-auto font-serif">
-            Somos el puente directo entre tú y los propietarios de embarcaciones en Marbella.
-            Sin agencias, sin comisiones — solo experiencias auténticas en el mar.
+            {t("exp.desc")}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {features.map((f, i) => (
             <motion.div
-              key={f.label}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + i * 0.12 }}

@@ -1,6 +1,7 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import gallery1 from "@/assets/gallery1.jpg";
 import gallery2 from "@/assets/gallery2.jpg";
 import gallery3 from "@/assets/gallery3.jpg";
@@ -9,18 +10,19 @@ import gallery5 from "@/assets/gallery5.jpg";
 import gallery6 from "@/assets/gallery6.jpg";
 
 const images = [
-  { src: gallery1, alt: "Vista desde la cubierta del yate" },
-  { src: gallery2, alt: "Vista aérea del yate en la costa" },
-  { src: gallery3, alt: "Saltando al mar desde un yate" },
-  { src: gallery4, alt: "Atardecer desde la proa del yate" },
-  { src: gallery5, alt: "Puerto Banús con yates de lujo" },
-  { src: gallery6, alt: "Vista desde la proa navegando" },
+  { src: gallery1, alt: "Yacht deck view" },
+  { src: gallery2, alt: "Aerial yacht view" },
+  { src: gallery3, alt: "Jumping from yacht" },
+  { src: gallery4, alt: "Sunset from bow" },
+  { src: gallery5, alt: "Puerto Banús luxury yachts" },
+  { src: gallery6, alt: "Bow sailing view" },
 ];
 
 const GallerySection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const close = useCallback(() => setLightboxIndex(null), []);
   const prev = useCallback(() => setLightboxIndex((i) => (i !== null ? (i - 1 + images.length) % images.length : null)), []);
@@ -52,7 +54,7 @@ const GallerySection = () => {
             transition={{ duration: 0.7 }}
             className="font-display text-3xl md:text-5xl font-medium text-foreground text-center mb-16"
           >
-            Galería
+            {t("gallery.title")}
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {images.map((img, i) => (
@@ -76,7 +78,6 @@ const GallerySection = () => {
         </div>
       </section>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {lightboxIndex !== null && (
           <motion.div
@@ -87,22 +88,12 @@ const GallerySection = () => {
             className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/90 backdrop-blur-sm"
             onClick={close}
           >
-            <button
-              onClick={(e) => { e.stopPropagation(); close(); }}
-              className="absolute top-6 right-6 text-primary-foreground/80 hover:text-primary-foreground transition-colors z-10"
-              aria-label="Cerrar"
-            >
+            <button onClick={(e) => { e.stopPropagation(); close(); }} className="absolute top-6 right-6 text-primary-foreground/80 hover:text-primary-foreground transition-colors z-10" aria-label="Close">
               <X className="w-8 h-8" />
             </button>
-
-            <button
-              onClick={(e) => { e.stopPropagation(); prev(); }}
-              className="absolute left-4 md:left-8 text-primary-foreground/60 hover:text-primary-foreground transition-colors z-10"
-              aria-label="Anterior"
-            >
+            <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 md:left-8 text-primary-foreground/60 hover:text-primary-foreground transition-colors z-10" aria-label="Previous">
               <ChevronLeft className="w-10 h-10" />
             </button>
-
             <motion.img
               key={lightboxIndex}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -114,15 +105,9 @@ const GallerySection = () => {
               className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
-
-            <button
-              onClick={(e) => { e.stopPropagation(); next(); }}
-              className="absolute right-4 md:right-8 text-primary-foreground/60 hover:text-primary-foreground transition-colors z-10"
-              aria-label="Siguiente"
-            >
+            <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 md:right-8 text-primary-foreground/60 hover:text-primary-foreground transition-colors z-10" aria-label="Next">
               <ChevronRight className="w-10 h-10" />
             </button>
-
             <div className="absolute bottom-6 text-primary-foreground/50 font-body text-sm">
               {lightboxIndex + 1} / {images.length}
             </div>

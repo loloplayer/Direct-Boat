@@ -1,21 +1,29 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Users, Gauge, Ruler, MessageCircle, Mail } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import boat1 from "@/assets/boat1.jpg";
 import boat2 from "@/assets/boat2.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
+/*
+ * ─── FLEET CONFIG ────────────────────────────────────────────
+ * Each vessel has its OWN whatsapp number and email.
+ * To change a vessel's contact, just update these fields:
+ */
 const fleet = [
-  { name: "Marbella Catamaran 42", type: "Catamarán", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "000000000001", email: "catamaran42@example.com" },
-  { name: "Azymut 12m", type: "Yate", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "12 m", whatsapp: "000000000002", email: "azymut@example.com" },
-  { name: "Jet Ski", type: "Jet Ski", price: "120", image: jetski1, passengers: "1–2", power: "130 CV", length: "3.4 m", whatsapp: "000000000003", email: "jetski@example.com", note: "Alquiler de 1 o 2 unidades" },
+  { name: "Marbella Catamaran 42", type: "Catamarán", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "34641992624", email: "catamaran42@example.com" },
+  { name: "Azymut 12m", type: "Yate", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "12 m", whatsapp: "34641992624", email: "azymut@example.com" },
+  { name: "Jet Ski", type: "Jet Ski", price: "120", image: jetski1, passengers: "1–2", power: "130 CV", length: "3.4 m", whatsapp: "34641992624", email: "jetski@example.com" },
 ];
 
 const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const waMsg = `Hola, estoy interesado en alquilar el ${boat.name}. ¿Podrían enviarme disponibilidad y detalles?`;
+  const { t } = useLanguage();
+
+  const waMsg = t("fleet.waMsg").replace("{name}", boat.name);
+  const isJetSki = boat.type === "Jet Ski";
 
   return (
     <motion.div
@@ -44,8 +52,8 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
           <h3 className="font-display text-lg font-medium text-foreground mb-1">
             {boat.name}
           </h3>
-          {boat.note && (
-            <p className="font-body text-xs text-accent font-medium mb-3">{boat.note}</p>
+          {isJetSki && (
+            <p className="font-body text-xs text-accent font-medium mb-3">{t("fleet.jetskiNote")}</p>
           )}
 
           <div className="flex items-center gap-4 mb-4">
@@ -65,9 +73,9 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
 
           <div className="flex items-center justify-between mb-4">
             <p className="font-body text-sm">
-              <span className="text-muted-foreground">Desde </span>
+              <span className="text-muted-foreground">{t("fleet.from")} </span>
               <span className="text-accent font-bold text-lg">€{boat.price}</span>
-              <span className="text-muted-foreground text-xs"> /hora</span>
+              <span className="text-muted-foreground text-xs"> {t("fleet.perHour")}</span>
             </p>
           </div>
 
@@ -82,7 +90,7 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
               WhatsApp
             </a>
             <a
-              href={`mailto:${boat.email}?subject=${encodeURIComponent(`Consulta: ${boat.name}`)}&body=${encodeURIComponent(waMsg)}`}
+              href={`mailto:${boat.email}?subject=${encodeURIComponent(t("fleet.inquiry").replace("{name}", boat.name))}&body=${encodeURIComponent(waMsg)}`}
               className="flex items-center justify-center gap-2 px-4 py-2.5 border border-border text-foreground font-body text-[10px] uppercase tracking-[0.12em] font-semibold rounded-md hover:bg-muted transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />
@@ -98,6 +106,7 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
 const FleetSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   return (
     <section id="flota" className="py-24 md:py-32 bg-background">
@@ -110,10 +119,10 @@ const FleetSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-4">
-            Nuestra Flota
+            {t("fleet.title")}
           </h2>
           <p className="font-body text-muted-foreground max-w-lg mx-auto">
-            Barcos y jet skis premium para vivir Marbella desde el mar.
+            {t("fleet.desc")}
           </p>
         </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
