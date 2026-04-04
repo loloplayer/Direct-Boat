@@ -34,6 +34,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "fleet.from": "Desde",
     "fleet.perHour": "/hora",
     "fleet.jetskiNote": "Alquiler de 1 o 2 unidades",
+    "fleet.discountBanner": "10% de descuento reservando por esta web",
 
     // Booking
     "booking.title": "Reserva Tu Experiencia",
