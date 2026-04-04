@@ -42,6 +42,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "booking.badge1": "Contacto directo con el propietario",
     "booking.badge2": "Sin comisiones ni intermediarios",
     "booking.badge3": "Pagos seguros directo al dueño",
+    "booking.discount": "🔥 10% dto. exclusivo reservando por esta web",
     "booking.step1": "Elige embarcación",
     "booking.step2": "Selecciona fecha",
     "booking.step3": "Elige horario",
