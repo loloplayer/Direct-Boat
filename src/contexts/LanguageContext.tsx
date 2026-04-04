@@ -119,6 +119,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "fleet.from": "From",
     "fleet.perHour": "/hour",
     "fleet.jetskiNote": "Rental of 1 or 2 units",
+    "fleet.discountBanner": "10% off when you book through this website",
 
     // Booking
     "booking.title": "Book Your Experience",
