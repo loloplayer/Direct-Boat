@@ -2,26 +2,20 @@ import { useState, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { format } from "date-fns";
-import { es } from "date-fns/locale";
+import { es, enUS } from "date-fns/locale";
 import { CalendarIcon, Ship, Clock, MessageCircle } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 import boat1 from "@/assets/boat1.jpg";
 import boat2 from "@/assets/boat2.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
 const vessels = [
-  { id: "catamaran-42", name: "Marbella Catamaran 42", type: "Catamarán", image: boat1 },
-  { id: "azymut-12", name: "Azymut 12m", type: "Yate", image: boat2 },
-  { id: "jetski", name: "Jet Ski", type: "Jet Ski", image: jetski1 },
-];
-
-const timeSlots = [
-  { id: "hourly", label: "Por Hora", desc: "Mínimo 1 hora" },
-  { id: "morning", label: "Mañana", desc: "9:00 – 13:00" },
-  { id: "afternoon", label: "Tarde", desc: "14:00 – 18:00" },
-  { id: "fullday", label: "Día Completo", desc: "9:00 – 18:00" },
+  { id: "catamaran-42", name: "Marbella Catamaran 42", type: "Catamarán", image: boat1, whatsapp: "34641992624" },
+  { id: "azymut-12", name: "Azymut 12m", type: "Yate", image: boat2, whatsapp: "34641992624" },
+  { id: "jetski", name: "Jet Ski", type: "Jet Ski", image: jetski1, whatsapp: "34641992624" },
 ];
 
 const BookingSection = () => {
@@ -30,17 +24,33 @@ const BookingSection = () => {
   const [selectedVessel, setSelectedVessel] = useState<string>();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+  const { lang, t } = useLanguage();
+
+  const dateFnsLocale = lang === "es" ? es : enUS;
+
+  const timeSlots = [
+    { id: "hourly", label: t("booking.hourly"), desc: t("booking.hourlyDesc") },
+    { id: "morning", label: t("booking.morning"), desc: t("booking.morningDesc") },
+    { id: "afternoon", label: t("booking.afternoon"), desc: t("booking.afternoonDesc") },
+    { id: "fullday", label: t("booking.fullday"), desc: t("booking.fulldayDesc") },
+  ];
 
   const vessel = vessels.find((v) => v.id === selectedVessel);
-  const time = timeSlots.find((t) => t.id === selectedTime);
+  const time = timeSlots.find((ts) => ts.id === selectedTime);
 
   const whatsappUrl = useMemo(() => {
-    const vesselName = vessel?.name ?? "[Embarcación]";
-    const dateStr = date ? format(date, "d 'de' MMMM yyyy", { locale: es }) : "[Fecha]";
-    const timeStr = time ? `${time.label} (${time.desc})` : "[Horario]";
-    const text = `Hola, me interesa reservar el ${vesselName} para el día ${dateStr} en el horario ${timeStr}. ¿Está disponible?`;
-    return `https://wa.me/000000000000?text=${encodeURIComponent(text)}`;
-  }, [vessel, date, time]);
+    const vesselName = vessel?.name ?? "[...]";
+    const dateStr = date
+      ? format(date, lang === "es" ? "d 'de' MMMM yyyy" : "MMMM d, yyyy", { locale: dateFnsLocale })
+      : "[...]";
+    const timeStr = time ? `${time.label} (${time.desc})` : "[...]";
+    const text = t("booking.waMsg")
+      .replace("{vessel}", vesselName)
+      .replace("{date}", dateStr)
+      .replace("{time}", timeStr);
+    const number = vessel?.whatsapp ?? "34641992624";
+    return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+  }, [vessel, date, time, lang, t, dateFnsLocale]);
 
   const isComplete = date && selectedTime && selectedVessel;
 
@@ -55,16 +65,16 @@ const BookingSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-4">
-            Reserva Tu Experiencia
+            {t("booking.title")}
           </h2>
           <p className="font-body text-muted-foreground max-w-xl mx-auto mb-6">
-            Elige tu embarcación, fecha y horario favoritos. Te confirmaremos la disponibilidad al instante por WhatsApp.
+            {t("booking.desc")}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 max-w-2xl mx-auto">
             {[
-              { icon: "🔒", text: "Contacto directo con el propietario" },
-              { icon: "💰", text: "Sin comisiones ni intermediarios" },
-              { icon: "✅", text: "Pagos seguros directo al dueño" },
+              { icon: "🔒", text: t("booking.badge1") },
+              { icon: "💰", text: t("booking.badge2") },
+              { icon: "✅", text: t("booking.badge3") },
             ].map((item) => (
               <span key={item.text} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 font-body text-xs text-foreground">
                 <span>{item.icon}</span>{item.text}
@@ -74,15 +84,11 @@ const BookingSection = () => {
         </motion.div>
 
         <div className="max-w-4xl mx-auto space-y-12">
-          {/* Step 1 – Vessel */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          {/* Step 1 */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">1</span>
-              <h3 className="font-display text-xl text-foreground">Elige embarcación</h3>
+              <h3 className="font-display text-xl text-foreground">{t("booking.step1")}</h3>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {vessels.map((v) => (
@@ -112,15 +118,11 @@ const BookingSection = () => {
             </div>
           </motion.div>
 
-          {/* Step 2 – Date */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          {/* Step 2 */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">2</span>
-              <h3 className="font-display text-xl text-foreground">Selecciona fecha</h3>
+              <h3 className="font-display text-xl text-foreground">{t("booking.step2")}</h3>
             </div>
             <Popover>
               <PopoverTrigger asChild>
@@ -131,7 +133,9 @@ const BookingSection = () => {
                   )}
                 >
                   <CalendarIcon className="w-5 h-5 text-accent" />
-                  {date ? format(date, "EEEE, d 'de' MMMM yyyy", { locale: es }) : "Selecciona una fecha"}
+                  {date
+                    ? format(date, lang === "es" ? "EEEE, d 'de' MMMM yyyy" : "EEEE, MMMM d, yyyy", { locale: dateFnsLocale })
+                    : t("booking.datePlaceholder")}
                 </button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="start">
@@ -139,7 +143,7 @@ const BookingSection = () => {
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  locale={es}
+                  locale={dateFnsLocale}
                   disabled={(d) => d < new Date()}
                   initialFocus
                   className="p-3 pointer-events-auto"
@@ -148,15 +152,11 @@ const BookingSection = () => {
             </Popover>
           </motion.div>
 
-          {/* Step 3 – Time */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          {/* Step 3 */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.3 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">3</span>
-              <h3 className="font-display text-xl text-foreground">Elige horario</h3>
+              <h3 className="font-display text-xl text-foreground">{t("booking.step3")}</h3>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {timeSlots.map((slot) => (
@@ -181,12 +181,7 @@ const BookingSection = () => {
           </motion.div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center pt-4"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.4 }} className="text-center pt-4">
             <a
               href={whatsappUrl}
               target="_blank"
@@ -199,11 +194,11 @@ const BookingSection = () => {
               )}
             >
               <MessageCircle className="w-4 h-4" />
-              Consultar Disponibilidad
+              {t("booking.cta")}
             </a>
             {!isComplete && (
               <p className="font-body text-xs text-muted-foreground mt-3">
-                Completa los 3 pasos para enviar tu consulta
+                {t("booking.incomplete")}
               </p>
             )}
           </motion.div>
