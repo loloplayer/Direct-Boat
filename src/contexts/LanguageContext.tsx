@@ -127,6 +127,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "booking.badge1": "Direct contact with the owner",
     "booking.badge2": "No commissions or middlemen",
     "booking.badge3": "Secure payments to the owner",
+    "booking.discount": "🔥 Exclusive 10% off when you book here",
     "booking.step1": "Choose vessel",
     "booking.step2": "Select date",
     "booking.step3": "Choose time",
