@@ -12,9 +12,9 @@ import boat2 from "@/assets/boat2.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
 const vessels = [
-  { id: "catamaran-42", name: "Marbella Catamaran 42", type: "Catamarán", image: boat1, whatsapp: "34641992624" },
-  { id: "azymut-12", name: "Azymut 12m", type: "Yate", image: boat2, whatsapp: "34641992624" },
-  { id: "jetski", name: "Jet Ski", type: "Jet Ski", image: jetski1, whatsapp: "34641992624" },
+  { id: "catamaran-42", name: "Marbella Catamaran 42", type: "Catamarán", image: boat1, whatsapp: "34667266164" },
+  { id: "azymut-12", name: "Azymut 12m", type: "Yate", image: boat2, whatsapp: "34667266164" },
+  { id: "jetski", name: "Jet Ski", type: "Jet Ski", image: jetski1, whatsapp: "34667266164" },
 ];
 
 const BookingSection = () => {
@@ -70,7 +70,7 @@ const BookingSection = () => {
       .replace("{vessel}", vesselName)
       .replace("{date}", dateStr)
       .replace("{time}", timeStr);
-    const number = vessel?.whatsapp ?? "34641992624";
+    const number = vessel?.whatsapp ?? "34667266164";
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
   }, [vessel, date, time, lang, t, dateFnsLocale]);
 

@@ -12,9 +12,9 @@ import jetski1 from "@/assets/jetski1.jpg";
  * To change a vessel's contact, just update these fields:
  */
 const fleet = [
-  { name: "Marbella Catamaran 42", type: "Catamarán", originalPrice: "390", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "34641992624", email: "catamaran42@example.com" },
-  { name: "Azymut 12m", type: "Yate", originalPrice: "470", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "12 m", whatsapp: "34641992624", email: "azymut@example.com" },
-  { name: "Jet Ski", type: "Jet Ski", originalPrice: "135", price: "120", image: jetski1, passengers: "1–2", power: "130 CV", length: "3.4 m", whatsapp: "34641992624", email: "jetski@example.com" },
+  { name: "Marbella Catamaran 42", type: "Catamarán", originalPrice: "390", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "34667266164", email: "marbellaoceanboats@gmail.com" },
+  { name: "Azymut 12m", type: "Yate", originalPrice: "470", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "12 m", whatsapp: "34667266164", email: "marbellaoceanboats@gmail.com" },
+  { name: "Jet Ski", type: "Jet Ski", originalPrice: "135", price: "120", image: jetski1, passengers: "1–2", power: "130 CV", length: "3.4 m", whatsapp: "34667266164", email: "marbellaoceanboats@gmail.com" },
 ];
 
 const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => {
