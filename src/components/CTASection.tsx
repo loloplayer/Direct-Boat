@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ctaBg from "@/assets/cta-bg.jpg";
 
-const WHATSAPP_NUMBER = "34641992624";
+const WHATSAPP_NUMBER = "34667266164";
 
 const CTASection = () => {
   const ref = useRef(null);
