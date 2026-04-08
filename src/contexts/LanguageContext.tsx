@@ -93,6 +93,8 @@ const translations: Record<Lang, Record<string, string>> = {
     // Fleet WA messages
     "fleet.waMsg": "Hola, estoy interesado en alquilar el {name}. ¿Podrían enviarme disponibilidad y detalles?",
     "fleet.inquiry": "Consulta: {name}",
+    "fleet.includes": "Incluye",
+    "fleet.checkAvailability": "Consultar disponibilidad",
   },
   en: {
     // Navbar
@@ -178,6 +180,8 @@ const translations: Record<Lang, Record<string, string>> = {
     // Fleet WA messages
     "fleet.waMsg": "Hi, I'm interested in renting the {name}. Could you send me availability and details?",
     "fleet.inquiry": "Inquiry: {name}",
+    "fleet.includes": "Includes",
+    "fleet.checkAvailability": "Check availability",
   },
 };
 
