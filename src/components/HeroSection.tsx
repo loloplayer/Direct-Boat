@@ -3,13 +3,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Tag } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const WHATSAPP_NUMBER = "34641992624";
-
 const HeroSection = () => {
   const { t } = useLanguage();
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    t("hero.desc").slice(0, 80)
-  )}`;
+
+  const handleCheckAvailability = () => {
+    const el = document.getElementById("reservar");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -69,14 +69,12 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={handleCheckAvailability}
             className="inline-block px-8 py-4 bg-primary text-primary-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-primary/90 transition-colors"
           >
             {t("hero.cta")}
-          </a>
+          </button>
           <a
             href="#flota"
             className="inline-block px-8 py-4 text-primary-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold border-b-2 border-primary-foreground/40 hover:border-primary-foreground transition-colors bg-primary"

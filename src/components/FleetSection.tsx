@@ -1,20 +1,65 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Gauge, Ruler, MessageCircle, Mail, Tag } from "lucide-react";
+import { Users, Gauge, Ruler, Anchor, Tag } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import boat1 from "@/assets/boat1.jpg";
-import boat2 from "@/assets/boat2.jpg";
+import catamaranImg from "@/assets/catamaran_bali.jpg";
+import azimutImg from "@/assets/azimut39.jpg";
+import rinkerImg from "@/assets/rinker.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
-/*
- * ─── FLEET CONFIG ────────────────────────────────────────────
- * Each vessel has its OWN whatsapp number and email.
- * To change a vessel's contact, just update these fields:
- */
 const fleet = [
-  { name: "Marbella Catamaran 42", type: "Catamarán", originalPrice: "390", price: "350", image: boat1, passengers: 12, power: "2×40 CV", length: "12.8 m", whatsapp: "34667266164", email: "marbellaoceanboats@gmail.com" },
-  { name: "Azymut 12m", type: "Yate", originalPrice: "470", price: "420", image: boat2, passengers: 10, power: "2×300 CV", length: "12 m", whatsapp: "34667266164", email: "marbellaoceanboats@gmail.com" },
-  { name: "Jet Ski", type: "Jet Ski", originalPrice: "135", price: "120", image: jetski1, passengers: "1–2", power: "130 CV", length: "3.4 m", whatsapp: "34667266164", email: "marbellaoceanboats@gmail.com" },
+  {
+    name: "Catamarán Bali 4.0",
+    type: "Catamarán",
+    image: catamaranImg,
+    passengers: "10 + crew",
+    power: "2×40 CV Volvo",
+    length: "12.50 m",
+    priceFrom: "375",
+    pricePer: "h",
+    includes: ["Captain & crew", "Rosé wine, Cava ×2", "Beer, soft drinks, water", "Paddle surf, snorkel", "Towels, Bluetooth music", "Gasoline"],
+    whatsapp: "34667266164",
+    email: "marbellaoceanboats@gmail.com",
+  },
+  {
+    name: "Azimut 39 Fly",
+    type: "Yate",
+    image: azimutImg,
+    passengers: 12,
+    power: "Flybridge",
+    length: "12.30 m",
+    priceFrom: "400",
+    pricePer: "h",
+    includes: ["Captain", "Champagne ×2", "White wine ×2", "Drinks (limited)", "Paddle surf", "Insurance"],
+    whatsapp: "34667266164",
+    email: "marbellaoceanboats@gmail.com",
+  },
+  {
+    name: "Rinker 296 Captiva",
+    type: "Lancha",
+    image: rinkerImg,
+    passengers: 8,
+    power: "Sport cruiser",
+    length: "9.4 m",
+    priceFrom: "250",
+    pricePer: "h",
+    includes: ["Captain", "Welcome drink", "Stereo", "Gasoline", "V.A.T"],
+    whatsapp: "34667266164",
+    email: "marbellaoceanboats@gmail.com",
+  },
+  {
+    name: "Jet Ski",
+    type: "Jet Ski",
+    image: jetski1,
+    passengers: "1–2",
+    power: "130 CV",
+    length: "3.4 m",
+    priceFrom: "120",
+    pricePer: "h",
+    includes: [],
+    whatsapp: "34667266164",
+    email: "marbellaoceanboats@gmail.com",
+  },
 ];
 
 const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => {
@@ -22,8 +67,12 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { t } = useLanguage();
 
-  const waMsg = t("fleet.waMsg").replace("{name}", boat.name);
   const isJetSki = boat.type === "Jet Ski";
+
+  const handleBooking = () => {
+    const el = document.getElementById("reservar");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <motion.div
@@ -44,13 +93,6 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
           <div className="absolute top-3 left-3 flex items-center gap-2">
             <span className="inline-block px-3 py-1.5 bg-background/90 backdrop-blur-sm text-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-medium">
               {boat.type}
-            </span>
-          </div>
-          {/* Discount badge */}
-          <div className="absolute top-3 right-3">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-accent text-accent-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-bold">
-              <Tag className="w-3 h-3" />
-              -10%
             </span>
           </div>
         </div>
@@ -78,33 +120,39 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
             </div>
           </div>
 
+          {boat.includes.length > 0 && (
+            <div className="mb-4">
+              <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5">{t("fleet.includes")}</p>
+              <div className="flex flex-wrap gap-1">
+                {boat.includes.slice(0, 4).map((item) => (
+                  <span key={item} className="inline-block px-2 py-0.5 bg-muted rounded text-[10px] font-body text-muted-foreground">
+                    {item}
+                  </span>
+                ))}
+                {boat.includes.length > 4 && (
+                  <span className="inline-block px-2 py-0.5 bg-muted rounded text-[10px] font-body text-muted-foreground">
+                    +{boat.includes.length - 4}
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="flex items-center justify-between mb-4">
             <p className="font-body text-sm">
               <span className="text-muted-foreground">{t("fleet.from")} </span>
-              <span className="text-muted-foreground/60 line-through text-sm mr-1">€{boat.originalPrice}</span>
-              <span className="text-accent font-bold text-lg">€{boat.price}</span>
-              <span className="text-muted-foreground text-xs"> {t("fleet.perHour")}</span>
+              <span className="text-accent font-bold text-lg">€{boat.priceFrom}</span>
+              <span className="text-muted-foreground text-xs"> /{boat.pricePer}</span>
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <a
-              href={`https://wa.me/${boat.whatsapp}?text=${encodeURIComponent(waMsg)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground font-body text-[10px] uppercase tracking-[0.12em] font-semibold rounded-md hover:bg-primary/90 transition-colors"
-            >
-              <MessageCircle className="w-3.5 h-3.5" />
-              WhatsApp
-            </a>
-            <a
-              href={`mailto:${boat.email}?subject=${encodeURIComponent(t("fleet.inquiry").replace("{name}", boat.name))}&body=${encodeURIComponent(waMsg)}`}
-              className="flex items-center justify-center gap-2 px-4 py-2.5 border border-border text-foreground font-body text-[10px] uppercase tracking-[0.12em] font-semibold rounded-md hover:bg-muted transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              Email
-            </a>
-          </div>
+          <button
+            onClick={handleBooking}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground font-body text-[10px] uppercase tracking-[0.12em] font-semibold rounded-md hover:bg-primary/90 transition-colors"
+          >
+            <Anchor className="w-3.5 h-3.5" />
+            {t("fleet.checkAvailability")}
+          </button>
         </div>
       </div>
     </motion.div>
@@ -137,7 +185,7 @@ const FleetSection = () => {
             {t("fleet.desc")}
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {fleet.map((boat, i) => (
             <BoatCard key={boat.name} boat={boat} index={i} />
           ))}

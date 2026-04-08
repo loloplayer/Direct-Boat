@@ -3,14 +3,15 @@ import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ctaBg from "@/assets/cta-bg.jpg";
 
-const WHATSAPP_NUMBER = "34667266164";
-
 const CTASection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { t } = useLanguage();
 
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("cta.desc").slice(0, 60))}`;
+  const handleBooking = () => {
+    const el = document.getElementById("reservar");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section id="contacto" className="relative py-32 md:py-44 overflow-hidden">
@@ -34,14 +35,12 @@ const CTASection = () => {
         <p className="text-sm text-accent font-body uppercase tracking-widest mb-10">
           {t("cta.subtitle")}
         </p>
-        <a
-          href={waUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={handleBooking}
           className="inline-block px-10 py-4 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-accent/90 transition-colors"
         >
           {t("cta.button")}
-        </a>
+        </button>
       </motion.div>
     </section>
   );

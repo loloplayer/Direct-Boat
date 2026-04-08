@@ -7,13 +7,15 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
-import boat1 from "@/assets/boat1.jpg";
-import boat2 from "@/assets/boat2.jpg";
+import catamaranImg from "@/assets/catamaran_bali.jpg";
+import azimutImg from "@/assets/azimut39.jpg";
+import rinkerImg from "@/assets/rinker.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
 const vessels = [
-  { id: "catamaran-42", name: "Marbella Catamaran 42", type: "Catamarán", image: boat1, whatsapp: "34667266164" },
-  { id: "azymut-12", name: "Azymut 12m", type: "Yate", image: boat2, whatsapp: "34667266164" },
+  { id: "catamaran-bali", name: "Catamarán Bali 4.0", type: "Catamarán", image: catamaranImg, whatsapp: "34667266164" },
+  { id: "azimut-39", name: "Azimut 39 Fly", type: "Yate", image: azimutImg, whatsapp: "34667266164" },
+  { id: "rinker-296", name: "Rinker 296 Captiva", type: "Lancha", image: rinkerImg, whatsapp: "34667266164" },
   { id: "jetski", name: "Jet Ski", type: "Jet Ski", image: jetski1, whatsapp: "34667266164" },
 ];
 
@@ -40,7 +42,6 @@ const BookingSection = () => {
   const vessel = vessels.find((v) => v.id === selectedVessel);
   const time = timeSlots.find((ts) => ts.id === selectedTime);
 
-  // Auto-advance: vessel selected → open calendar & scroll
   useEffect(() => {
     if (selectedVessel && !date) {
       setTimeout(() => {
@@ -50,7 +51,6 @@ const BookingSection = () => {
     }
   }, [selectedVessel]);
 
-  // Auto-advance: date selected → scroll to time
   useEffect(() => {
     if (date && !selectedTime) {
       setCalendarOpen(false);
@@ -92,7 +92,6 @@ const BookingSection = () => {
           <p className="font-body text-muted-foreground max-w-xl mx-auto mb-4">
             {t("booking.desc")}
           </p>
-          {/* Discount banner */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/15 border border-accent/30 mb-6">
             <Tag className="w-4 h-4 text-accent" />
             <span className="font-body text-sm font-bold text-accent">{t("booking.discount")}</span>
@@ -117,7 +116,7 @@ const BookingSection = () => {
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">1</span>
               <h3 className="font-display text-xl text-foreground">{t("booking.step1")}</h3>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {vessels.map((v) => (
                 <button
                   key={v.id}
