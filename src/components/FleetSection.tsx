@@ -1,20 +1,37 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Users, Gauge, Ruler, Anchor, Tag } from "lucide-react";
+import { useRef, useState } from "react";
+import { Users, Gauge, Ruler, Anchor, Tag, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+import catamaranExterior from "@/assets/catamaran_exterior.jpg";
+import catamaranInterior from "@/assets/catamaran_interior.jpg";
 import catamaranImg from "@/assets/catamaran_bali.jpg";
-import azimutImg from "@/assets/azimut39.jpg";
+
+import azimutMain from "@/assets/azimut_main.jpg";
+import azimut2 from "@/assets/azimut_2.jpg";
+import azimut3 from "@/assets/azimut_3.jpg";
+import azimut4 from "@/assets/azimut_4.jpg";
+import azimut5 from "@/assets/azimut_5.jpg";
+import azimut6 from "@/assets/azimut_6.jpg";
+import azimut7 from "@/assets/azimut_7.jpg";
+import azimut8 from "@/assets/azimut_8.jpg";
+import azimut9 from "@/assets/azimut_9.jpg";
+
+import rinkerMain from "@/assets/rinker_main.jpg";
 import rinkerImg from "@/assets/rinker.jpg";
+
 import jetski1 from "@/assets/jetski1.jpg";
 
 const fleet = [
   {
     name: "Catamarán Bali 4.0",
     type: "Catamarán",
-    image: catamaranImg,
+    images: [catamaranExterior, catamaranImg, catamaranInterior],
     passengers: "10 + crew",
     power: "2×40 CV Volvo",
     length: "12.50 m",
+    beam: "7.00 m",
+    cabins: 4,
     priceFrom: "375",
     pricePer: "h",
     includes: ["Captain & crew", "Rosé wine, Cava ×2", "Beer, soft drinks, water", "Paddle surf, snorkel", "Towels, Bluetooth music", "Gasoline"],
@@ -24,8 +41,8 @@ const fleet = [
   {
     name: "Azimut 39 Fly",
     type: "Yate",
-    image: azimutImg,
-    passengers: 12,
+    images: [azimutMain, azimut2, azimut3, azimut4, azimut5, azimut6, azimut7, azimut8, azimut9],
+    passengers: "12",
     power: "Flybridge",
     length: "12.30 m",
     priceFrom: "400",
@@ -37,8 +54,8 @@ const fleet = [
   {
     name: "Rinker 296 Captiva",
     type: "Lancha",
-    image: rinkerImg,
-    passengers: 8,
+    images: [rinkerMain, rinkerImg],
+    passengers: "8",
     power: "Sport cruiser",
     length: "9.4 m",
     priceFrom: "250",
@@ -50,7 +67,7 @@ const fleet = [
   {
     name: "Jet Ski",
     type: "Jet Ski",
-    image: jetski1,
+    images: [jetski1],
     passengers: "1–2",
     power: "130 CV",
     length: "3.4 m",
@@ -61,6 +78,47 @@ const fleet = [
     email: "marbellaoceanboats@gmail.com",
   },
 ];
+
+const ImageCarousel = ({ images, name }: { images: string[]; name: string }) => {
+  const [current, setCurrent] = useState(0);
+
+  if (images.length <= 1) {
+    return (
+      <img src={images[0]} alt={name} className="w-full aspect-[4/3] object-cover" loading="lazy" />
+    );
+  }
+
+  return (
+    <div className="relative">
+      <img
+        src={images[current]}
+        alt={`${name} ${current + 1}`}
+        className="w-full aspect-[4/3] object-cover transition-opacity duration-300"
+        loading="lazy"
+      />
+      <button
+        onClick={(e) => { e.stopPropagation(); setCurrent((p) => (p - 1 + images.length) % images.length); }}
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); setCurrent((p) => (p + 1) % images.length); }}
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+        {images.map((_, i) => (
+          <span
+            key={i}
+            className={`w-1.5 h-1.5 rounded-full transition-colors ${i === current ? "bg-accent" : "bg-background/60"}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => {
   const ref = useRef(null);
@@ -84,12 +142,7 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
     >
       <div className="relative overflow-hidden rounded-lg bg-card" style={{ boxShadow: "var(--shadow-card)" }}>
         <div className="relative overflow-hidden">
-          <img
-            src={boat.image}
-            alt={boat.name}
-            className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
-          />
+          <ImageCarousel images={boat.images} name={boat.name} />
           <div className="absolute top-3 left-3 flex items-center gap-2">
             <span className="inline-block px-3 py-1.5 bg-background/90 backdrop-blur-sm text-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-medium">
               {boat.type}
@@ -174,9 +227,13 @@ const FleetSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/15 border border-accent/30 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/15 border border-accent/30 mb-4">
             <Tag className="w-4 h-4 text-accent" />
             <span className="font-body text-sm font-bold text-accent">{t("fleet.discountBanner")}</span>
+          </div>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border mb-6 ml-2">
+            <MapPin className="w-4 h-4 text-accent" />
+            <span className="font-body text-sm text-foreground">{t("fleet.location")}</span>
           </div>
           <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-4">
             {t("fleet.title")}

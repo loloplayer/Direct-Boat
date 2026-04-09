@@ -27,7 +27,7 @@ const Footer = () => {
             className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors"
           >
             <Instagram className="w-5 h-5" />
-            <span className="font-body text-sm">@marbellahorizonte</span>
+            <span className="font-body text-sm">@marbellaoceanboats</span>
           </a>
 
           <div className="w-16 h-px bg-primary-foreground/20" />
