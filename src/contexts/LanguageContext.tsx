@@ -21,8 +21,8 @@ const translations: Record<Lang, Record<string, string>> = {
 
     // Hero
     "hero.title1": "Alquiler de Barcos",
-    "hero.title2": "de Lujo en Marbella",
-    "hero.desc": "Contacta directamente con los propietarios de barcos y Jet Ski en Marbella. Sin intermediarios, sin comisiones — tú eliges, tú negocias, tú disfrutas.",
+    "hero.title2": "en Puerto Banús, Marbella",
+    "hero.desc": "Contacta directamente con los propietarios de barcos y Jet Ski en Puerto Banús, Marbella. Sin intermediarios, sin comisiones — tú eliges, tú negocias, tú disfrutas.",
     "hero.subtitle": "Alquiler por horas · media jornada · día completo",
     "hero.cta": "Consultar disponibilidad por WhatsApp",
     "hero.fleet": "Ver nuestra flota",
@@ -30,10 +30,11 @@ const translations: Record<Lang, Record<string, string>> = {
 
     // Fleet
     "fleet.title": "Nuestra Flota",
-    "fleet.desc": "Barcos y Jet Ski premium para vivir Marbella desde el mar.",
+    "fleet.desc": "Barcos y Jet Ski premium en Puerto Banús, Marbella.",
     "fleet.from": "Desde",
     "fleet.perHour": "/hora",
     "fleet.jetskiNote": "Alquiler de 1 o 2 unidades",
+    "fleet.location": "📍 Puerto Banús, Marbella — Pantalán 5",
     "fleet.discountBanner": "10% de descuento reservando por esta web",
 
     // Booking
@@ -45,16 +46,10 @@ const translations: Record<Lang, Record<string, string>> = {
     "booking.discount": "🔥 10% dto. exclusivo reservando por esta web",
     "booking.step1": "Elige embarcación",
     "booking.step2": "Selecciona fecha",
-    "booking.step3": "Elige horario",
+    "booking.step3": "Elige duración y precio",
     "booking.datePlaceholder": "Selecciona una fecha",
-    "booking.hourly": "Por Hora",
-    "booking.hourlyDesc": "Mínimo 1 hora",
-    "booking.morning": "Mañana",
-    "booking.morningDesc": "9:00 – 13:00",
-    "booking.afternoon": "Tarde",
-    "booking.afternoonDesc": "14:00 – 18:00",
-    "booking.fullday": "Día Completo",
-    "booking.fulldayDesc": "9:00 – 18:00",
+    "booking.selectVesselFirst": "Selecciona primero una embarcación para ver los horarios y precios disponibles.",
+    "booking.location": "📍 Puerto Banús, Pantalán 5",
     "booking.cta": "Consultar Disponibilidad",
     "booking.incomplete": "Completa los 3 pasos para enviar tu consulta",
     "booking.waMsg": "Hola, me interesa reservar el {vessel} para el día {date} en el horario {time}. ¿Está disponible?",
@@ -108,8 +103,8 @@ const translations: Record<Lang, Record<string, string>> = {
 
     // Hero
     "hero.title1": "Luxury Boat",
-    "hero.title2": "Rental in Marbella",
-    "hero.desc": "Contact boat and Jet Ski owners in Marbella directly. No middlemen, no commissions — you choose, you negotiate, you enjoy.",
+    "hero.title2": "Rental in Puerto Banús, Marbella",
+    "hero.desc": "Contact boat and Jet Ski owners in Puerto Banús, Marbella directly. No middlemen, no commissions — you choose, you negotiate, you enjoy.",
     "hero.subtitle": "Hourly rental · Half day · Full day",
     "hero.cta": "Check availability on WhatsApp",
     "hero.fleet": "See our fleet",
@@ -117,10 +112,11 @@ const translations: Record<Lang, Record<string, string>> = {
 
     // Fleet
     "fleet.title": "Our Fleet",
-    "fleet.desc": "Premium boats and Jet Ski to experience Marbella from the sea.",
+    "fleet.desc": "Premium boats and Jet Ski in Puerto Banús, Marbella.",
     "fleet.from": "From",
     "fleet.perHour": "/hour",
     "fleet.jetskiNote": "Rental of 1 or 2 units",
+    "fleet.location": "📍 Puerto Banús, Marbella — Dock 5",
     "fleet.discountBanner": "10% off when you book through this website",
 
     // Booking
@@ -132,16 +128,10 @@ const translations: Record<Lang, Record<string, string>> = {
     "booking.discount": "🔥 Exclusive 10% off when you book here",
     "booking.step1": "Choose vessel",
     "booking.step2": "Select date",
-    "booking.step3": "Choose time",
+    "booking.step3": "Choose duration & price",
     "booking.datePlaceholder": "Select a date",
-    "booking.hourly": "Hourly",
-    "booking.hourlyDesc": "Minimum 1 hour",
-    "booking.morning": "Morning",
-    "booking.morningDesc": "9:00 – 13:00",
-    "booking.afternoon": "Afternoon",
-    "booking.afternoonDesc": "14:00 – 18:00",
-    "booking.fullday": "Full Day",
-    "booking.fulldayDesc": "9:00 – 18:00",
+    "booking.selectVesselFirst": "Select a vessel first to see available times and prices.",
+    "booking.location": "📍 Puerto Banús, Dock 5",
     "booking.cta": "Check Availability",
     "booking.incomplete": "Complete all 3 steps to send your inquiry",
     "booking.waMsg": "Hi, I'm interested in booking the {vessel} on {date} for the {time} slot. Is it available?",
