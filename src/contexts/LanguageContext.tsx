@@ -175,7 +175,13 @@ const translations: Record<Lang, Record<string, string>> = {
   },
 };
 
-const LanguageContext = createContext<LanguageContextType | null>(null);
+const defaultContext: LanguageContextType = {
+  lang: "es",
+  setLang: () => {},
+  t: (key: string) => translations.es[key] ?? key,
+};
+
+const LanguageContext = createContext<LanguageContextType>(defaultContext);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Lang>("es");
@@ -188,7 +194,5 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useLanguage = () => {
-  const ctx = useContext(LanguageContext);
-  if (!ctx) throw new Error("useLanguage must be used within LanguageProvider");
-  return ctx;
+  return useContext(LanguageContext);
 };
