@@ -9,7 +9,7 @@ const CTASection = () => {
   const { t } = useLanguage();
 
   const handleBooking = () => {
-    const el = document.getElementById("reservar");
+    const el = document.getElementById("elegir-embarcacion");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 

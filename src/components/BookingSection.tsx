@@ -186,7 +186,7 @@ const BookingSection = () => {
 
         <div className="max-w-4xl mx-auto space-y-12">
           {/* Step 1 */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}>
+          <motion.div id="elegir-embarcacion" initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-body text-sm font-bold">1</span>
               <h3 className="font-display text-xl text-foreground">{t("booking.step1")}</h3>
