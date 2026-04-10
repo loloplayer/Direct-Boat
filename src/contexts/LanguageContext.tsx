@@ -21,12 +21,13 @@ const translations: Record<Lang, Record<string, string>> = {
 
     // Hero
     "hero.title1": "Alquiler de Barcos",
-    "hero.title2": "en Puerto Banús, Marbella",
-    "hero.desc": "Contacta directamente con los propietarios de barcos y Jet Ski en Puerto Banús, Marbella. Sin intermediarios, sin comisiones — tú eliges, tú negocias, tú disfrutas.",
+    "hero.title2": "Directo con Propietarios",
+    "hero.desc": "Conectamos a navegantes con propietarios de barcos y Jet Ski en todo el mundo. Sin intermediarios, sin comisiones — tú eliges, tú negocias, tú disfrutas.",
     "hero.subtitle": "Alquiler por horas · media jornada · día completo",
-    "hero.cta": "Consultar disponibilidad por WhatsApp",
-    "hero.fleet": "Ver nuestra flota",
+    "hero.cta": "Consultar disponibilidad",
+    "hero.fleet": "Ver embarcaciones",
     "hero.discount": "🔥 10% de descuento reservando por esta web",
+    "hero.location": "📍 Actualmente en Puerto Banús, Marbella — Próximamente en más destinos",
 
     // Fleet
     "fleet.title": "Nuestra Flota",
@@ -82,8 +83,9 @@ const translations: Record<Lang, Record<string, string>> = {
     "cta.button": "Hablar por WhatsApp",
 
     // Footer
-    "footer.tagline": "Del mar a su medida",
+    "footer.tagline": "Navegación directa, sin intermediarios",
     "footer.rights": "Todos los derechos reservados.",
+    "footer.currentLocation": "📍 Actualmente en Marbella, Puerto Banús — Próximamente más destinos",
 
     // Fleet WA messages
     "fleet.waMsg": "Hola, estoy interesado en alquilar el {name}. ¿Podrían enviarme disponibilidad y detalles?",
@@ -102,13 +104,14 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.bookNow": "Book now",
 
     // Hero
-    "hero.title1": "Luxury Boat",
-    "hero.title2": "Rental in Puerto Banús, Marbella",
-    "hero.desc": "Contact boat and Jet Ski owners in Puerto Banús, Marbella directly. No middlemen, no commissions — you choose, you negotiate, you enjoy.",
+    "hero.title1": "Boat Rental",
+    "hero.title2": "Direct with Owners",
+    "hero.desc": "We connect sailors with boat and Jet Ski owners worldwide. No middlemen, no commissions — you choose, you negotiate, you enjoy.",
     "hero.subtitle": "Hourly rental · Half day · Full day",
-    "hero.cta": "Check availability on WhatsApp",
-    "hero.fleet": "See our fleet",
+    "hero.cta": "Check availability",
+    "hero.fleet": "See vessels",
     "hero.discount": "🔥 10% off when you book through this website",
+    "hero.location": "📍 Currently in Puerto Banús, Marbella — More destinations coming soon",
 
     // Fleet
     "fleet.title": "Our Fleet",
@@ -164,8 +167,9 @@ const translations: Record<Lang, Record<string, string>> = {
     "cta.button": "Chat on WhatsApp",
 
     // Footer
-    "footer.tagline": "The sea, tailored to you",
+    "footer.tagline": "Direct sailing, no middlemen",
     "footer.rights": "All rights reserved.",
+    "footer.currentLocation": "📍 Currently in Marbella, Puerto Banús — More destinations coming soon",
 
     // Fleet WA messages
     "fleet.waMsg": "Hi, I'm interested in renting the {name}. Could you send me availability and details?",
