@@ -31,7 +31,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-7xl text-primary-foreground leading-tight mb-6 font-serif font-light"
+          className="text-3xl sm:text-5xl md:text-7xl text-primary-foreground leading-snug sm:leading-tight mb-8 font-serif font-light"
         >
           {t("hero.title1")}{" "}
           <br className="hidden sm:block" />
