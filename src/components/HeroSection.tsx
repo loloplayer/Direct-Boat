@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Tag } from "lucide-react";
+import { Tag, MapPin } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
@@ -58,10 +58,20 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/20 border border-accent/40 backdrop-blur-sm mb-10"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/20 border border-accent/40 backdrop-blur-sm mb-4"
         >
           <Tag className="w-4 h-4 text-accent" />
           <span className="font-body text-sm font-bold text-accent">{t("hero.discount")}</span>
+        </motion.div>
+        {/* Location badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.65, ease: "easeOut" }}
+          className="flex items-center justify-center gap-2 mb-10"
+        >
+          <MapPin className="w-4 h-4 text-primary-foreground/70" />
+          <span className="font-body text-xs text-primary-foreground/70 tracking-wide">{t("hero.location")}</span>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

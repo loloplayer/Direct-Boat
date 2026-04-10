@@ -38,7 +38,7 @@ const Navbar = () => {
             className="font-display text-xl md:text-2xl font-semibold tracking-wide"
             style={{ color: scrolled ? "hsl(var(--primary))" : "hsl(var(--primary-foreground))" }}
           >
-            Marbella Horizonte
+            Boat Direct
           </a>
 
           {/* Desktop */}
