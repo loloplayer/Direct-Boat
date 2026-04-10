@@ -7,7 +7,7 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   const handleCheckAvailability = () => {
-    const el = document.getElementById("reservar");
+    const el = document.getElementById("elegir-embarcacion");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 

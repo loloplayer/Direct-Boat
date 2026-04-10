@@ -128,7 +128,7 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
   const isJetSki = boat.type === "Jet Ski";
 
   const handleBooking = () => {
-    const el = document.getElementById("reservar");
+    const el = document.getElementById("elegir-embarcacion");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
