@@ -84,7 +84,7 @@ const ImageCarousel = ({ images, name }: { images: string[]; name: string }) => 
 
   if (images.length <= 1) {
     return (
-      <img src={images[0]} alt={name} className="w-full aspect-[4/3] object-cover" loading="lazy" />
+      <img src={images[0]} alt={name} className="w-full aspect-[4/3] object-cover object-center" loading="lazy" />
     );
   }
 
@@ -93,7 +93,7 @@ const ImageCarousel = ({ images, name }: { images: string[]; name: string }) => 
       <img
         src={images[current]}
         alt={`${name} ${current + 1}`}
-        className="w-full aspect-[4/3] object-cover transition-opacity duration-300"
+        className="w-full aspect-[4/3] object-cover object-center transition-opacity duration-300"
         loading="lazy"
       />
       <button
