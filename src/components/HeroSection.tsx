@@ -22,7 +22,7 @@ const HeroSection = () => {
           height={1080}
           className="w-full h-full object-cover animate-hero-ken-burns"
         />
-        <div className="absolute inset-0 bg-foreground/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/30 to-foreground/60" />
       </div>
 
       {/* Content */}
