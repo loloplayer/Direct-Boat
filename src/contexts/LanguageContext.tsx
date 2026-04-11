@@ -48,12 +48,13 @@ const translations: Record<Lang, Record<string, string>> = {
     "booking.step1": "Elige embarcación",
     "booking.step2": "Selecciona fecha",
     "booking.step3": "Elige duración y precio",
+    "booking.step3Guests": "Número de personas",
     "booking.datePlaceholder": "Selecciona una fecha",
     "booking.selectVesselFirst": "Selecciona primero una embarcación para ver los horarios y precios disponibles.",
     "booking.location": "📍 Puerto Banús, Pantalán 5",
     "booking.cta": "Consultar Disponibilidad",
     "booking.incomplete": "Completa los 3 pasos para enviar tu consulta",
-    "booking.waMsg": "Hola, me interesa reservar el {vessel} para el día {date} en el horario {time}. ¿Está disponible?",
+    "booking.waMsg": "Hola, me interesa reservar el {vessel} para el día {date}, {guests}, en el horario {time}. ¿Está disponible?",
 
     // Experience
     "exp.title": "¿Por qué reservar con nosotros?",
@@ -132,12 +133,13 @@ const translations: Record<Lang, Record<string, string>> = {
     "booking.step1": "Choose vessel",
     "booking.step2": "Select date",
     "booking.step3": "Choose duration & price",
+    "booking.step3Guests": "Number of guests",
     "booking.datePlaceholder": "Select a date",
     "booking.selectVesselFirst": "Select a vessel first to see available times and prices.",
     "booking.location": "📍 Puerto Banús, Dock 5",
     "booking.cta": "Check Availability",
     "booking.incomplete": "Complete all 3 steps to send your inquiry",
-    "booking.waMsg": "Hi, I'm interested in booking the {vessel} on {date} for the {time} slot. Is it available?",
+    "booking.waMsg": "Hi, I'm interested in booking the {vessel} on {date}, {guests}, for the {time} slot. Is it available?",
 
     // Experience
     "exp.title": "Why book with us?",
