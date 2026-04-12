@@ -20,6 +20,12 @@ import azimut9 from "@/assets/azimut_9.jpg";
 import rinkerMain from "@/assets/rinker_main.jpg";
 import rinkerImg from "@/assets/rinker.jpg";
 
+import searayMain from "@/assets/searay_main.jpg";
+import searay2 from "@/assets/searay_2.jpg";
+import searay3 from "@/assets/searay_3.jpg";
+import searay4 from "@/assets/searay_4.jpg";
+import searayInterior from "@/assets/searay_interior.jpg";
+
 import jetski1 from "@/assets/jetski1.jpg";
 
 const fleet = [
@@ -64,6 +70,22 @@ const fleet = [
     originalPrice: "250",
     pricePer: "h",
     includes: ["Captain", "Welcome drink", "Stereo", "Gasoline", "V.A.T"],
+    whatsapp: "34667266164",
+    email: "marbellaoceanboats@gmail.com",
+  },
+  {
+    name: "Sea Ray Sundancer 540",
+    type: "Yate",
+    images: [searayMain, searay2, searay3, searay4, searayInterior],
+    passengers: "12 + crew",
+    power: "Caterpillar 800 HP",
+    length: "16.7 m",
+    beam: "4.8 m",
+    cabins: 2,
+    priceFrom: "900",
+    originalPrice: "1000",
+    pricePer: "h",
+    includes: ["Captain & crew", "Fruit board, snacks", "Cava, wine, beer, soft drinks", "SUP, snorkel", "Towels", "Sound system"],
     whatsapp: "34667266164",
     email: "marbellaoceanboats@gmail.com",
   },
