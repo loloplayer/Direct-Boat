@@ -17,6 +17,7 @@ interface PriceOption {
   label: string;
   labelEn: string;
   price: number;
+  originalPrice: number;
 }
 
 interface Vessel {
@@ -40,11 +41,11 @@ const vessels: Vessel[] = [
     minHours: 2,
     maxGuests: 10,
     pricing: [
-      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 675 },
-      { hours: 3, label: "3 horas", labelEn: "3 hours", price: 900 },
-      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 1035 },
-      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 1575 },
-      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 2025 },
+      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 675, originalPrice: 750 },
+      { hours: 3, label: "3 horas", labelEn: "3 hours", price: 900, originalPrice: 1000 },
+      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 1035, originalPrice: 1150 },
+      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 1575, originalPrice: 1750 },
+      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 2025, originalPrice: 2250 },
     ],
   },
   {
@@ -56,12 +57,12 @@ const vessels: Vessel[] = [
     minHours: 1,
     maxGuests: 10,
     pricing: [
-      { hours: 1, label: "1 hora", labelEn: "1 hour", price: 360 },
-      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 540 },
-      { hours: 3, label: "3 horas", labelEn: "3 hours", price: 720 },
-      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 900 },
-      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 1350 },
-      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 1620 },
+      { hours: 1, label: "1 hora", labelEn: "1 hour", price: 360, originalPrice: 400 },
+      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 540, originalPrice: 600 },
+      { hours: 3, label: "3 horas", labelEn: "3 hours", price: 720, originalPrice: 800 },
+      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 900, originalPrice: 1000 },
+      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 1350, originalPrice: 1500 },
+      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 1620, originalPrice: 1800 },
     ],
   },
   {
@@ -73,14 +74,14 @@ const vessels: Vessel[] = [
     minHours: 1,
     maxGuests: 10,
     pricing: [
-      { hours: 1, label: "1 hora", labelEn: "1 hour", price: 225 },
-      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 360 },
-      { hours: 3, label: "3 horas", labelEn: "3 hours", price: 540 },
-      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 720 },
-      { hours: 5, label: "5 horas", labelEn: "5 hours", price: 855 },
-      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 990 },
-      { hours: 7, label: "7 horas", labelEn: "7 hours", price: 1125 },
-      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 1260 },
+      { hours: 1, label: "1 hora", labelEn: "1 hour", price: 225, originalPrice: 250 },
+      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 360, originalPrice: 400 },
+      { hours: 3, label: "3 horas", labelEn: "3 hours", price: 540, originalPrice: 600 },
+      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 720, originalPrice: 800 },
+      { hours: 5, label: "5 horas", labelEn: "5 hours", price: 855, originalPrice: 950 },
+      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 990, originalPrice: 1100 },
+      { hours: 7, label: "7 horas", labelEn: "7 hours", price: 1125, originalPrice: 1250 },
+      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 1260, originalPrice: 1400 },
     ],
   },
   {
@@ -92,7 +93,7 @@ const vessels: Vessel[] = [
     minHours: 1,
     maxGuests: 2,
     pricing: [
-      { hours: 1, label: "1 hora", labelEn: "1 hour", price: 108 },
+      { hours: 1, label: "1 hora", labelEn: "1 hour", price: 108, originalPrice: 120 },
     ],
   },
 ];
@@ -442,9 +443,10 @@ const BookingSection = () => {
                         <Clock className={cn("w-5 h-5", selected ? "text-accent" : "text-muted-foreground")} />
                       </div>
                       <p className="font-body text-sm font-semibold text-foreground">{label}</p>
-                      <p className={cn("font-body text-xl font-bold mt-1", selected ? "text-accent" : "text-foreground")}>
-                        €{option.price}
-                      </p>
+                      <div className="flex items-center gap-1.5 mt-1">
+                        <span className="font-body text-sm text-muted-foreground/60 line-through">€{option.originalPrice}</span>
+                        <span className={cn("font-body text-xl font-bold", selected ? "text-accent" : "text-foreground")}>€{option.price}</span>
+                      </div>
                       {selected && (
                         <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
                           <Check className="w-3 h-3 text-accent-foreground" />
@@ -497,7 +499,11 @@ const BookingSection = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-border">
                   <div>
                     <p className="font-body text-sm text-muted-foreground">{lang === "es" ? "Total estimado" : "Estimated total"}</p>
-                    <p className="font-display text-3xl font-bold text-accent">€{selectedPriceOption.price}</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-body text-lg text-muted-foreground/60 line-through">€{selectedPriceOption.originalPrice}</span>
+                      <span className="font-display text-3xl font-bold text-accent">€{selectedPriceOption.price}</span>
+                    </div>
+                    <p className="font-body text-xs text-accent font-medium mt-0.5">-10% {lang === "es" ? "dto. web" : "web discount"}</p>
                   </div>
                   <a
                     href={whatsappUrl}

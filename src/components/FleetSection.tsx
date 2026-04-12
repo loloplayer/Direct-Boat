@@ -33,6 +33,7 @@ const fleet = [
     beam: "7.00 m",
     cabins: 4,
     priceFrom: "338",
+    originalPrice: "375",
     pricePer: "h",
     includes: ["Captain & crew", "Rosé wine, Cava ×2", "Beer, soft drinks, water", "Paddle surf, snorkel", "Towels, Bluetooth music", "Gasoline"],
     whatsapp: "34667266164",
@@ -46,6 +47,7 @@ const fleet = [
     power: "Flybridge",
     length: "12.30 m",
     priceFrom: "360",
+    originalPrice: "400",
     pricePer: "h",
     includes: ["Captain", "Champagne ×2", "White wine ×2", "Drinks (limited)", "Paddle surf", "Insurance"],
     whatsapp: "34667266164",
@@ -59,6 +61,7 @@ const fleet = [
     power: "Sport cruiser",
     length: "9.4 m",
     priceFrom: "225",
+    originalPrice: "250",
     pricePer: "h",
     includes: ["Captain", "Welcome drink", "Stereo", "Gasoline", "V.A.T"],
     whatsapp: "34667266164",
@@ -72,13 +75,13 @@ const fleet = [
     power: "130 CV",
     length: "3.4 m",
     priceFrom: "108",
+    originalPrice: "120",
     pricePer: "h",
     includes: [],
     whatsapp: "34667266164",
     email: "marbellaoceanboats@gmail.com",
   },
 ];
-
 const ImageCarousel = ({ images, name }: { images: string[]; name: string }) => {
   const [current, setCurrent] = useState(0);
 
@@ -192,10 +195,11 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
           )}
 
           <div className="flex items-center justify-between mb-4">
-            <p className="font-body text-sm">
+            <p className="font-body text-sm flex items-baseline gap-2">
               <span className="text-muted-foreground">{t("fleet.from")} </span>
+              <span className="text-muted-foreground/60 line-through text-sm">€{boat.originalPrice}</span>
               <span className="text-accent font-bold text-lg">€{boat.priceFrom}</span>
-              <span className="text-muted-foreground text-xs"> /{boat.pricePer}</span>
+              <span className="text-muted-foreground text-xs">/{boat.pricePer}</span>
             </p>
           </div>
 
