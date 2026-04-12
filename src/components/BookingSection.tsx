@@ -10,6 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import catamaranExterior from "@/assets/catamaran_exterior.jpg";
 import azimutMain from "@/assets/azimut_main.jpg";
 import rinkerMain from "@/assets/rinker_main.jpg";
+import searayMain from "@/assets/searay_main.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
 interface PriceOption {
@@ -82,6 +83,21 @@ const vessels: Vessel[] = [
       { hours: 6, label: "6 horas", labelEn: "6 hours", price: 990, originalPrice: 1100 },
       { hours: 7, label: "7 horas", labelEn: "7 hours", price: 1125, originalPrice: 1250 },
       { hours: 8, label: "8 horas", labelEn: "8 hours", price: 1260, originalPrice: 1400 },
+    ],
+  },
+  {
+    id: "searay-540",
+    name: "Sea Ray Sundancer 540",
+    type: "Yate",
+    image: searayMain,
+    whatsapp: "34667266164",
+    minHours: 2,
+    maxGuests: 12,
+    pricing: [
+      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 900, originalPrice: 1000 },
+      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 1620, originalPrice: 1800 },
+      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 2070, originalPrice: 2300 },
+      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 2520, originalPrice: 2800 },
     ],
   },
   {
