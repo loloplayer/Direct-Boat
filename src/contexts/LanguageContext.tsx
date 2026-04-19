@@ -196,7 +196,7 @@ const defaultContext: LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType>(defaultContext);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Lang>("es");
+  const [lang, setLang] = useState<Lang>("en");
   const t = (key: string) => translations[lang][key] ?? key;
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>
