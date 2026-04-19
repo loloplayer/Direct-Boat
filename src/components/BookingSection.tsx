@@ -304,7 +304,7 @@ const BookingSection = () => {
               </span>
               <h3 className="font-display text-xl text-foreground">{t("booking.step1")}</h3>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {vessels.map((v) => (
                 <button
                   key={v.id}
