@@ -205,6 +205,14 @@ const BookingSection = () => {
     }
   }, [guests]);
 
+  useEffect(() => {
+    if (stepPricingDone && date && vessel && guests) {
+      setTimeout(() => {
+        summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 250);
+    }
+  }, [stepPricingDone]);
+
   const totalPrice = isTicket
     ? ticketPrice * guests
     : (selectedPriceOption?.price ?? 0);
