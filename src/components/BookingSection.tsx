@@ -146,6 +146,7 @@ const BookingSection = () => {
   const step2Ref = useRef<HTMLDivElement>(null);
   const step3Ref = useRef<HTMLDivElement>(null);
   const step4Ref = useRef<HTMLDivElement>(null);
+  const summaryRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const { lang, t } = useLanguage();
 
@@ -203,6 +204,14 @@ const BookingSection = () => {
       }, 200);
     }
   }, [guests]);
+
+  useEffect(() => {
+    if (stepPricingDone && date && vessel && guests) {
+      setTimeout(() => {
+        summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 250);
+    }
+  }, [stepPricingDone]);
 
   const totalPrice = isTicket
     ? ticketPrice * guests
@@ -601,6 +610,7 @@ const BookingSection = () => {
 
           {/* Summary & CTA */}
           <motion.div
+            ref={summaryRef}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
