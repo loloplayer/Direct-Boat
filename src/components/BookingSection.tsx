@@ -571,18 +571,27 @@ const BookingSection = () => {
                   </div>
                   <div className="bg-muted rounded-xl p-3 text-center">
                     <Clock className="w-4 h-4 text-accent mx-auto mb-1" />
-                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">{t("booking.step3")}</p>
+                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">{isTicket ? (lang === "es" ? "Salida" : "Departure") : t("booking.step3")}</p>
                     <p className="font-body text-sm font-semibold text-foreground mt-0.5">
-                      {lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn}
+                      {isTicket && departureTime
+                        ? `${departureTime} h`
+                        : (lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn)}
                     </p>
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-border">
                   <div>
-                    <p className="font-body text-sm text-muted-foreground">{lang === "es" ? "Total estimado" : "Estimated total"}</p>
+                    <p className="font-body text-sm text-muted-foreground">
+                      {lang === "es" ? "Total estimado" : "Estimated total"}
+                      {isTicket && (
+                        <span className="ml-1 text-xs">
+                          ({guests} × €{Number.isInteger(selectedPriceOption.price) ? selectedPriceOption.price : selectedPriceOption.price.toFixed(2)})
+                        </span>
+                      )}
+                    </p>
                     <div className="flex items-baseline gap-2">
-                      <span className="font-body text-lg text-muted-foreground/60 line-through">€{selectedPriceOption.originalPrice}</span>
-                      <span className="font-display text-3xl font-bold text-accent">€{selectedPriceOption.price}</span>
+                      <span className="font-body text-lg text-muted-foreground/60 line-through">€{Number.isInteger(totalOriginalPrice) ? totalOriginalPrice : totalOriginalPrice.toFixed(2)}</span>
+                      <span className="font-display text-3xl font-bold text-accent">€{Number.isInteger(totalPrice) ? totalPrice : totalPrice.toFixed(2)}</span>
                     </div>
                     <p className="font-body text-xs text-accent font-medium mt-0.5">-10% {lang === "es" ? "dto. web" : "web discount"}</p>
                   </div>
