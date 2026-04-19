@@ -9,7 +9,7 @@ import catamaran3 from "@/assets/catamaran_3_dock.jpg";
 import catamaran4 from "@/assets/catamaran_4_salon.jpg";
 import catamaran5 from "@/assets/catamaran_5_aperitivo.jpg";
 
-import azimutMain from "@/assets/azimut_main.jpg";
+
 import azimut2 from "@/assets/azimut_2.jpg";
 import azimut3 from "@/assets/azimut_3.jpg";
 import azimut4 from "@/assets/azimut_4.jpg";
