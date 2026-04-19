@@ -479,9 +479,9 @@ const BookingSection = () => {
             <div className="flex items-center gap-3 mb-6">
               <span className={cn(
                 "flex items-center justify-center w-8 h-8 rounded-full font-body text-sm font-bold transition-colors",
-                selectedPricing ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
+                stepPricingDone ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
               )}>
-                {selectedPricing ? <Check className="w-4 h-4" /> : "4"}
+                {stepPricingDone ? <Check className="w-4 h-4" /> : "4"}
               </span>
               <h3 className="font-display text-xl text-foreground">{t("booking.step3")}</h3>
             </div>
@@ -489,57 +489,92 @@ const BookingSection = () => {
               <p className="font-body text-sm text-muted-foreground">{t("booking.selectVesselFirst")}</p>
             ) : (
               <>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                  {vessel.pricing.map((option) => {
-                    const key = `${option.hours}h`;
-                    const label = lang === "es" ? option.label : option.labelEn;
-                    const selected = selectedPricing === key;
-                    const fmt = (n: number) => Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2)}`;
-                    return (
+                {hasTicketOption && (
+                  <div className="mb-6">
+                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mb-2">
+                      {lang === "es" ? "Modo de reserva" : "Booking mode"}
+                    </p>
+                    <div className="inline-flex p-1 bg-muted rounded-xl">
                       <button
-                        key={key}
-                        onClick={() => setSelectedPricing(key)}
+                        onClick={() => setBookingMode("private")}
                         className={cn(
-                          "relative flex flex-col items-center px-4 py-5 rounded-xl border-2 transition-all duration-300 text-center",
-                          selected
-                            ? "border-accent bg-accent/10 shadow-md scale-[1.02]"
-                            : "border-border bg-background hover:border-accent/50 hover:bg-accent/5"
+                          "px-4 py-2 rounded-lg font-body text-sm font-semibold transition-all",
+                          bookingMode === "private"
+                            ? "bg-background text-foreground shadow-sm"
+                            : "text-muted-foreground hover:text-foreground"
                         )}
                       >
-                        <div className={cn(
-                          "w-10 h-10 rounded-full flex items-center justify-center mb-3",
-                          selected ? "bg-accent/20" : "bg-muted"
-                        )}>
-                          <Clock className={cn("w-5 h-5", selected ? "text-accent" : "text-muted-foreground")} />
-                        </div>
-                        <p className="font-body text-sm font-semibold text-foreground">{label}</p>
-                        <div className="flex items-center gap-1.5 mt-1">
-                          <span className="font-body text-sm text-muted-foreground/60 line-through">{fmt(option.originalPrice)}</span>
-                          <span className={cn("font-body text-xl font-bold", selected ? "text-accent" : "text-foreground")}>{fmt(option.price)}</span>
-                        </div>
-                        {isTicket && (
-                          <p className="font-body text-[10px] text-muted-foreground mt-1">
-                            {lang === "es" ? "por persona" : "per person"}
-                          </p>
-                        )}
-                        {selected && (
-                          <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
-                            <Check className="w-3 h-3 text-accent-foreground" />
-                          </div>
-                        )}
+                        {lang === "es" ? "Privado por horas" : "Private by hours"}
                       </button>
-                    );
-                  })}
-                </div>
+                      <button
+                        onClick={() => setBookingMode("ticket")}
+                        className={cn(
+                          "px-4 py-2 rounded-lg font-body text-sm font-semibold transition-all",
+                          bookingMode === "ticket"
+                            ? "bg-background text-foreground shadow-sm"
+                            : "text-muted-foreground hover:text-foreground"
+                        )}
+                      >
+                        {lang === "es" ? "Ticket por persona" : "Ticket per person"}
+                      </button>
+                    </div>
+                  </div>
+                )}
 
-                {isTicket && vessel.departureTimes && selectedPricing && (
-                  <div className="mt-6 pt-6 border-t border-border">
+                {!isTicket ? (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {vessel.pricing.map((option) => {
+                      const key = `${option.hours}h`;
+                      const label = lang === "es" ? option.label : option.labelEn;
+                      const selected = selectedPricing === key;
+                      const fmt = (n: number) => Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2)}`;
+                      return (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedPricing(key)}
+                          className={cn(
+                            "relative flex flex-col items-center px-4 py-5 rounded-xl border-2 transition-all duration-300 text-center",
+                            selected
+                              ? "border-accent bg-accent/10 shadow-md scale-[1.02]"
+                              : "border-border bg-background hover:border-accent/50 hover:bg-accent/5"
+                          )}
+                        >
+                          <div className={cn(
+                            "w-10 h-10 rounded-full flex items-center justify-center mb-3",
+                            selected ? "bg-accent/20" : "bg-muted"
+                          )}>
+                            <Clock className={cn("w-5 h-5", selected ? "text-accent" : "text-muted-foreground")} />
+                          </div>
+                          <p className="font-body text-sm font-semibold text-foreground">{label}</p>
+                          <div className="flex items-center gap-1.5 mt-1">
+                            <span className="font-body text-sm text-muted-foreground/60 line-through">{fmt(option.originalPrice)}</span>
+                            <span className={cn("font-body text-xl font-bold", selected ? "text-accent" : "text-foreground")}>{fmt(option.price)}</span>
+                          </div>
+                          {selected && (
+                            <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
+                              <Check className="w-3 h-3 text-accent-foreground" />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : vessel.ticket && (
+                  <div>
+                    <div className="bg-accent/5 border border-accent/20 rounded-xl p-4 mb-5 flex items-baseline gap-2 flex-wrap">
+                      <span className="font-body text-sm text-foreground">
+                        {lang === "es" ? vessel.ticket.label : vessel.ticket.labelEn}:
+                      </span>
+                      <span className="font-body text-sm text-muted-foreground/60 line-through">€{vessel.ticket.originalPrice}</span>
+                      <span className="font-display text-xl font-bold text-accent">€{vessel.ticket.price.toFixed(2).replace(/\.00$/, "")}</span>
+                      <span className="font-body text-xs text-muted-foreground">/{lang === "es" ? "persona" : "person"}</span>
+                    </div>
                     <p className="font-body text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                       <Clock className="w-4 h-4 text-accent" />
-                      {lang === "es" ? "Horario de salida" : "Departure time"}
+                      {lang === "es" ? "Elige horario de salida" : "Choose departure time"}
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      {vessel.departureTimes.map((time) => {
+                      {vessel.ticket.departureTimes.map((time) => {
                         const sel = departureTime === time;
                         return (
                           <button
