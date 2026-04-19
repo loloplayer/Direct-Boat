@@ -31,11 +31,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[8.5rem] text-primary-foreground leading-snug sm:leading-tight lg:leading-[1.05] mb-8 lg:mb-10 font-serif font-light tracking-tight"
+          className="font-display italic text-primary-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] mb-8 lg:mb-10 font-normal tracking-tight"
+          style={{ textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
         >
           {t("hero.title1")}{" "}
           <br className="hidden sm:block" />
-          {t("hero.title2")}
+          <span className="not-italic font-light tracking-wide">{t("hero.title2")}</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 30 }}
