@@ -19,8 +19,15 @@ interface PriceOption {
   labelEn: string;
   price: number;
   originalPrice: number;
-  /** Fixed departure times for ticket-based experiences */
-  departures?: string[];
+}
+
+interface TicketOption {
+  price: number;
+  originalPrice: number;
+  durationHours: number;
+  label: string;
+  labelEn: string;
+  departureTimes: string[];
 }
 
 interface Vessel {
@@ -32,10 +39,8 @@ interface Vessel {
   minHours: number;
   maxGuests: number;
   pricing: PriceOption[];
-  /** Whether this vessel is sold per ticket per person (vs full charter) */
-  ticketMode?: boolean;
-  /** Fixed departure times available (for ticket-based) */
-  departureTimes?: string[];
+  /** Optional ticket-per-person mode (e.g. shared catamaran outings) */
+  ticket?: TicketOption;
 }
 
 const vessels: Vessel[] = [
@@ -54,6 +59,14 @@ const vessels: Vessel[] = [
       { hours: 6, label: "6 horas", labelEn: "6 hours", price: 1665, originalPrice: 1850 },
       { hours: 8, label: "8 horas", labelEn: "8 hours", price: 2115, originalPrice: 2350 },
     ],
+    ticket: {
+      price: 76.5,
+      originalPrice: 85,
+      durationHours: 2,
+      label: "Ticket 2h por persona",
+      labelEn: "2h ticket per person",
+      departureTimes: ["10:00", "13:00", "16:00"],
+    },
   },
   {
     id: "azimut-39",
@@ -107,20 +120,6 @@ const vessels: Vessel[] = [
     ],
   },
   {
-    id: "catamaran-tickets",
-    name: "Tickets Catamarán",
-    type: "Ticket",
-    image: catamaranExterior,
-    whatsapp: "34667266164",
-    minHours: 2,
-    maxGuests: 10,
-    ticketMode: true,
-    departureTimes: ["10:00", "13:00", "16:00"],
-    pricing: [
-      { hours: 2, label: "2h por persona", labelEn: "2h per person", price: 76.5, originalPrice: 85, departures: ["10:00", "13:00", "16:00"] },
-    ],
-  },
-  {
     id: "jetski",
     name: "Jet Ski",
     type: "Jet Ski",
@@ -140,6 +139,7 @@ const BookingSection = () => {
   const [selectedVessel, setSelectedVessel] = useState<string>();
   const [guests, setGuests] = useState<number>(2);
   const [departureTime, setDepartureTime] = useState<string>();
+  const [bookingMode, setBookingMode] = useState<"private" | "ticket">("private");
   const [calendarOpen, setCalendarOpen] = useState(false);
   const sectionRef = useRef(null);
   const step2Ref = useRef<HTMLDivElement>(null);
@@ -151,26 +151,40 @@ const BookingSection = () => {
   const dateFnsLocale = lang === "es" ? es : enUS;
 
   const vessel = vessels.find((v) => v.id === selectedVessel);
-  const selectedPriceOption = vessel?.pricing.find((p) => `${p.hours}h` === selectedPricing);
-  const isTicket = !!vessel?.ticketMode;
+  const hasTicketOption = !!vessel?.ticket;
+  const isTicket = hasTicketOption && bookingMode === "ticket";
+  const selectedPriceOption = !isTicket ? vessel?.pricing.find((p) => `${p.hours}h` === selectedPricing) : undefined;
+  const ticketPrice = isTicket && vessel?.ticket ? vessel.ticket.price : 0;
+  const ticketOriginal = isTicket && vessel?.ticket ? vessel.ticket.originalPrice : 0;
+
+  const stepPricingDone = isTicket
+    ? !!departureTime
+    : !!selectedPricing;
 
   const completedSteps = [
     !!selectedVessel,
     !!date,
     !!guests,
-    !!selectedPricing && (!isTicket || !!departureTime),
+    stepPricingDone,
   ];
 
   useEffect(() => {
     if (selectedVessel && !date) {
       setSelectedPricing(undefined);
       setDepartureTime(undefined);
+      setBookingMode("private");
       setTimeout(() => {
         step2Ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
         setTimeout(() => setCalendarOpen(true), 400);
       }, 200);
     }
   }, [selectedVessel]);
+
+  // Reset step 4 selections when switching mode
+  useEffect(() => {
+    setSelectedPricing(undefined);
+    setDepartureTime(undefined);
+  }, [bookingMode]);
 
   useEffect(() => {
     if (date && vessel) {
@@ -182,26 +196,37 @@ const BookingSection = () => {
   }, [date]);
 
   useEffect(() => {
-    if (guests && date && vessel && !selectedPricing) {
+    if (guests && date && vessel && !stepPricingDone) {
       setTimeout(() => {
         step4Ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 200);
     }
   }, [guests]);
 
+  const totalPrice = isTicket
+    ? ticketPrice * guests
+    : (selectedPriceOption?.price ?? 0);
+  const totalOriginalPrice = isTicket
+    ? ticketOriginal * guests
+    : (selectedPriceOption?.originalPrice ?? 0);
+
   const whatsappUrl = useMemo(() => {
     const vesselName = vessel?.name ?? "[...]";
     const dateStr = date
       ? format(date, lang === "es" ? "d 'de' MMMM yyyy" : "MMMM d, yyyy", { locale: dateFnsLocale })
       : "[...]";
-    const priceTotal = selectedPriceOption
-      ? (isTicket ? selectedPriceOption.price * guests : selectedPriceOption.price)
-      : 0;
-    const baseSlot = selectedPriceOption
-      ? `${lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn} (€${priceTotal.toFixed(2).replace(/\.00$/, "")})`
-      : "[...]";
-    const timeStr = isTicket && departureTime ? `${departureTime} · ${baseSlot}` : baseSlot;
-    const guestsStr = `${guests} ${lang === "es" ? (isTicket ? "tickets" : "personas") : (isTicket ? "tickets" : "guests")}`;
+    const priceFmt = (n: number) => Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2)}`;
+    let timeStr = "[...]";
+    if (isTicket && vessel?.ticket && departureTime) {
+      const lbl = lang === "es" ? vessel.ticket.label : vessel.ticket.labelEn;
+      timeStr = `${departureTime} · ${lbl} (${priceFmt(totalPrice)})`;
+    } else if (selectedPriceOption) {
+      timeStr = `${lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn} (${priceFmt(totalPrice)})`;
+    }
+    const guestsLabel = isTicket
+      ? (lang === "es" ? "tickets" : "tickets")
+      : (lang === "es" ? "personas" : "guests");
+    const guestsStr = `${guests} ${guestsLabel}`;
     const text = t("booking.waMsg")
       .replace("{vessel}", vesselName)
       .replace("{date}", dateStr)
@@ -209,11 +234,9 @@ const BookingSection = () => {
       .replace("{guests}", guestsStr);
     const number = vessel?.whatsapp ?? "34667266164";
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  }, [vessel, date, selectedPriceOption, guests, lang, t, dateFnsLocale, isTicket, departureTime]);
+  }, [vessel, date, selectedPriceOption, guests, lang, t, dateFnsLocale, isTicket, departureTime, totalPrice]);
 
-  const isComplete = date && selectedPricing && selectedVessel && guests && (!isTicket || departureTime);
-  const totalPrice = selectedPriceOption ? (isTicket ? selectedPriceOption.price * guests : selectedPriceOption.price) : 0;
-  const totalOriginalPrice = selectedPriceOption ? (isTicket ? selectedPriceOption.originalPrice * guests : selectedPriceOption.originalPrice) : 0;
+  const isComplete = !!(date && selectedVessel && guests && stepPricingDone);
 
   const steps = [
     { num: 1, label: t("booking.step1"), icon: Anchor },
@@ -456,9 +479,9 @@ const BookingSection = () => {
             <div className="flex items-center gap-3 mb-6">
               <span className={cn(
                 "flex items-center justify-center w-8 h-8 rounded-full font-body text-sm font-bold transition-colors",
-                selectedPricing ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
+                stepPricingDone ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
               )}>
-                {selectedPricing ? <Check className="w-4 h-4" /> : "4"}
+                {stepPricingDone ? <Check className="w-4 h-4" /> : "4"}
               </span>
               <h3 className="font-display text-xl text-foreground">{t("booking.step3")}</h3>
             </div>
@@ -466,57 +489,92 @@ const BookingSection = () => {
               <p className="font-body text-sm text-muted-foreground">{t("booking.selectVesselFirst")}</p>
             ) : (
               <>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                  {vessel.pricing.map((option) => {
-                    const key = `${option.hours}h`;
-                    const label = lang === "es" ? option.label : option.labelEn;
-                    const selected = selectedPricing === key;
-                    const fmt = (n: number) => Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2)}`;
-                    return (
+                {hasTicketOption && (
+                  <div className="mb-6">
+                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mb-2">
+                      {lang === "es" ? "Modo de reserva" : "Booking mode"}
+                    </p>
+                    <div className="inline-flex p-1 bg-muted rounded-xl">
                       <button
-                        key={key}
-                        onClick={() => setSelectedPricing(key)}
+                        onClick={() => setBookingMode("private")}
                         className={cn(
-                          "relative flex flex-col items-center px-4 py-5 rounded-xl border-2 transition-all duration-300 text-center",
-                          selected
-                            ? "border-accent bg-accent/10 shadow-md scale-[1.02]"
-                            : "border-border bg-background hover:border-accent/50 hover:bg-accent/5"
+                          "px-4 py-2 rounded-lg font-body text-sm font-semibold transition-all",
+                          bookingMode === "private"
+                            ? "bg-background text-foreground shadow-sm"
+                            : "text-muted-foreground hover:text-foreground"
                         )}
                       >
-                        <div className={cn(
-                          "w-10 h-10 rounded-full flex items-center justify-center mb-3",
-                          selected ? "bg-accent/20" : "bg-muted"
-                        )}>
-                          <Clock className={cn("w-5 h-5", selected ? "text-accent" : "text-muted-foreground")} />
-                        </div>
-                        <p className="font-body text-sm font-semibold text-foreground">{label}</p>
-                        <div className="flex items-center gap-1.5 mt-1">
-                          <span className="font-body text-sm text-muted-foreground/60 line-through">{fmt(option.originalPrice)}</span>
-                          <span className={cn("font-body text-xl font-bold", selected ? "text-accent" : "text-foreground")}>{fmt(option.price)}</span>
-                        </div>
-                        {isTicket && (
-                          <p className="font-body text-[10px] text-muted-foreground mt-1">
-                            {lang === "es" ? "por persona" : "per person"}
-                          </p>
-                        )}
-                        {selected && (
-                          <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
-                            <Check className="w-3 h-3 text-accent-foreground" />
-                          </div>
-                        )}
+                        {lang === "es" ? "Privado por horas" : "Private by hours"}
                       </button>
-                    );
-                  })}
-                </div>
+                      <button
+                        onClick={() => setBookingMode("ticket")}
+                        className={cn(
+                          "px-4 py-2 rounded-lg font-body text-sm font-semibold transition-all",
+                          bookingMode === "ticket"
+                            ? "bg-background text-foreground shadow-sm"
+                            : "text-muted-foreground hover:text-foreground"
+                        )}
+                      >
+                        {lang === "es" ? "Ticket por persona" : "Ticket per person"}
+                      </button>
+                    </div>
+                  </div>
+                )}
 
-                {isTicket && vessel.departureTimes && selectedPricing && (
-                  <div className="mt-6 pt-6 border-t border-border">
+                {!isTicket ? (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {vessel.pricing.map((option) => {
+                      const key = `${option.hours}h`;
+                      const label = lang === "es" ? option.label : option.labelEn;
+                      const selected = selectedPricing === key;
+                      const fmt = (n: number) => Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2)}`;
+                      return (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedPricing(key)}
+                          className={cn(
+                            "relative flex flex-col items-center px-4 py-5 rounded-xl border-2 transition-all duration-300 text-center",
+                            selected
+                              ? "border-accent bg-accent/10 shadow-md scale-[1.02]"
+                              : "border-border bg-background hover:border-accent/50 hover:bg-accent/5"
+                          )}
+                        >
+                          <div className={cn(
+                            "w-10 h-10 rounded-full flex items-center justify-center mb-3",
+                            selected ? "bg-accent/20" : "bg-muted"
+                          )}>
+                            <Clock className={cn("w-5 h-5", selected ? "text-accent" : "text-muted-foreground")} />
+                          </div>
+                          <p className="font-body text-sm font-semibold text-foreground">{label}</p>
+                          <div className="flex items-center gap-1.5 mt-1">
+                            <span className="font-body text-sm text-muted-foreground/60 line-through">{fmt(option.originalPrice)}</span>
+                            <span className={cn("font-body text-xl font-bold", selected ? "text-accent" : "text-foreground")}>{fmt(option.price)}</span>
+                          </div>
+                          {selected && (
+                            <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
+                              <Check className="w-3 h-3 text-accent-foreground" />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : vessel.ticket && (
+                  <div>
+                    <div className="bg-accent/5 border border-accent/20 rounded-xl p-4 mb-5 flex items-baseline gap-2 flex-wrap">
+                      <span className="font-body text-sm text-foreground">
+                        {lang === "es" ? vessel.ticket.label : vessel.ticket.labelEn}:
+                      </span>
+                      <span className="font-body text-sm text-muted-foreground/60 line-through">€{vessel.ticket.originalPrice}</span>
+                      <span className="font-display text-xl font-bold text-accent">€{vessel.ticket.price.toFixed(2).replace(/\.00$/, "")}</span>
+                      <span className="font-body text-xs text-muted-foreground">/{lang === "es" ? "persona" : "person"}</span>
+                    </div>
                     <p className="font-body text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                       <Clock className="w-4 h-4 text-accent" />
-                      {lang === "es" ? "Horario de salida" : "Departure time"}
+                      {lang === "es" ? "Elige horario de salida" : "Choose departure time"}
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      {vessel.departureTimes.map((time) => {
+                      {vessel.ticket.departureTimes.map((time) => {
                         const sel = departureTime === time;
                         return (
                           <button
@@ -546,7 +604,7 @@ const BookingSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            {isComplete && vessel && selectedPriceOption ? (
+            {isComplete && vessel ? (
               <div className="bg-background rounded-2xl p-6 md:p-8 shadow-sm border border-accent/30">
                 <h4 className="font-display text-lg text-foreground mb-4">
                   {lang === "es" ? "Resumen de tu reserva" : "Booking summary"}
@@ -556,6 +614,11 @@ const BookingSection = () => {
                     <Anchor className="w-4 h-4 text-accent mx-auto mb-1" />
                     <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">{t("booking.step1")}</p>
                     <p className="font-body text-sm font-semibold text-foreground mt-0.5">{vessel.name}</p>
+                    {hasTicketOption && (
+                      <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-accent/15 text-accent text-[9px] font-semibold uppercase tracking-wider">
+                        {isTicket ? (lang === "es" ? "Ticket" : "Ticket") : (lang === "es" ? "Privado" : "Private")}
+                      </span>
+                    )}
                   </div>
                   <div className="bg-muted rounded-xl p-3 text-center">
                     <CalendarIcon className="w-4 h-4 text-accent mx-auto mb-1" />
@@ -566,7 +629,9 @@ const BookingSection = () => {
                   </div>
                   <div className="bg-muted rounded-xl p-3 text-center">
                     <Users className="w-4 h-4 text-accent mx-auto mb-1" />
-                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">{t("booking.step3Guests")}</p>
+                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">
+                      {isTicket ? (lang === "es" ? "Tickets" : "Tickets") : t("booking.step3Guests")}
+                    </p>
                     <p className="font-body text-sm font-semibold text-foreground mt-0.5">{guests}</p>
                   </div>
                   <div className="bg-muted rounded-xl p-3 text-center">
@@ -575,7 +640,9 @@ const BookingSection = () => {
                     <p className="font-body text-sm font-semibold text-foreground mt-0.5">
                       {isTicket && departureTime
                         ? `${departureTime} h`
-                        : (lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn)}
+                        : selectedPriceOption
+                          ? (lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn)
+                          : "—"}
                     </p>
                   </div>
                 </div>
@@ -585,7 +652,7 @@ const BookingSection = () => {
                       {lang === "es" ? "Total estimado" : "Estimated total"}
                       {isTicket && (
                         <span className="ml-1 text-xs">
-                          ({guests} × €{Number.isInteger(selectedPriceOption.price) ? selectedPriceOption.price : selectedPriceOption.price.toFixed(2)})
+                          ({guests} × €{Number.isInteger(ticketPrice) ? ticketPrice : ticketPrice.toFixed(2)})
                         </span>
                       )}
                     </p>

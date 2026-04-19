@@ -41,6 +41,10 @@ const fleet = [
     priceFrom: "765",
     originalPrice: "850",
     pricePer: "h",
+    ticketFrom: "76.50",
+    ticketOriginal: "85",
+    ticketNote: "También en ticket: 76,50€/persona · Salidas 10h / 13h / 16h (2h)",
+    ticketNoteEn: "Also as ticket: €76.50/person · Departures 10h / 13h / 16h (2h)",
     includes: ["Captain & crew", "Rosé wine, Cava ×2", "Beer, soft drinks, water", "Paddle surf, snorkel", "Towels, Bluetooth music", "Gasoline"],
     whatsapp: "34667266164",
     email: "marbellaoceanboats@gmail.com",
@@ -86,20 +90,6 @@ const fleet = [
     originalPrice: "1000",
     pricePer: "h",
     includes: ["Captain & crew", "Fruit board, snacks", "Cava, wine, beer, soft drinks", "SUP, snorkel", "Towels", "Sound system"],
-    whatsapp: "34667266164",
-    email: "marbellaoceanboats@gmail.com",
-  },
-  {
-    name: "Tickets Catamarán",
-    type: "Ticket",
-    images: [catamaranExterior, catamaranImg, catamaranInterior],
-    passengers: "Por persona",
-    power: "Salidas: 10:00 · 13:00 · 16:00",
-    length: "2 h por salida",
-    priceFrom: "76.50",
-    originalPrice: "85",
-    pricePer: "persona",
-    includes: ["Salidas 10h / 13h / 16h", "2 horas por salida", "Bebidas a bordo", "Música ambiente"],
     whatsapp: "34667266164",
     email: "marbellaoceanboats@gmail.com",
   },
@@ -186,6 +176,11 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
             <span className="inline-block px-3 py-1.5 bg-background/90 backdrop-blur-sm text-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-medium">
               {boat.type}
             </span>
+            {boat.ticketFrom && (
+              <span className="inline-block px-3 py-1.5 bg-accent/90 backdrop-blur-sm text-accent-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-semibold">
+                {t("fleet.privateOrTicket")}
+              </span>
+            )}
           </div>
         </div>
 
@@ -230,13 +225,21 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
             </div>
           )}
 
-          <div className="flex items-center justify-between mb-4">
+          <div className="mb-4">
             <p className="font-body text-sm flex items-baseline gap-2">
               <span className="text-muted-foreground">{t("fleet.from")} </span>
               <span className="text-muted-foreground/60 line-through text-sm">€{boat.originalPrice}</span>
               <span className="text-accent font-bold text-lg">€{boat.priceFrom}</span>
               <span className="text-muted-foreground text-xs">/{boat.pricePer}</span>
             </p>
+            {boat.ticketFrom && (
+              <p className="font-body text-[11px] text-muted-foreground mt-1.5 flex items-baseline gap-1.5 flex-wrap">
+                <span className="font-semibold text-accent uppercase tracking-wider text-[9px]">{t("fleet.ticketLabel")}</span>
+                <span className="text-muted-foreground/60 line-through">€{boat.ticketOriginal}</span>
+                <span className="font-bold text-foreground">€{boat.ticketFrom}</span>
+                <span>/{t("fleet.perPerson")} · 10h · 13h · 16h</span>
+              </p>
+            )}
           </div>
 
           <button
@@ -282,7 +285,7 @@ const FleetSection = () => {
             {t("fleet.desc")}
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {fleet.map((boat, i) => (
             <BoatCard key={boat.name} boat={boat} index={i} />
           ))}

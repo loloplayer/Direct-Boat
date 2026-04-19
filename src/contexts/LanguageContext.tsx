@@ -93,6 +93,9 @@ const translations: Record<Lang, Record<string, string>> = {
     "fleet.inquiry": "Consulta: {name}",
     "fleet.includes": "Incluye",
     "fleet.checkAvailability": "Consultar disponibilidad",
+    "fleet.privateOrTicket": "Privado o Ticket",
+    "fleet.ticketLabel": "Ticket",
+    "fleet.perPerson": "persona",
   },
   en: {
     // Navbar
@@ -178,6 +181,9 @@ const translations: Record<Lang, Record<string, string>> = {
     "fleet.inquiry": "Inquiry: {name}",
     "fleet.includes": "Includes",
     "fleet.checkAvailability": "Check availability",
+    "fleet.privateOrTicket": "Private or Ticket",
+    "fleet.ticketLabel": "Ticket",
+    "fleet.perPerson": "person",
   },
 };
 
