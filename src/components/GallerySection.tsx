@@ -139,13 +139,19 @@ const GallerySection = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
                 src={current.src}
-                className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg bg-foreground"
+                className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg bg-foreground cursor-pointer"
                 controls
                 autoPlay
                 muted
                 playsInline
                 preload="auto"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const v = e.currentTarget as HTMLVideoElement;
+                  v.muted = false;
+                  v.volume = 1;
+                  v.play().catch(() => {});
+                }}
               />
             )}
             <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 md:right-8 text-primary-foreground/60 hover:text-primary-foreground transition-colors z-10" aria-label="Next">
