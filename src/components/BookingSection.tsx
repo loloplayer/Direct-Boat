@@ -10,7 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import catamaranExterior from "@/assets/catamaran_exterior.jpg";
 import azimutMain from "@/assets/azimut_main.jpg";
 import rinkerMain from "@/assets/rinker_main.jpg";
-import searayMain from "@/assets/searay_main.jpg";
+import searay3 from "@/assets/searay_3.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
 interface PriceOption {
@@ -19,6 +19,8 @@ interface PriceOption {
   labelEn: string;
   price: number;
   originalPrice: number;
+  /** Fixed departure times for ticket-based experiences */
+  departures?: string[];
 }
 
 interface Vessel {
@@ -30,6 +32,10 @@ interface Vessel {
   minHours: number;
   maxGuests: number;
   pricing: PriceOption[];
+  /** Whether this vessel is sold per ticket per person (vs full charter) */
+  ticketMode?: boolean;
+  /** Fixed departure times available (for ticket-based) */
+  departureTimes?: string[];
 }
 
 const vessels: Vessel[] = [
@@ -89,7 +95,7 @@ const vessels: Vessel[] = [
     id: "searay-540",
     name: "Sea Ray Sundancer 540",
     type: "Yate",
-    image: searayMain,
+    image: searay3,
     whatsapp: "34667266164",
     minHours: 2,
     maxGuests: 12,
@@ -98,6 +104,20 @@ const vessels: Vessel[] = [
       { hours: 4, label: "4 horas", labelEn: "4 hours", price: 1620, originalPrice: 1800 },
       { hours: 6, label: "6 horas", labelEn: "6 hours", price: 2070, originalPrice: 2300 },
       { hours: 8, label: "8 horas", labelEn: "8 hours", price: 2520, originalPrice: 2800 },
+    ],
+  },
+  {
+    id: "catamaran-tickets",
+    name: "Tickets Catamarán",
+    type: "Ticket",
+    image: catamaranExterior,
+    whatsapp: "34667266164",
+    minHours: 2,
+    maxGuests: 10,
+    ticketMode: true,
+    departureTimes: ["10:00", "13:00", "16:00"],
+    pricing: [
+      { hours: 2, label: "2h por persona", labelEn: "2h per person", price: 76.5, originalPrice: 85, departures: ["10:00", "13:00", "16:00"] },
     ],
   },
   {
@@ -119,6 +139,7 @@ const BookingSection = () => {
   const [selectedPricing, setSelectedPricing] = useState<string>();
   const [selectedVessel, setSelectedVessel] = useState<string>();
   const [guests, setGuests] = useState<number>(2);
+  const [departureTime, setDepartureTime] = useState<string>();
   const [calendarOpen, setCalendarOpen] = useState(false);
   const sectionRef = useRef(null);
   const step2Ref = useRef<HTMLDivElement>(null);
@@ -131,17 +152,19 @@ const BookingSection = () => {
 
   const vessel = vessels.find((v) => v.id === selectedVessel);
   const selectedPriceOption = vessel?.pricing.find((p) => `${p.hours}h` === selectedPricing);
+  const isTicket = !!vessel?.ticketMode;
 
   const completedSteps = [
     !!selectedVessel,
     !!date,
     !!guests,
-    !!selectedPricing,
+    !!selectedPricing && (!isTicket || !!departureTime),
   ];
 
   useEffect(() => {
     if (selectedVessel && !date) {
       setSelectedPricing(undefined);
+      setDepartureTime(undefined);
       setTimeout(() => {
         step2Ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
         setTimeout(() => setCalendarOpen(true), 400);
@@ -171,10 +194,14 @@ const BookingSection = () => {
     const dateStr = date
       ? format(date, lang === "es" ? "d 'de' MMMM yyyy" : "MMMM d, yyyy", { locale: dateFnsLocale })
       : "[...]";
-    const timeStr = selectedPriceOption
-      ? `${lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn} (€${selectedPriceOption.price})`
+    const priceTotal = selectedPriceOption
+      ? (isTicket ? selectedPriceOption.price * guests : selectedPriceOption.price)
+      : 0;
+    const baseSlot = selectedPriceOption
+      ? `${lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn} (€${priceTotal.toFixed(2).replace(/\.00$/, "")})`
       : "[...]";
-    const guestsStr = `${guests} ${lang === "es" ? "personas" : "guests"}`;
+    const timeStr = isTicket && departureTime ? `${departureTime} · ${baseSlot}` : baseSlot;
+    const guestsStr = `${guests} ${lang === "es" ? (isTicket ? "tickets" : "personas") : (isTicket ? "tickets" : "guests")}`;
     const text = t("booking.waMsg")
       .replace("{vessel}", vesselName)
       .replace("{date}", dateStr)
@@ -182,9 +209,11 @@ const BookingSection = () => {
       .replace("{guests}", guestsStr);
     const number = vessel?.whatsapp ?? "34667266164";
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  }, [vessel, date, selectedPriceOption, guests, lang, t, dateFnsLocale]);
+  }, [vessel, date, selectedPriceOption, guests, lang, t, dateFnsLocale, isTicket, departureTime]);
 
-  const isComplete = date && selectedPricing && selectedVessel && guests;
+  const isComplete = date && selectedPricing && selectedVessel && guests && (!isTicket || departureTime);
+  const totalPrice = selectedPriceOption ? (isTicket ? selectedPriceOption.price * guests : selectedPriceOption.price) : 0;
+  const totalOriginalPrice = selectedPriceOption ? (isTicket ? selectedPriceOption.originalPrice * guests : selectedPriceOption.originalPrice) : 0;
 
   const steps = [
     { num: 1, label: t("booking.step1"), icon: Anchor },
@@ -275,7 +304,7 @@ const BookingSection = () => {
               </span>
               <h3 className="font-display text-xl text-foreground">{t("booking.step1")}</h3>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {vessels.map((v) => (
                 <button
                   key={v.id}
@@ -436,42 +465,78 @@ const BookingSection = () => {
             {!vessel ? (
               <p className="font-body text-sm text-muted-foreground">{t("booking.selectVesselFirst")}</p>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {vessel.pricing.map((option) => {
-                  const key = `${option.hours}h`;
-                  const label = lang === "es" ? option.label : option.labelEn;
-                  const selected = selectedPricing === key;
-                  return (
-                    <button
-                      key={key}
-                      onClick={() => setSelectedPricing(key)}
-                      className={cn(
-                        "relative flex flex-col items-center px-4 py-5 rounded-xl border-2 transition-all duration-300 text-center",
-                        selected
-                          ? "border-accent bg-accent/10 shadow-md scale-[1.02]"
-                          : "border-border bg-background hover:border-accent/50 hover:bg-accent/5"
-                      )}
-                    >
-                      <div className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center mb-3",
-                        selected ? "bg-accent/20" : "bg-muted"
-                      )}>
-                        <Clock className={cn("w-5 h-5", selected ? "text-accent" : "text-muted-foreground")} />
-                      </div>
-                      <p className="font-body text-sm font-semibold text-foreground">{label}</p>
-                      <div className="flex items-center gap-1.5 mt-1">
-                        <span className="font-body text-sm text-muted-foreground/60 line-through">€{option.originalPrice}</span>
-                        <span className={cn("font-body text-xl font-bold", selected ? "text-accent" : "text-foreground")}>€{option.price}</span>
-                      </div>
-                      {selected && (
-                        <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
-                          <Check className="w-3 h-3 text-accent-foreground" />
+              <>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {vessel.pricing.map((option) => {
+                    const key = `${option.hours}h`;
+                    const label = lang === "es" ? option.label : option.labelEn;
+                    const selected = selectedPricing === key;
+                    const fmt = (n: number) => Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2)}`;
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => setSelectedPricing(key)}
+                        className={cn(
+                          "relative flex flex-col items-center px-4 py-5 rounded-xl border-2 transition-all duration-300 text-center",
+                          selected
+                            ? "border-accent bg-accent/10 shadow-md scale-[1.02]"
+                            : "border-border bg-background hover:border-accent/50 hover:bg-accent/5"
+                        )}
+                      >
+                        <div className={cn(
+                          "w-10 h-10 rounded-full flex items-center justify-center mb-3",
+                          selected ? "bg-accent/20" : "bg-muted"
+                        )}>
+                          <Clock className={cn("w-5 h-5", selected ? "text-accent" : "text-muted-foreground")} />
                         </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+                        <p className="font-body text-sm font-semibold text-foreground">{label}</p>
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <span className="font-body text-sm text-muted-foreground/60 line-through">{fmt(option.originalPrice)}</span>
+                          <span className={cn("font-body text-xl font-bold", selected ? "text-accent" : "text-foreground")}>{fmt(option.price)}</span>
+                        </div>
+                        {isTicket && (
+                          <p className="font-body text-[10px] text-muted-foreground mt-1">
+                            {lang === "es" ? "por persona" : "per person"}
+                          </p>
+                        )}
+                        {selected && (
+                          <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
+                            <Check className="w-3 h-3 text-accent-foreground" />
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {isTicket && vessel.departureTimes && selectedPricing && (
+                  <div className="mt-6 pt-6 border-t border-border">
+                    <p className="font-body text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-accent" />
+                      {lang === "es" ? "Horario de salida" : "Departure time"}
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      {vessel.departureTimes.map((time) => {
+                        const sel = departureTime === time;
+                        return (
+                          <button
+                            key={time}
+                            onClick={() => setDepartureTime(time)}
+                            className={cn(
+                              "px-5 py-3 rounded-xl border-2 font-body text-sm font-semibold transition-all duration-200",
+                              sel
+                                ? "border-accent bg-accent text-accent-foreground shadow-md scale-105"
+                                : "border-border bg-background text-foreground hover:border-accent/50 hover:bg-accent/5"
+                            )}
+                          >
+                            {time} h
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </motion.div>
 
@@ -506,18 +571,27 @@ const BookingSection = () => {
                   </div>
                   <div className="bg-muted rounded-xl p-3 text-center">
                     <Clock className="w-4 h-4 text-accent mx-auto mb-1" />
-                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">{t("booking.step3")}</p>
+                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">{isTicket ? (lang === "es" ? "Salida" : "Departure") : t("booking.step3")}</p>
                     <p className="font-body text-sm font-semibold text-foreground mt-0.5">
-                      {lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn}
+                      {isTicket && departureTime
+                        ? `${departureTime} h`
+                        : (lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn)}
                     </p>
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-border">
                   <div>
-                    <p className="font-body text-sm text-muted-foreground">{lang === "es" ? "Total estimado" : "Estimated total"}</p>
+                    <p className="font-body text-sm text-muted-foreground">
+                      {lang === "es" ? "Total estimado" : "Estimated total"}
+                      {isTicket && (
+                        <span className="ml-1 text-xs">
+                          ({guests} × €{Number.isInteger(selectedPriceOption.price) ? selectedPriceOption.price : selectedPriceOption.price.toFixed(2)})
+                        </span>
+                      )}
+                    </p>
                     <div className="flex items-baseline gap-2">
-                      <span className="font-body text-lg text-muted-foreground/60 line-through">€{selectedPriceOption.originalPrice}</span>
-                      <span className="font-display text-3xl font-bold text-accent">€{selectedPriceOption.price}</span>
+                      <span className="font-body text-lg text-muted-foreground/60 line-through">€{Number.isInteger(totalOriginalPrice) ? totalOriginalPrice : totalOriginalPrice.toFixed(2)}</span>
+                      <span className="font-display text-3xl font-bold text-accent">€{Number.isInteger(totalPrice) ? totalPrice : totalPrice.toFixed(2)}</span>
                     </div>
                     <p className="font-body text-xs text-accent font-medium mt-0.5">-10% {lang === "es" ? "dto. web" : "web discount"}</p>
                   </div>
