@@ -35,10 +35,10 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between py-4 px-6">
           <a
             href="#"
-            className="font-display text-xl md:text-2xl font-semibold tracking-wide"
+            className="font-display text-xl md:text-2xl font-semibold tracking-wide uppercase"
             style={{ color: scrolled ? "hsl(var(--primary))" : "hsl(var(--primary-foreground))" }}
           >
-            Boat Direct
+            DIRECT BOAT
           </a>
 
           {/* Desktop */}
