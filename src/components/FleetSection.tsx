@@ -176,6 +176,11 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
             <span className="inline-block px-3 py-1.5 bg-background/90 backdrop-blur-sm text-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-medium">
               {boat.type}
             </span>
+            {boat.ticketFrom && (
+              <span className="inline-block px-3 py-1.5 bg-accent/90 backdrop-blur-sm text-accent-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-semibold">
+                {t("fleet.privateOrTicket")}
+              </span>
+            )}
           </div>
         </div>
 
@@ -220,13 +225,21 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
             </div>
           )}
 
-          <div className="flex items-center justify-between mb-4">
+          <div className="mb-4">
             <p className="font-body text-sm flex items-baseline gap-2">
               <span className="text-muted-foreground">{t("fleet.from")} </span>
               <span className="text-muted-foreground/60 line-through text-sm">€{boat.originalPrice}</span>
               <span className="text-accent font-bold text-lg">€{boat.priceFrom}</span>
               <span className="text-muted-foreground text-xs">/{boat.pricePer}</span>
             </p>
+            {boat.ticketFrom && (
+              <p className="font-body text-[11px] text-muted-foreground mt-1.5 flex items-baseline gap-1.5 flex-wrap">
+                <span className="font-semibold text-accent uppercase tracking-wider text-[9px]">{t("fleet.ticketLabel")}</span>
+                <span className="text-muted-foreground/60 line-through">€{boat.ticketOriginal}</span>
+                <span className="font-bold text-foreground">€{boat.ticketFrom}</span>
+                <span>/{t("fleet.perPerson")} · 10h · 13h · 16h</span>
+              </p>
+            )}
           </div>
 
           <button
