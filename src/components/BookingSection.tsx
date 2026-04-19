@@ -10,7 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import catamaranExterior from "@/assets/catamaran_exterior.jpg";
 import azimutMain from "@/assets/azimut_main.jpg";
 import rinkerMain from "@/assets/rinker_main.jpg";
-import searayMain from "@/assets/searay_main.jpg";
+import searay3 from "@/assets/searay_3.jpg";
 import jetski1 from "@/assets/jetski1.jpg";
 
 interface PriceOption {
@@ -19,6 +19,8 @@ interface PriceOption {
   labelEn: string;
   price: number;
   originalPrice: number;
+  /** Fixed departure times for ticket-based experiences */
+  departures?: string[];
 }
 
 interface Vessel {
@@ -30,6 +32,10 @@ interface Vessel {
   minHours: number;
   maxGuests: number;
   pricing: PriceOption[];
+  /** Whether this vessel is sold per ticket per person (vs full charter) */
+  ticketMode?: boolean;
+  /** Fixed departure times available (for ticket-based) */
+  departureTimes?: string[];
 }
 
 const vessels: Vessel[] = [

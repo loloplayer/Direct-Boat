@@ -76,7 +76,7 @@ const fleet = [
   {
     name: "Sea Ray Sundancer 540",
     type: "Yate",
-    images: [searayMain, searay2, searay3, searay4, searayInterior],
+    images: [searay3, searayMain, searay2, searay4, searayInterior],
     passengers: "12 + crew",
     power: "Caterpillar 800 HP",
     length: "16.7 m",
