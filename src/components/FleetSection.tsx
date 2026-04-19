@@ -110,12 +110,12 @@ const fleet = [
     email: "marbellaoceanboats@gmail.com",
   },
 ];
-const ImageCarousel = ({ images, name }: { images: string[]; name: string }) => {
+const ImageCarousel = ({ images, name, objectPosition = "center" }: { images: string[]; name: string; objectPosition?: string }) => {
   const [current, setCurrent] = useState(0);
 
   if (images.length <= 1) {
     return (
-      <img src={images[0]} alt={name} className="w-full aspect-[4/3] object-cover object-center" loading="lazy" />
+      <img src={images[0]} alt={name} className="w-full aspect-[4/3] object-cover" style={{ objectPosition }} loading="lazy" />
     );
   }
 
@@ -124,7 +124,8 @@ const ImageCarousel = ({ images, name }: { images: string[]; name: string }) => 
       <img
         src={images[current]}
         alt={`${name} ${current + 1}`}
-        className="w-full aspect-[4/3] object-cover object-center transition-opacity duration-300"
+        className="w-full aspect-[4/3] object-cover transition-opacity duration-300"
+        style={{ objectPosition }}
         loading="lazy"
       />
       <button
@@ -173,7 +174,7 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
     >
       <div className="relative overflow-hidden rounded-lg bg-card" style={{ boxShadow: "var(--shadow-card)" }}>
         <div className="relative overflow-hidden">
-          <ImageCarousel images={boat.images} name={boat.name} />
+          <ImageCarousel images={boat.images} name={boat.name} objectPosition={boat.name.includes("Azimut") ? "center 30%" : "center"} />
           <div className="absolute top-3 left-3 flex items-center gap-2">
             <span className="inline-block px-3 py-1.5 bg-background/90 backdrop-blur-sm text-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-medium">
               {boat.type}
