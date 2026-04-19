@@ -59,6 +59,14 @@ const vessels: Vessel[] = [
       { hours: 6, label: "6 horas", labelEn: "6 hours", price: 1665, originalPrice: 1850 },
       { hours: 8, label: "8 horas", labelEn: "8 hours", price: 2115, originalPrice: 2350 },
     ],
+    ticket: {
+      price: 76.5,
+      originalPrice: 85,
+      durationHours: 2,
+      label: "Ticket 2h por persona",
+      labelEn: "2h ticket per person",
+      departureTimes: ["10:00", "13:00", "16:00"],
+    },
   },
   {
     id: "azimut-39",
