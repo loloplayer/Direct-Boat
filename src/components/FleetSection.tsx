@@ -9,7 +9,7 @@ import catamaran3 from "@/assets/catamaran_3_dock.jpg";
 import catamaran4 from "@/assets/catamaran_4_salon.jpg";
 import catamaran5 from "@/assets/catamaran_5_aperitivo.jpg";
 
-import azimutMain from "@/assets/azimut_main.jpg";
+
 import azimut2 from "@/assets/azimut_2.jpg";
 import azimut3 from "@/assets/azimut_3.jpg";
 import azimut4 from "@/assets/azimut_4.jpg";
@@ -54,7 +54,7 @@ const fleet = [
   {
     name: "Azimut 39 Fly",
     type: "Yate",
-    images: [azimutMain, azimut2, azimut3, azimut4, azimut5, azimut6, azimut7, azimut8, azimut9],
+    images: [azimut2, azimut3, azimut4, azimut5, azimut6, azimut7, azimut8, azimut9],
     passengers: "10",
     power: "Flybridge",
     length: "12.30 m",
