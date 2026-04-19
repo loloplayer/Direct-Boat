@@ -2,7 +2,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import gallery2 from "@/assets/gallery2.jpg";
+import galleryDolphins from "@/assets/gallery_dolphins.jpg";
 import gallery3 from "@/assets/gallery3.jpg";
 import gallery4 from "@/assets/gallery4.jpg";
 import gallery5 from "@/assets/gallery5.jpg";
@@ -14,7 +14,7 @@ type MediaItem =
   | { type: "video"; src: string; alt: string };
 
 const items: MediaItem[] = [
-  { type: "image", src: gallery2, alt: "Aerial yacht view" },
+  { type: "image", src: galleryDolphins, alt: "Avistamiento de delfines en Marbella" },
   { type: "image", src: gallery3, alt: "Jumping from yacht" },
   { type: "video", src: galleryVideo1, alt: "Yacht experience video 1" },
   { type: "image", src: gallery4, alt: "Sunset from bow" },
@@ -139,19 +139,13 @@ const GallerySection = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
                 src={current.src}
-                className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg bg-foreground cursor-pointer"
-                controls
+                className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg bg-foreground"
                 autoPlay
                 muted
+                loop
                 playsInline
                 preload="auto"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const v = e.currentTarget as HTMLVideoElement;
-                  v.muted = false;
-                  v.volume = 1;
-                  v.play().catch(() => {});
-                }}
+                onClick={(e) => e.stopPropagation()}
               />
             )}
             <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 md:right-8 text-primary-foreground/60 hover:text-primary-foreground transition-colors z-10" aria-label="Next">
