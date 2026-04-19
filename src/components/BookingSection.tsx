@@ -139,6 +139,7 @@ const BookingSection = () => {
   const [selectedPricing, setSelectedPricing] = useState<string>();
   const [selectedVessel, setSelectedVessel] = useState<string>();
   const [guests, setGuests] = useState<number>(2);
+  const [departureTime, setDepartureTime] = useState<string>();
   const [calendarOpen, setCalendarOpen] = useState(false);
   const sectionRef = useRef(null);
   const step2Ref = useRef<HTMLDivElement>(null);
@@ -151,17 +152,19 @@ const BookingSection = () => {
 
   const vessel = vessels.find((v) => v.id === selectedVessel);
   const selectedPriceOption = vessel?.pricing.find((p) => `${p.hours}h` === selectedPricing);
+  const isTicket = !!vessel?.ticketMode;
 
   const completedSteps = [
     !!selectedVessel,
     !!date,
     !!guests,
-    !!selectedPricing,
+    !!selectedPricing && (!isTicket || !!departureTime),
   ];
 
   useEffect(() => {
     if (selectedVessel && !date) {
       setSelectedPricing(undefined);
+      setDepartureTime(undefined);
       setTimeout(() => {
         step2Ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
         setTimeout(() => setCalendarOpen(true), 400);
@@ -191,10 +194,14 @@ const BookingSection = () => {
     const dateStr = date
       ? format(date, lang === "es" ? "d 'de' MMMM yyyy" : "MMMM d, yyyy", { locale: dateFnsLocale })
       : "[...]";
-    const timeStr = selectedPriceOption
-      ? `${lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn} (€${selectedPriceOption.price})`
+    const priceTotal = selectedPriceOption
+      ? (isTicket ? selectedPriceOption.price * guests : selectedPriceOption.price)
+      : 0;
+    const baseSlot = selectedPriceOption
+      ? `${lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn} (€${priceTotal.toFixed(2).replace(/\.00$/, "")})`
       : "[...]";
-    const guestsStr = `${guests} ${lang === "es" ? "personas" : "guests"}`;
+    const timeStr = isTicket && departureTime ? `${departureTime} · ${baseSlot}` : baseSlot;
+    const guestsStr = `${guests} ${lang === "es" ? (isTicket ? "tickets" : "personas") : (isTicket ? "tickets" : "guests")}`;
     const text = t("booking.waMsg")
       .replace("{vessel}", vesselName)
       .replace("{date}", dateStr)
@@ -202,9 +209,11 @@ const BookingSection = () => {
       .replace("{guests}", guestsStr);
     const number = vessel?.whatsapp ?? "34667266164";
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  }, [vessel, date, selectedPriceOption, guests, lang, t, dateFnsLocale]);
+  }, [vessel, date, selectedPriceOption, guests, lang, t, dateFnsLocale, isTicket, departureTime]);
 
-  const isComplete = date && selectedPricing && selectedVessel && guests;
+  const isComplete = date && selectedPricing && selectedVessel && guests && (!isTicket || departureTime);
+  const totalPrice = selectedPriceOption ? (isTicket ? selectedPriceOption.price * guests : selectedPriceOption.price) : 0;
+  const totalOriginalPrice = selectedPriceOption ? (isTicket ? selectedPriceOption.originalPrice * guests : selectedPriceOption.originalPrice) : 0;
 
   const steps = [
     { num: 1, label: t("booking.step1"), icon: Anchor },
