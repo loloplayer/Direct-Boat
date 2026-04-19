@@ -94,20 +94,6 @@ const fleet = [
     email: "marbellaoceanboats@gmail.com",
   },
   {
-    name: "Tickets Catamarán",
-    type: "Ticket",
-    images: [catamaranExterior, catamaranImg, catamaranInterior],
-    passengers: "Por persona",
-    power: "Salidas: 10:00 · 13:00 · 16:00",
-    length: "2 h por salida",
-    priceFrom: "76.50",
-    originalPrice: "85",
-    pricePer: "persona",
-    includes: ["Salidas 10h / 13h / 16h", "2 horas por salida", "Bebidas a bordo", "Música ambiente"],
-    whatsapp: "34667266164",
-    email: "marbellaoceanboats@gmail.com",
-  },
-  {
     name: "Jet Ski",
     type: "Jet Ski",
     images: [jetski1],
@@ -286,7 +272,7 @@ const FleetSection = () => {
             {t("fleet.desc")}
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {fleet.map((boat, i) => (
             <BoatCard key={boat.name} boat={boat} index={i} />
           ))}
