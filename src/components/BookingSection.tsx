@@ -19,8 +19,15 @@ interface PriceOption {
   labelEn: string;
   price: number;
   originalPrice: number;
-  /** Fixed departure times for ticket-based experiences */
-  departures?: string[];
+}
+
+interface TicketOption {
+  price: number;
+  originalPrice: number;
+  durationHours: number;
+  label: string;
+  labelEn: string;
+  departureTimes: string[];
 }
 
 interface Vessel {
@@ -32,10 +39,8 @@ interface Vessel {
   minHours: number;
   maxGuests: number;
   pricing: PriceOption[];
-  /** Whether this vessel is sold per ticket per person (vs full charter) */
-  ticketMode?: boolean;
-  /** Fixed departure times available (for ticket-based) */
-  departureTimes?: string[];
+  /** Optional ticket-per-person mode (e.g. shared catamaran outings) */
+  ticket?: TicketOption;
 }
 
 const vessels: Vessel[] = [
