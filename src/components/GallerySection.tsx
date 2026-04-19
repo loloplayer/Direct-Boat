@@ -2,7 +2,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import gallery2 from "@/assets/gallery2.jpg";
+import galleryDolphins from "@/assets/gallery_dolphins.jpg";
 import gallery3 from "@/assets/gallery3.jpg";
 import gallery4 from "@/assets/gallery4.jpg";
 import gallery5 from "@/assets/gallery5.jpg";
@@ -14,7 +14,7 @@ type MediaItem =
   | { type: "video"; src: string; alt: string };
 
 const items: MediaItem[] = [
-  { type: "image", src: gallery2, alt: "Aerial yacht view" },
+  { type: "image", src: galleryDolphins, alt: "Avistamiento de delfines en Marbella" },
   { type: "image", src: gallery3, alt: "Jumping from yacht" },
   { type: "video", src: galleryVideo1, alt: "Yacht experience video 1" },
   { type: "image", src: gallery4, alt: "Sunset from bow" },
