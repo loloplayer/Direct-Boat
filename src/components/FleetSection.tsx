@@ -174,7 +174,7 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
     >
       <div className="relative overflow-hidden rounded-lg bg-card" style={{ boxShadow: "var(--shadow-card)" }}>
         <div className="relative overflow-hidden">
-          <ImageCarousel images={boat.images} name={boat.name} />
+          <ImageCarousel images={boat.images} name={boat.name} objectPosition={boat.name.includes("Azimut") ? "center 30%" : "center"} />
           <div className="absolute top-3 left-3 flex items-center gap-2">
             <span className="inline-block px-3 py-1.5 bg-background/90 backdrop-blur-sm text-foreground font-body text-[10px] uppercase tracking-wider rounded-md font-medium">
               {boat.type}
