@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Tag, MapPin } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-coast.jpg";
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -31,12 +31,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="font-display italic text-primary-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] mb-8 lg:mb-10 font-normal tracking-tight"
+          className="font-display text-primary-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] mb-8 lg:mb-10 font-normal tracking-tight"
           style={{ textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
         >
           {t("hero.title1")}{" "}
           <br className="hidden sm:block" />
-          <span className="not-italic font-light tracking-wide">{t("hero.title2")}</span>
+          <span className="font-light tracking-wide">{t("hero.title2")}</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 30 }}
