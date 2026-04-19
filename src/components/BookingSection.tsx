@@ -120,20 +120,6 @@ const vessels: Vessel[] = [
     ],
   },
   {
-    id: "catamaran-tickets",
-    name: "Tickets Catamarán",
-    type: "Ticket",
-    image: catamaranExterior,
-    whatsapp: "34667266164",
-    minHours: 2,
-    maxGuests: 10,
-    ticketMode: true,
-    departureTimes: ["10:00", "13:00", "16:00"],
-    pricing: [
-      { hours: 2, label: "2h por persona", labelEn: "2h per person", price: 76.5, originalPrice: 85, departures: ["10:00", "13:00", "16:00"] },
-    ],
-  },
-  {
     id: "jetski",
     name: "Jet Ski",
     type: "Jet Ski",
