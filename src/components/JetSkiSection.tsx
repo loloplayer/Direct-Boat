@@ -3,7 +3,7 @@ import { useRef } from "react";
 import jetski1 from "@/assets/jetski1.jpg";
 import jetski2 from "@/assets/jetski2.jpg";
 
-const WHATSAPP_URL = "https://wa.me/000000000000?text=Hola%2C%20estoy%20interesado%20en%20alquilar%20una%20moto%20de%20agua.%20%C2%BFPodr%C3%ADan%20enviarme%20disponibilidad%20y%20precios%3F";
+const WHATSAPP_URL = "https://wa.me/34641992624?text=Hola%2C%20estoy%20interesado%20en%20alquilar%20una%20moto%20de%20agua.%20%C2%BFPodr%C3%ADan%20enviarme%20disponibilidad%20y%20precios%3F";
 
 const JetSkiSection = () => {
   const ref = useRef(null);

@@ -48,7 +48,7 @@ const fleet = [
     ticketNote: "También en ticket: 76,50€/persona · Salidas 10h / 13h / 16h (2h)",
     ticketNoteEn: "Also as ticket: €76.50/person · Departures 10h / 13h / 16h (2h)",
     includes: ["Captain & crew", "Rosé wine, Cava ×2", "Beer, soft drinks, water", "Paddle surf, snorkel", "Towels, Bluetooth music", "Gasoline"],
-    whatsapp: "34667266164",
+    whatsapp: "34641992624",
     email: "marbellaoceanboats@gmail.com",
   },
   {
@@ -62,7 +62,7 @@ const fleet = [
     originalPrice: "470",
     pricePer: "h",
     includes: ["Captain", "Champagne ×2", "White wine ×2", "Drinks (limited)", "Paddle surf", "Insurance"],
-    whatsapp: "34667266164",
+    whatsapp: "34641992624",
     email: "marbellaoceanboats@gmail.com",
   },
   {
@@ -76,7 +76,7 @@ const fleet = [
     originalPrice: "250",
     pricePer: "h",
     includes: ["Captain", "Welcome drink", "Stereo", "Gasoline", "V.A.T"],
-    whatsapp: "34667266164",
+    whatsapp: "34641992624",
     email: "marbellaoceanboats@gmail.com",
   },
   {
@@ -92,7 +92,7 @@ const fleet = [
     originalPrice: "1000",
     pricePer: "h",
     includes: ["Captain & crew", "Fruit board, snacks", "Cava, wine, beer, soft drinks", "SUP, snorkel", "Towels", "Sound system"],
-    whatsapp: "34667266164",
+    whatsapp: "34641992624",
     email: "marbellaoceanboats@gmail.com",
   },
   {
@@ -106,7 +106,7 @@ const fleet = [
     originalPrice: "120",
     pricePer: "30 min",
     includes: ["30 min: 108€", "1 h: 170€"],
-    whatsapp: "34667266164",
+    whatsapp: "34641992624",
     email: "marbellaoceanboats@gmail.com",
   },
 ];

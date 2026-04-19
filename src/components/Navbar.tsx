@@ -39,7 +39,12 @@ const Navbar = () => {
             style={{ color: scrolled ? "hsl(var(--primary))" : "hsl(var(--primary-foreground))" }}
           >
             <span className="inline-flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-accent text-accent-foreground text-sm md:text-base font-black shadow-md ring-2 ring-accent/30">
-              DB
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 md:w-6 md:h-6">
+                <path d="M12 2L4 7v10l8 5 8-5V7l-8-5z" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 22V12" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 12L4 7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 12l8-5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </span>
             <span className="flex items-baseline gap-1.5">
               <span>DIRECT</span>
