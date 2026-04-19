@@ -128,7 +128,8 @@ const vessels: Vessel[] = [
     minHours: 1,
     maxGuests: 2,
     pricing: [
-      { hours: 1, label: "1 hora", labelEn: "1 hour", price: 108, originalPrice: 120 },
+      { hours: 0.5, label: "30 minutos", labelEn: "30 minutes", price: 108, originalPrice: 120 },
+      { hours: 1, label: "1 hora", labelEn: "1 hour", price: 170, originalPrice: 189 },
     ],
   },
 ];
