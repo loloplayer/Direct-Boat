@@ -604,7 +604,7 @@ const BookingSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            {isComplete && vessel && selectedPriceOption ? (
+            {isComplete && vessel ? (
               <div className="bg-background rounded-2xl p-6 md:p-8 shadow-sm border border-accent/30">
                 <h4 className="font-display text-lg text-foreground mb-4">
                   {lang === "es" ? "Resumen de tu reserva" : "Booking summary"}
@@ -614,6 +614,11 @@ const BookingSection = () => {
                     <Anchor className="w-4 h-4 text-accent mx-auto mb-1" />
                     <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">{t("booking.step1")}</p>
                     <p className="font-body text-sm font-semibold text-foreground mt-0.5">{vessel.name}</p>
+                    {hasTicketOption && (
+                      <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-accent/15 text-accent text-[9px] font-semibold uppercase tracking-wider">
+                        {isTicket ? (lang === "es" ? "Ticket" : "Ticket") : (lang === "es" ? "Privado" : "Private")}
+                      </span>
+                    )}
                   </div>
                   <div className="bg-muted rounded-xl p-3 text-center">
                     <CalendarIcon className="w-4 h-4 text-accent mx-auto mb-1" />
@@ -624,7 +629,9 @@ const BookingSection = () => {
                   </div>
                   <div className="bg-muted rounded-xl p-3 text-center">
                     <Users className="w-4 h-4 text-accent mx-auto mb-1" />
-                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">{t("booking.step3Guests")}</p>
+                    <p className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">
+                      {isTicket ? (lang === "es" ? "Tickets" : "Tickets") : t("booking.step3Guests")}
+                    </p>
                     <p className="font-body text-sm font-semibold text-foreground mt-0.5">{guests}</p>
                   </div>
                   <div className="bg-muted rounded-xl p-3 text-center">
@@ -633,7 +640,9 @@ const BookingSection = () => {
                     <p className="font-body text-sm font-semibold text-foreground mt-0.5">
                       {isTicket && departureTime
                         ? `${departureTime} h`
-                        : (lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn)}
+                        : selectedPriceOption
+                          ? (lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn)
+                          : "—"}
                     </p>
                   </div>
                 </div>
@@ -643,7 +652,7 @@ const BookingSection = () => {
                       {lang === "es" ? "Total estimado" : "Estimated total"}
                       {isTicket && (
                         <span className="ml-1 text-xs">
-                          ({guests} × €{Number.isInteger(selectedPriceOption.price) ? selectedPriceOption.price : selectedPriceOption.price.toFixed(2)})
+                          ({guests} × €{Number.isInteger(ticketPrice) ? ticketPrice : ticketPrice.toFixed(2)})
                         </span>
                       )}
                     </p>
