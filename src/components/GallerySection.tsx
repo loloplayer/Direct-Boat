@@ -82,12 +82,19 @@ const GallerySection = () => {
                 ) : (
                   <video
                     src={item.src}
-                    className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
                     muted
                     loop
                     playsInline
                     autoPlay
-                    preload="metadata"
+                    preload="auto"
+                    ref={(el) => {
+                      if (el) {
+                        el.muted = true;
+                        const tryPlay = () => el.play().catch(() => {});
+                        tryPlay();
+                      }
+                    }}
                   />
                 )}
               </motion.div>
@@ -132,10 +139,12 @@ const GallerySection = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
                 src={current.src}
-                className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
+                className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg bg-foreground"
                 controls
                 autoPlay
+                muted
                 playsInline
+                preload="auto"
                 onClick={(e) => e.stopPropagation()}
               />
             )}
