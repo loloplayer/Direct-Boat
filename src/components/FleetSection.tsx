@@ -3,9 +3,11 @@ import { useRef, useState } from "react";
 import { Users, Gauge, Ruler, Anchor, Tag, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-import catamaranExterior from "@/assets/catamaran_exterior.jpg";
-import catamaranInterior from "@/assets/catamaran_interior.jpg";
-import catamaranImg from "@/assets/catamaran_bali.jpg";
+import catamaran1 from "@/assets/catamaran_1_aerial.jpg";
+import catamaran2 from "@/assets/catamaran_2_marina.jpg";
+import catamaran3 from "@/assets/catamaran_3_dock.jpg";
+import catamaran4 from "@/assets/catamaran_4_salon.jpg";
+import catamaran5 from "@/assets/catamaran_5_aperitivo.jpg";
 
 import azimutMain from "@/assets/azimut_main.jpg";
 import azimut2 from "@/assets/azimut_2.jpg";
