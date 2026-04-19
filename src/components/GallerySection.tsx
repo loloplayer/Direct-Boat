@@ -6,8 +6,8 @@ import gallery2 from "@/assets/gallery2.jpg";
 import gallery3 from "@/assets/gallery3.jpg";
 import gallery4 from "@/assets/gallery4.jpg";
 import gallery5 from "@/assets/gallery5.jpg";
-import galleryVideo1 from "@/assets/gallery_video1.mov";
-import galleryVideo2 from "@/assets/gallery_video2.mov";
+import galleryVideo1 from "@/assets/gallery_video1.mp4";
+import galleryVideo2 from "@/assets/gallery_video2.mp4";
 
 type MediaItem =
   | { type: "image"; src: string; alt: string }
