@@ -34,7 +34,7 @@ const fleet = [
   {
     name: "Catamarán Bali 4.0",
     type: "Catamarán",
-    images: [catamaranExterior, catamaranImg, catamaranInterior],
+    images: [catamaran1, catamaran2, catamaran3, catamaran4, catamaran5],
     passengers: "10 + crew",
     power: "2×40 CV Volvo",
     length: "12.50 m",

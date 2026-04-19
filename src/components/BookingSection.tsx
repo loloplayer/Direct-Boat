@@ -7,7 +7,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
-import catamaranExterior from "@/assets/catamaran_exterior.jpg";
+import catamaranExterior from "@/assets/catamaran_1_aerial.jpg";
 import azimutMain from "@/assets/azimut_main.jpg";
 import rinkerMain from "@/assets/rinker_main.jpg";
 import searay3 from "@/assets/searay_3.jpg";
