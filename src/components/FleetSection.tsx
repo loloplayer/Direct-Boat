@@ -54,7 +54,7 @@ const fleet = [
   {
     name: "Azimut 39 Fly",
     type: "Yate",
-    images: [azimutMain, azimut2, azimut3, azimut4, azimut5, azimut6, azimut7, azimut8, azimut9],
+    images: [azimut2, azimut3, azimut4, azimut5, azimut6, azimut7, azimut8, azimut9],
     passengers: "10",
     power: "Flybridge",
     length: "12.30 m",
