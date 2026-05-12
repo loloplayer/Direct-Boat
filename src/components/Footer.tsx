@@ -1,4 +1,4 @@
-import { Instagram, MapPin, Anchor } from "lucide-react";
+import { MapPin, Anchor } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
