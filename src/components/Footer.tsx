@@ -20,15 +20,7 @@ const Footer = () => {
             <span className="font-body text-sm tracking-wide">{t("footer.currentLocation")}</span>
           </div>
 
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors"
-          >
-            <Instagram className="w-5 h-5" />
-            <span className="font-body text-sm">@directboat</span>
-          </a>
+
 
           <div className="w-16 h-px bg-primary-foreground/20" />
 
