@@ -8,10 +8,7 @@ const CTASection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { t } = useLanguage();
 
-  const handleBooking = () => {
-    const el = document.getElementById("elegir-embarcacion");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  const WHATSAPP_URL = "https://wa.me/34600746712?text=Hola%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20alquiler.";
 
   return (
     <section id="contacto" className="relative py-32 md:py-44 overflow-hidden">
