@@ -32,12 +32,14 @@ const CTASection = () => {
         <p className="text-sm text-accent font-body uppercase tracking-widest mb-10">
           {t("cta.subtitle")}
         </p>
-        <button
-          onClick={handleBooking}
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block px-10 py-4 bg-accent text-accent-foreground font-body text-xs uppercase tracking-[0.2em] font-semibold rounded-lg hover:bg-accent/90 transition-colors"
         >
           {t("cta.button")}
-        </button>
+        </a>
       </motion.div>
     </section>
   );
