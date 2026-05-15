@@ -49,7 +49,7 @@ const vessels: Vessel[] = [
     name: "Catamarán Bali 4.0",
     type: "Catamarán",
     image: catamaranExterior,
-    whatsapp: "34641992624",
+    whatsapp: "34600746712",
     minHours: 2,
     maxGuests: 10,
     pricing: [
@@ -73,7 +73,7 @@ const vessels: Vessel[] = [
     name: "Azimut 39 Fly",
     type: "Yate",
     image: azimutMain,
-    whatsapp: "34641992624",
+    whatsapp: "34600746712",
     minHours: 1,
     maxGuests: 10,
     pricing: [
@@ -90,7 +90,7 @@ const vessels: Vessel[] = [
     name: "Rinker 296 Captiva",
     type: "Lancha",
     image: rinkerMain,
-    whatsapp: "34641992624",
+    whatsapp: "34600746712",
     minHours: 1,
     maxGuests: 10,
     pricing: [
@@ -109,7 +109,7 @@ const vessels: Vessel[] = [
     name: "Sea Ray Sundancer 540",
     type: "Yate",
     image: searay3,
-    whatsapp: "34641992624",
+    whatsapp: "34600746712",
     minHours: 2,
     maxGuests: 12,
     pricing: [
@@ -124,7 +124,7 @@ const vessels: Vessel[] = [
     name: "Jet Ski",
     type: "Jet Ski",
     image: jetski1,
-    whatsapp: "34641992624",
+    whatsapp: "34600746712",
     minHours: 1,
     maxGuests: 2,
     pricing: [
@@ -242,7 +242,7 @@ const BookingSection = () => {
       .replace("{date}", dateStr)
       .replace("{time}", timeStr)
       .replace("{guests}", guestsStr);
-    const number = vessel?.whatsapp ?? "34641992624";
+    const number = vessel?.whatsapp ?? "34600746712";
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
   }, [vessel, date, selectedPriceOption, guests, lang, t, dateFnsLocale, isTicket, departureTime, totalPrice]);
 
