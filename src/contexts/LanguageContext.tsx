@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-type Lang = "es" | "en";
+type Lang = "es" | "en" | "fr";
 
 interface LanguageContextType {
   lang: Lang;
@@ -184,6 +184,94 @@ const translations: Record<Lang, Record<string, string>> = {
     "fleet.privateOrTicket": "Private or Ticket",
     "fleet.ticketLabel": "Ticket",
     "fleet.perPerson": "person",
+  },
+  fr: {
+    // Navbar
+    "nav.fleet": "Flotte",
+    "nav.experience": "Expérience",
+    "nav.gallery": "Galerie",
+    "nav.testimonials": "Témoignages",
+    "nav.contact": "Contact",
+    "nav.book": "Réserver",
+    "nav.bookNow": "Réserver maintenant",
+
+    // Hero
+    "hero.title1": "Location de Bateaux",
+    "hero.title2": "Direct avec les Propriétaires",
+    "hero.desc": "Nous connectons les navigateurs avec les propriétaires de bateaux et Jet Ski dans le monde entier. Sans intermédiaires, sans commissions — vous choisissez, vous négociez, vous profitez.",
+    "hero.subtitle": "Location à l'heure · Demi-journée · Journée complète",
+    "hero.cta": "Vérifier la disponibilité",
+    "hero.fleet": "Voir les bateaux",
+    "hero.discount": "🔥 10% de réduction en réservant sur ce site",
+    "hero.location": "📍 Actuellement à Puerto Banús, Marbella — Bientôt dans d'autres destinations",
+
+    // Fleet
+    "fleet.title": "Notre Flotte",
+    "fleet.desc": "Bateaux et Jet Ski premium à Puerto Banús, Marbella.",
+    "fleet.from": "À partir de",
+    "fleet.perHour": "/heure",
+    "fleet.jetskiNote": "Location de 1 ou 2 unités",
+    "fleet.location": "📍 Puerto Banús, Marbella — Ponton 5",
+    "fleet.discountBanner": "10% de réduction en réservant sur ce site",
+
+    // Booking
+    "booking.title": "Réservez Votre Expérience",
+    "booking.desc": "Choisissez votre bateau, date et horaire. Nous confirmerons la disponibilité instantanément sur WhatsApp.",
+    "booking.badge1": "Contact direct avec le propriétaire",
+    "booking.badge2": "Sans commissions ni intermédiaires",
+    "booking.badge3": "Paiements sécurisés au propriétaire",
+    "booking.discount": "🔥 10% de réduction exclusif en réservant ici",
+    "booking.step1": "Choisir le bateau",
+    "booking.step2": "Sélectionner la date",
+    "booking.step3": "Choisir durée et prix",
+    "booking.step3Guests": "Nombre de personnes",
+    "booking.datePlaceholder": "Sélectionnez une date",
+    "booking.selectVesselFirst": "Sélectionnez d'abord un bateau pour voir les horaires et prix disponibles.",
+    "booking.location": "📍 Puerto Banús, Ponton 5",
+    "booking.cta": "Vérifier la Disponibilité",
+    "booking.incomplete": "Complétez les 3 étapes pour envoyer votre demande",
+    "booking.waMsg": "Bonjour, je souhaite réserver le {vessel} le {date}, {guests}, pour le créneau {time}. Est-il disponible ?",
+
+    // Experience
+    "exp.title": "Pourquoi réserver avec nous ?",
+    "exp.desc": "Nous sommes le pont direct entre vous et les propriétaires de bateaux à Marbella. Sans agences, sans commissions — juste des expériences authentiques en mer.",
+    "exp.f1.label": "Contact direct avec le propriétaire",
+    "exp.f1.desc": "Parlez directement à la personne qui connaît vraiment son bateau.",
+    "exp.f2.label": "Sans commissions cachées",
+    "exp.f2.desc": "Le prix que vous voyez est le prix que vous payez. Sans surprises.",
+    "exp.f3.label": "Paiements directs et sécurisés",
+    "exp.f3.desc": "Chaque transaction se fait directement avec le propriétaire. Confiance totale.",
+    "exp.f4.label": "Flexible : à l'heure ou à la journée",
+    "exp.f4.desc": "De 1 heure à une journée entière. Vous décidez de la durée.",
+
+    // Gallery
+    "gallery.title": "Galerie",
+
+    // Testimonials
+    "testimonials.title": "Témoignages",
+    "testimonials.t1": "Expérience incroyable. Le bateau était impeccable et la réservation très simple.",
+    "testimonials.t2": "Le meilleur moment de notre voyage à Marbella. Hautement recommandé.",
+    "testimonials.t3": "Service premium du début à la fin. Nous reviendrons sans hésiter.",
+
+    // CTA
+    "cta.title": "Prêt à naviguer sans intermédiaires ?",
+    "cta.desc": "Parlez directement au propriétaire du bateau qui vous intéresse. Sans commissions, sans suppléments — juste le meilleur prix et un service personnalisé.",
+    "cta.subtitle": "Contact direct · Paiement sécurisé · Confiance totale",
+    "cta.button": "Discuter sur WhatsApp",
+
+    // Footer
+    "footer.tagline": "Navigation directe, sans intermédiaires",
+    "footer.rights": "Tous droits réservés.",
+    "footer.currentLocation": "📍 Actuellement à Marbella, Puerto Banús — Bientôt d'autres destinations",
+
+    // Fleet WA messages
+    "fleet.waMsg": "Bonjour, je suis intéressé par la location du {name}. Pourriez-vous m'envoyer la disponibilité et les détails ?",
+    "fleet.inquiry": "Demande : {name}",
+    "fleet.includes": "Inclut",
+    "fleet.checkAvailability": "Vérifier la disponibilité",
+    "fleet.privateOrTicket": "Privé ou Ticket",
+    "fleet.ticketLabel": "Ticket",
+    "fleet.perPerson": "personne",
   },
 };
 

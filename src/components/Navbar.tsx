@@ -21,7 +21,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const toggleLang = () => setLang(lang === "es" ? "en" : "es");
+  const toggleLang = () => {
+    const next = lang === "es" ? "en" : lang === "en" ? "fr" : "es";
+    setLang(next);
+  };
+  const nextLangLabel = lang === "es" ? "EN" : lang === "en" ? "FR" : "ES";
 
   return (
     <>
@@ -76,7 +80,7 @@ const Navbar = () => {
               aria-label="Change language"
             >
               <Globe className="w-3.5 h-3.5" />
-              {lang === "es" ? "EN" : "ES"}
+              {nextLangLabel}
             </button>
 
             <a
@@ -97,7 +101,7 @@ const Navbar = () => {
               aria-label="Change language"
             >
               <Globe className="w-4 h-4" />
-              {lang === "es" ? "EN" : "ES"}
+              {nextLangLabel}
             </button>
             <button
               className={scrolled ? "text-foreground" : "text-primary-foreground"}
