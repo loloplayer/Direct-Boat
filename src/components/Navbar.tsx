@@ -101,7 +101,7 @@ const Navbar = () => {
               aria-label="Change language"
             >
               <Globe className="w-4 h-4" />
-              {lang === "es" ? "EN" : "ES"}
+              {nextLangLabel}
             </button>
             <button
               className={scrolled ? "text-foreground" : "text-primary-foreground"}
