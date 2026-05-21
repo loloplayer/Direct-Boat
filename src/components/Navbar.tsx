@@ -21,7 +21,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const toggleLang = () => setLang(lang === "es" ? "en" : "es");
+  const toggleLang = () => {
+    const next = lang === "es" ? "en" : lang === "en" ? "fr" : "es";
+    setLang(next);
+  };
+  const nextLangLabel = lang === "es" ? "EN" : lang === "en" ? "FR" : "ES";
 
   return (
     <>
