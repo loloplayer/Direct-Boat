@@ -54,11 +54,11 @@ const vessels: Vessel[] = [
     minHours: 2,
     maxGuests: 10,
     pricing: [
-      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 765, originalPrice: 850 },
-      { hours: 3, label: "3 horas", labelEn: "3 hours", price: 990, originalPrice: 1100 },
-      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 1125, originalPrice: 1250 },
-      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 1665, originalPrice: 1850 },
-      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 2115, originalPrice: 2350 },
+      { hours: 2, label: "2 horas", labelEn: "2 hours", price: 675, originalPrice: 750 },
+      { hours: 3, label: "3 horas", labelEn: "3 hours", price: 900, originalPrice: 1000 },
+      { hours: 4, label: "4 horas", labelEn: "4 hours", price: 1035, originalPrice: 1150 },
+      { hours: 6, label: "6 horas", labelEn: "6 hours", price: 1575, originalPrice: 1750 },
+      { hours: 8, label: "8 horas", labelEn: "8 hours", price: 2025, originalPrice: 2250 },
     ],
     ticket: {
       price: 76.5,
