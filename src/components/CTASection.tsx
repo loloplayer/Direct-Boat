@@ -1,14 +1,15 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 import ctaBg from "@/assets/cta-bg.jpg";
 
 const CTASection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
-  const WHATSAPP_URL = "https://wa.me/34600746712?text=Hola%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20alquiler.";
+  const WHATSAPP_URL = getWhatsAppUrl("34600746712", lang);
 
   return (
     <section id="contacto" className="relative py-32 md:py-44 overflow-hidden">
