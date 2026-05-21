@@ -6,6 +6,7 @@ import { CalendarIcon, Ship, Clock, MessageCircle, Tag, MapPin, Users, Anchor, C
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import catamaranExterior from "@/assets/catamaran_1_aerial.jpg";
 import azimutMain from "@/assets/azimut_main.jpg";
