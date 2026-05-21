@@ -221,30 +221,9 @@ const BookingSection = () => {
     : (selectedPriceOption?.originalPrice ?? 0);
 
   const whatsappUrl = useMemo(() => {
-    const vesselName = vessel?.name ?? "[...]";
-    const dateStr = date
-      ? format(date, lang === "es" ? "d 'de' MMMM yyyy" : "MMMM d, yyyy", { locale: dateFnsLocale })
-      : "[...]";
-    const priceFmt = (n: number) => Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2)}`;
-    let timeStr = "[...]";
-    if (isTicket && vessel?.ticket && departureTime) {
-      const lbl = lang === "es" ? vessel.ticket.label : vessel.ticket.labelEn;
-      timeStr = `${departureTime} · ${lbl} (${priceFmt(totalPrice)})`;
-    } else if (selectedPriceOption) {
-      timeStr = `${lang === "es" ? selectedPriceOption.label : selectedPriceOption.labelEn} (${priceFmt(totalPrice)})`;
-    }
-    const guestsLabel = isTicket
-      ? (lang === "es" ? "tickets" : "tickets")
-      : (lang === "es" ? "personas" : "guests");
-    const guestsStr = `${guests} ${guestsLabel}`;
-    const text = t("booking.waMsg")
-      .replace("{vessel}", vesselName)
-      .replace("{date}", dateStr)
-      .replace("{time}", timeStr)
-      .replace("{guests}", guestsStr);
     const number = vessel?.whatsapp ?? "34600746712";
-    return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  }, [vessel, date, selectedPriceOption, guests, lang, t, dateFnsLocale, isTicket, departureTime, totalPrice]);
+    return getWhatsAppUrl(number, lang);
+  }, [vessel, lang]);
 
   const isComplete = !!(date && selectedVessel && guests && stepPricingDone);
 
