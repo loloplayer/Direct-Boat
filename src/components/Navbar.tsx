@@ -80,7 +80,7 @@ const Navbar = () => {
               aria-label="Change language"
             >
               <Globe className="w-3.5 h-3.5" />
-              {lang === "es" ? "EN" : "ES"}
+              {nextLangLabel}
             </button>
 
             <a
