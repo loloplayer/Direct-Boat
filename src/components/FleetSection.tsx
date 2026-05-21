@@ -40,9 +40,13 @@ const fleet = [
     length: "12.50 m",
     beam: "7.00 m",
     cabins: 4,
-    priceFrom: "765",
-    originalPrice: "850",
-    pricePer: "h",
+    durations: [
+      { label: "2h", priceFrom: "675", originalPrice: "750" },
+      { label: "3h", priceFrom: "900", originalPrice: "1000" },
+      { label: "4h", priceFrom: "1035", originalPrice: "1150" },
+      { label: "6h", priceFrom: "1575", originalPrice: "1750" },
+      { label: "8h", priceFrom: "2025", originalPrice: "2250" },
+    ],
     ticketFrom: "76.50",
     ticketOriginal: "85",
     ticketNote: "También en ticket: 76,50€/persona · Salidas 10h / 13h / 16h (2h)",
@@ -229,12 +233,24 @@ const BoatCard = ({ boat, index }: { boat: typeof fleet[0]; index: number }) => 
           )}
 
           <div className="mb-4">
-            <p className="font-body text-sm flex items-baseline gap-2">
-              <span className="text-muted-foreground">{t("fleet.from")} </span>
-              <span className="text-muted-foreground/60 line-through text-sm">€{boat.originalPrice}</span>
-              <span className="text-accent font-bold text-lg">€{boat.priceFrom}</span>
-              <span className="text-muted-foreground text-xs">/{boat.pricePer}</span>
-            </p>
+            {boat.durations ? (
+              <div className="grid grid-cols-2 gap-x-3 gap-y-1">
+                {boat.durations.map((d) => (
+                  <p key={d.label} className="font-body text-sm flex items-baseline gap-1.5">
+                    <span className="text-muted-foreground text-xs">{d.label}:</span>
+                    <span className="text-muted-foreground/60 line-through text-xs">€{d.originalPrice}</span>
+                    <span className="text-accent font-bold">€{d.priceFrom}</span>
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <p className="font-body text-sm flex items-baseline gap-2">
+                <span className="text-muted-foreground">{t("fleet.from")} </span>
+                <span className="text-muted-foreground/60 line-through text-sm">€{boat.originalPrice}</span>
+                <span className="text-accent font-bold text-lg">€{boat.priceFrom}</span>
+                <span className="text-muted-foreground text-xs">/{boat.pricePer}</span>
+              </p>
+            )}
             {boat.ticketFrom && (
               <p className="font-body text-[11px] text-muted-foreground mt-1.5 flex items-baseline gap-1.5 flex-wrap">
                 <span className="font-semibold text-accent uppercase tracking-wider text-[9px]">{t("fleet.ticketLabel")}</span>
