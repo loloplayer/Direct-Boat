@@ -223,8 +223,83 @@ const BookingSection = () => {
 
   const whatsappUrl = useMemo(() => {
     const number = vessel?.whatsapp ?? "34664575058";
-    return getWhatsAppUrl(number, lang);
-  }, [vessel, lang]);
+    if (!vessel || !date || !stepPricingDone) {
+      return getWhatsAppUrl(number, lang);
+    }
+
+    const dateStr = format(date, "PPP", { locale: dateFnsLocale });
+    const durationLabel = isTicket
+      ? (lang === "en" ? vessel.ticket!.labelEn : vessel.ticket!.label)
+      : (lang === "en" ? selectedPriceOption!.labelEn : selectedPriceOption!.label);
+
+    const L = {
+      es: {
+        intro: "¡Hola! Quiero reservar con mi 10% de descuento por reserva directa:",
+        vessel: "Embarcación",
+        date: "Fecha",
+        guests: "Personas",
+        duration: "Duración",
+        departure: "Hora de salida",
+        original: "Precio original",
+        total: "Total con 10% dto.",
+        mode: "Modalidad",
+        modePrivate: "Charter privado",
+        modeTicket: "Ticket compartido (por persona)",
+        confirm: "¿Podrían confirmarme disponibilidad? ¡Gracias!",
+      },
+      en: {
+        intro: "Hi! I'd like to book with my 10% direct booking discount:",
+        vessel: "Vessel",
+        date: "Date",
+        guests: "Guests",
+        duration: "Duration",
+        departure: "Departure time",
+        original: "Original price",
+        total: "Total with 10% off",
+        mode: "Mode",
+        modePrivate: "Private charter",
+        modeTicket: "Shared ticket (per person)",
+        confirm: "Could you confirm availability? Thank you!",
+      },
+      fr: {
+        intro: "Bonjour! Je souhaite réserver avec ma réduction de 10% en réservation directe:",
+        vessel: "Bateau",
+        date: "Date",
+        guests: "Personnes",
+        duration: "Durée",
+        departure: "Heure de départ",
+        original: "Prix d'origine",
+        total: "Total avec 10% de remise",
+        mode: "Modalité",
+        modePrivate: "Charter privé",
+        modeTicket: "Ticket partagé (par personne)",
+        confirm: "Pourriez-vous me confirmer la disponibilité? Merci!",
+      },
+    } as const;
+    const tr = L[(lang as "es" | "en" | "fr")] ?? L.en;
+
+    const lines = [
+      tr.intro,
+      "",
+      `🛥️ ${tr.vessel}: ${vessel.name}`,
+      `📅 ${tr.date}: ${dateStr}`,
+      `👥 ${tr.guests}: ${guests}`,
+      `⏱️ ${tr.duration}: ${durationLabel}`,
+      `🏷️ ${tr.mode}: ${isTicket ? tr.modeTicket : tr.modePrivate}`,
+    ];
+    if (isTicket && departureTime) {
+      lines.push(`🕒 ${tr.departure}: ${departureTime}`);
+    }
+    lines.push(
+      "",
+      `${tr.original}: €${totalOriginalPrice.toLocaleString(lang === "en" ? "en-US" : "es-ES")}`,
+      `✅ ${tr.total}: €${totalPrice.toLocaleString(lang === "en" ? "en-US" : "es-ES")}`,
+      "",
+      tr.confirm,
+    );
+
+    return getWhatsAppUrl(number, lang, lines.join("\n"));
+  }, [vessel, lang, date, guests, isTicket, selectedPriceOption, departureTime, stepPricingDone, totalPrice, totalOriginalPrice, dateFnsLocale]);
 
   const isComplete = !!(date && selectedVessel && guests && stepPricingDone);
 
