@@ -9,7 +9,7 @@ const CTASection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { t, lang } = useLanguage();
 
-  const WHATSAPP_URL = getWhatsAppUrl("34600746712", lang);
+  const WHATSAPP_URL = getWhatsAppUrl("34664575058", lang);
 
   return (
     <section id="contacto" className="relative py-32 md:py-44 overflow-hidden">

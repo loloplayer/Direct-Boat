@@ -9,7 +9,7 @@ const JetSkiSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { lang } = useLanguage();
-  const WHATSAPP_URL = getWhatsAppUrl("34600746712", lang);
+  const WHATSAPP_URL = getWhatsAppUrl("34664575058", lang);
 
   return (
     <section id="motos" className="py-24 md:py-32 bg-background">
