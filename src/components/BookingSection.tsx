@@ -50,7 +50,7 @@ const vessels: Vessel[] = [
     name: "Catamarán Bali 4.0",
     type: "Catamarán",
     image: catamaranExterior,
-    whatsapp: "34600746712",
+    whatsapp: "34664575058",
     minHours: 2,
     maxGuests: 10,
     pricing: [
@@ -74,7 +74,7 @@ const vessels: Vessel[] = [
     name: "Azimut 39 Fly",
     type: "Yate",
     image: azimutMain,
-    whatsapp: "34600746712",
+    whatsapp: "34664575058",
     minHours: 1,
     maxGuests: 10,
     pricing: [
@@ -91,7 +91,7 @@ const vessels: Vessel[] = [
     name: "Rinker 296 Captiva",
     type: "Lancha",
     image: rinkerMain,
-    whatsapp: "34600746712",
+    whatsapp: "34664575058",
     minHours: 1,
     maxGuests: 10,
     pricing: [
@@ -110,7 +110,7 @@ const vessels: Vessel[] = [
     name: "Sea Ray Sundancer 540",
     type: "Yate",
     image: searay3,
-    whatsapp: "34600746712",
+    whatsapp: "34664575058",
     minHours: 2,
     maxGuests: 12,
     pricing: [
@@ -125,7 +125,7 @@ const vessels: Vessel[] = [
     name: "Jet Ski",
     type: "Jet Ski",
     image: jetski1,
-    whatsapp: "34600746712",
+    whatsapp: "34664575058",
     minHours: 1,
     maxGuests: 2,
     pricing: [
@@ -222,7 +222,7 @@ const BookingSection = () => {
     : (selectedPriceOption?.originalPrice ?? 0);
 
   const whatsappUrl = useMemo(() => {
-    const number = vessel?.whatsapp ?? "34600746712";
+    const number = vessel?.whatsapp ?? "34664575058";
     return getWhatsAppUrl(number, lang);
   }, [vessel, lang]);
 
