@@ -41,6 +41,7 @@ export const copy = {
 } as const;
 
 export const experiences = [
+  { id: "dolphins", title: { en: "Dolphins off Marbella", es: "Delfines frente a Marbella", fr: "Dauphins au large de Marbella" }, text: { en: "A fleeting wild encounter in the clear Mediterranean beyond Marbella's coast.", es: "Un encuentro salvaje y fugaz en el Mediterráneo frente a la costa de Marbella.", fr: "Une rencontre sauvage et fugace en Méditerranée, au large de Marbella." } },
   { id: "sunset", title: { en: "Sunset cruise", es: "Puesta de sol", fr: "Croisière au coucher du soleil" }, text: { en: "Golden hour, chilled drinks and Marbella's coast in softer light.", es: "Hora dorada, bebidas frías y la costa de Marbella bajo una luz más suave.", fr: "L'heure dorée, des boissons fraîches et la côte de Marbella sous une lumière plus douce." } },
   { id: "celebrations", title: { en: "Birthdays & celebrations", es: "Cumpleaños y celebraciones", fr: "Anniversaires et célébrations" }, text: { en: "Room to gather, music and a setting that feels genuinely special.", es: "Espacio para reunirse, música y un entorno que se siente realmente especial.", fr: "De l'espace, de la musique et un cadre vraiment exceptionnel." } },
   { id: "family", title: { en: "Family day", es: "Día en familia", fr: "Journée en famille" }, text: { en: "Easy swimming stops, shade and comfortable space for every generation.", es: "Paradas para nadar, sombra y comodidad para todas las edades.", fr: "Baignades, ombre et confort pour toutes les générations." } },

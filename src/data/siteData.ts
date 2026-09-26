@@ -11,6 +11,11 @@ export interface SiteImage {
   height: number;
 }
 
+export interface SiteVideo {
+  src: string;
+  poster: SiteImage;
+}
+
 const image = (name: string, width: number, height: number, large = Math.min(width, 1200)): SiteImage => ({
   src: `/media/${name}-${large === 1080 ? 1200 : large}.webp`,
   srcSet: width > 640 ? `/media/${name}-640.webp 640w, /media/${name}-${large}.webp ${large}w` : undefined,
@@ -19,7 +24,7 @@ const image = (name: string, width: number, height: number, large = Math.min(wid
 });
 
 export const siteImages = {
-  hero: image("marbella-video-poster", 1280, 2276, 1920),
+  hero: { src: "/videos/hero-catamaran-la-concha-poster.webp", width: 1080, height: 1920 },
   about: image("catamaran_2_marina", 1200, 1600),
   cta: image("azimut_2", 1974, 1317),
   gallery: [image("gallery_dolphins", 640, 480, 640), image("gallery3", 1440, 1920), image("gallery4", 1440, 1920), image("gallery5", 1080, 1920)],
@@ -32,6 +37,12 @@ export const siteImages = {
     eco: image("activity-eco", 1536, 1024),
   },
 };
+
+export const siteVideos = {
+  hero: { src: "/videos/hero-catamaran-la-concha.mp4", poster: { src: "/videos/hero-catamaran-la-concha-poster.webp", width: 1080, height: 1920 } },
+  dolphins: { src: "/videos/dolphins-marbella.mp4", poster: { src: "/videos/dolphins-marbella-poster.webp", width: 1080, height: 1920 } },
+  onboardCatamaran: { src: "/videos/onboard-catamaran.mp4", poster: { src: "/videos/onboard-catamaran-poster.webp", width: 1080, height: 1920 } },
+} satisfies Record<string, SiteVideo>;
 
 export type LocationId = "puerto-banus" | "marbella-centre" | "the-point";
 export interface ServiceLocation { id: LocationId; name: Localized; shortName: Localized; address: Localized; latitude: number; longitude: number }
@@ -47,6 +58,7 @@ export interface Boat {
   type: Localized;
   description: Localized;
   images: SiteImage[];
+  featuredVideo?: SiteVideo;
   location: ServiceLocation;
   capacity: string;
   power?: string;
@@ -74,6 +86,7 @@ export const boats: Boat[] = [
       "Un catamaran exceptionnellement spacieux pour les célébrations et les longues journées en mer.",
     ),
     images: [image("catamaran_1_aerial", 1280, 720), image("catamaran_2_marina", 1200, 1600), image("catamaran_3_dock", 1440, 1920), image("catamaran_4_salon", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920)],
+    featuredVideo: siteVideos.onboardCatamaran,
     location: locations["puerto-banus"],
     capacity: "12 + crew",
     power: "2×40 HP Volvo",

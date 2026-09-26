@@ -52,3 +52,9 @@
 - [x] Add the illustrated coastline map, editorial reveals and solid-on-scroll navigation
 - [x] Build the mobile charter finder as a bottom sheet and preserve deferred media loading
 - [x] Verify desktop, mobile, languages, pricing and publish
+
+# Real Marbella video update
+- [x] Replace the home hero with the La Concha catamaran video and localized desktop caption
+- [x] Add the in-view dolphin experience and Bali onboard gallery video
+- [x] Replace the social image and remove fake coastline media
+- [x] Verify desktop, mobile and publish
