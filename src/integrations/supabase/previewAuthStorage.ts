@@ -36,7 +36,6 @@ export function brokeredPreviewStorage() {
       const requestId = newId();
       let done = false;
       let timer: ReturnType<typeof setTimeout>;
-      let timer: ReturnType<typeof setTimeout>;
       const finish = (r: { ok: boolean; value?: string | null } | null) => {
         if (done) return;
         done = true;
