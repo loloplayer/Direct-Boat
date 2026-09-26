@@ -13,7 +13,7 @@ export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 24); onScroll(); window.addEventListener("scroll", onScroll); return () => window.removeEventListener("scroll", onScroll); }, []);
   useEffect(() => setOpen(false), [location.pathname]);
-  const links = [[copy.nav.fleet, "fleet"], [copy.nav.experiences, "experiences"], [copy.nav.faq, "faq"], [copy.nav.about, "about"], [copy.nav.contact, "contact"]];
+  const links = [[copy.nav.fleet, "fleet"], [copy.nav.activities, "activities"], [copy.nav.experiences, "experiences"], [copy.nav.faq, "faq"], [copy.nav.about, "about"], [copy.nav.contact, "contact"]];
   const onHome = location.pathname === `/${lang}` || location.pathname === `/${lang}/`;
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled || !onHome ? "border-b border-border/70 bg-background/95 shadow-sm backdrop-blur" : "bg-transparent"}`}>
