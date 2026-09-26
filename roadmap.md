@@ -9,7 +9,7 @@
 - [x] Verify desktop, mobile, database and AI
 
 # Final content and performance pass
-- [ ] Remove excluded company, contact and Jet Ski references
+- [x] Remove excluded company, contact and water-sport references
 - [ ] Centralize all boat prices
 - [ ] Optimize responsive imagery, hero video and fonts
 - [ ] Split routes and defer the charter assistant
