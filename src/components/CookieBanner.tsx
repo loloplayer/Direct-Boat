@@ -1,0 +1,5 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+export default function CookieBanner() { const { copy } = useLanguage(); const [visible, setVisible] = useState(() => typeof window !== "undefined" && !localStorage.getItem("banus-cookie-choice")); const choose = (choice: string) => { localStorage.setItem("banus-cookie-choice", choice); setVisible(false); }; if (!visible) return null; return <div className="fixed inset-x-4 bottom-4 z-[70] mx-auto flex max-w-3xl flex-col gap-4 rounded-sm border border-border bg-background p-5 shadow-xl md:flex-row md:items-center"><p className="flex-1 text-sm leading-6 text-muted-foreground">{copy.cookieText}</p><div className="flex gap-2"><Button variant="outline" size="sm" onClick={() => choose("essential")}>{copy.decline}</Button><Button size="sm" onClick={() => choose("accepted")}>{copy.accept}</Button></div></div>; }

@@ -17,6 +17,9 @@ export default {
         display: ["Cormorant Garamond", "serif"],
         body: ["Inter", "sans-serif"],
       },
+      backgroundImage: {
+        "hero-overlay": "var(--hero-overlay)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

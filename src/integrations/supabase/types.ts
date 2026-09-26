@@ -14,7 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      booking_requests: {
+        Row: {
+          boat_slug: string
+          created_at: string
+          duration: string
+          email: string
+          guests: number
+          id: string
+          language: string
+          name: string
+          notes: string | null
+          phone: string
+          requested_date: string
+          source: string
+        }
+        Insert: {
+          boat_slug: string
+          created_at?: string
+          duration: string
+          email: string
+          guests: number
+          id?: string
+          language: string
+          name: string
+          notes?: string | null
+          phone: string
+          requested_date: string
+          source?: string
+        }
+        Update: {
+          boat_slug?: string
+          created_at?: string
+          duration?: string
+          email?: string
+          guests?: number
+          id?: string
+          language?: string
+          name?: string
+          notes?: string | null
+          phone?: string
+          requested_date?: string
+          source?: string
+        }
+        Relationships: []
+      }
+      chat_leads: {
+        Row: {
+          boat_interest: string | null
+          contact: string | null
+          created_at: string
+          id: string
+          language: string
+          name: string | null
+          requested_date: string | null
+          session_id: string
+          summary: string | null
+        }
+        Insert: {
+          boat_interest?: string | null
+          contact?: string | null
+          created_at?: string
+          id?: string
+          language: string
+          name?: string | null
+          requested_date?: string | null
+          session_id: string
+          summary?: string | null
+        }
+        Update: {
+          boat_interest?: string | null
+          contact?: string | null
+          created_at?: string
+          id?: string
+          language?: string
+          name?: string | null
+          requested_date?: string | null
+          session_id?: string
+          summary?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
