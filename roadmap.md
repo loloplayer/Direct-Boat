@@ -58,3 +58,9 @@
 - [x] Add the in-view dolphin experience and Bali onboard gallery video
 - [x] Replace the social image and remove fake coastline media
 - [x] Verify desktop, mobile and publish
+
+# Official brand consistency pass
+- [x] Define the complete semantic Banús Charters colour system
+- [x] Standardize typography, eyebrows, radii, shadows and buttons
+- [x] Unify header/footer wordmarks, favicon and social artwork
+- [ ] Verify desktop/mobile presentation and publish
