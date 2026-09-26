@@ -22,6 +22,13 @@ export default function InViewVideo({ src, poster, ...props }: Props) {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const video = ref.current;
+    if (!active || !video) return;
+    video.load();
+    void video.play().catch(() => undefined);
+  }, [active]);
+
   return (
     <video ref={ref} src={active ? src : undefined} poster={poster} autoPlay muted loop playsInline preload="none" {...props} />
   );
