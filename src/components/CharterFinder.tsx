@@ -32,7 +32,7 @@ export default function CharterFinder() {
     <div className="hero-finder hidden md:grid" aria-label={t.open}>{controls}</div>
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild><Button type="button" size="lg" className="h-14 w-full md:hidden"><Search />{t.open}</Button></SheetTrigger>
-      <SheetContent side="bottom" className="max-h-[88svh] overflow-y-auto border-accent/30 bg-primary p-6 text-primary-foreground">
+      <SheetContent side="bottom" className="z-[70] max-h-[88svh] overflow-y-auto border-accent/30 bg-primary p-6 text-primary-foreground">
         <SheetHeader className="mb-6 text-left"><SheetTitle className="font-display text-3xl text-primary-foreground">{t.open}</SheetTitle><SheetDescription className="text-primary-foreground/60">Banús Charters · Marbella</SheetDescription></SheetHeader>
         <div className="hero-finder border-0 bg-transparent p-0 shadow-none backdrop-blur-none" aria-label={t.open}>{controls}</div>
       </SheetContent>
