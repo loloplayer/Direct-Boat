@@ -19,9 +19,9 @@ const image = (name: string, width: number, height: number, large = Math.min(wid
 });
 
 export const siteImages = {
-  hero: image("hero-coast", 1376, 768, 1920),
-  about: image("hero-bg", 1920, 1080, 1920),
-  cta: image("cta-bg", 1920, 800),
+  hero: image("marbella-video-poster", 1280, 2276, 1920),
+  about: image("catamaran_2_marina", 1200, 1600),
+  cta: image("azimut_2", 1974, 1317),
   gallery: [image("gallery_dolphins", 640, 480, 640), image("gallery3", 1440, 1920), image("gallery4", 1440, 1920), image("gallery5", 1080, 1920)],
   experiences: [image("gallery4", 1440, 1920), image("gallery3", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920), image("searay_interior", 3200, 1799)],
   activities: {
@@ -140,7 +140,7 @@ export const boats: Boat[] = [
     images: [image("searay_3", 792, 739, 1200), image("searay_main", 768, 1371, 1200), image("searay_2", 1373, 768), image("searay_4", 3152, 1799), image("searay_interior", 3200, 1799)], capacity: "12 + crew", power: "Caterpillar 800 HP", length: "16.7 m", beam: "4.8 m", cabins: 2,
     location: locations["puerto-banus"],
     prices: fleetPrices["sea-ray-sundancer-540"],
-    hourlyRate: hourlyRates["sea-ray-sundancer-540"],
+    priceOnRequest: true,
     includes: [l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"), l("Fruit board and snacks", "Tabla de fruta y aperitivos", "Fruits et amuse-bouches"), l("Cava, wine, beer and soft drinks", "Cava, vino, cerveza y refrescos", "Cava, vin, bière et boissons sans alcool"), l("SUP and snorkel", "SUP y snorkel", "SUP et masque/tuba"), l("Towels and sound system", "Toallas y equipo de sonido", "Serviettes et système audio")],
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
