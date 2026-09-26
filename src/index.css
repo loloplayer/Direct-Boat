@@ -32,7 +32,7 @@
     --radius: .25rem;
     --font-display: "Cormorant Garamond", Georgia, serif;
     --font-body: "Inter", Arial, sans-serif;
-    --hero-overlay: linear-gradient(180deg, hsl(212 65% 8% / .28), hsl(212 65% 8% / .75));
+    --hero-overlay: linear-gradient(180deg, hsl(212 65% 8% / .42), hsl(212 65% 8% / .9));
     --shadow-card: 0 16px 45px -28px hsl(212 65% 12% / .28);
     --sidebar-background: 39 38% 93%; --sidebar-foreground: 212 65% 12%; --sidebar-primary: 212 65% 12%; --sidebar-primary-foreground: 40 33% 98%; --sidebar-accent: 39 49% 57%; --sidebar-accent-foreground: 212 65% 12%; --sidebar-border: 36 20% 79%; --sidebar-ring: 39 49% 57%;
   }

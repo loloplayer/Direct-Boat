@@ -1,4 +1,4 @@
-import { fleetPrices, type Lang, type Localized, type PriceOption } from "./fleet";
+import { fleetPrices, hourlyRates, type Lang, type Localized, type PriceOption } from "./fleet";
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
@@ -39,6 +39,8 @@ export interface Boat {
   cabins?: number;
   electricWc?: number;
   prices: PriceOption[];
+  hourlyRate?: number;
+  priceOnRequest?: boolean;
   includes: Localized[];
   experiences: string[];
 }
@@ -107,6 +109,7 @@ export const boats: Boat[] = [
     description: l("An agile open cruiser for an easy escape along the Marbella coast.", "Una lancha ágil para una escapada sencilla por la costa de Marbella.", "Un bateau agile pour une escapade facile le long de la côte de Marbella."),
     images: [image("rinker_main", 346, 461, 640), image("rinker", 346, 461, 640)], capacity: "10", power: "Sport cruiser", length: "9.4 m",
     prices: fleetPrices["rinker-296-captiva"],
+    hourlyRate: hourlyRates["rinker-296-captiva"],
     includes: [l("Captain", "Capitán", "Capitaine"), l("Welcome drink", "Bebida de bienvenida", "Boisson de bienvenue"), l("Stereo", "Equipo de música", "Système audio"), l("Fuel", "Combustible", "Carburant"), l("VAT", "IVA", "TVA")],
     experiences: ["sunset", "celebrations", "family"],
   },
@@ -117,6 +120,7 @@ export const boats: Boat[] = [
     description: l("Generous decks and refined interiors for milestone occasions on the Mediterranean.", "Cubiertas generosas e interiores refinados para grandes ocasiones en el Mediterráneo.", "De vastes ponts et des intérieurs raffinés pour les grandes occasions en Méditerranée."),
     images: [image("searay_3", 792, 739, 792), image("searay_main", 768, 1371, 768), image("searay_2", 1373, 768), image("searay_4", 3152, 1799), image("searay_interior", 3200, 1799)], capacity: "12 + crew", power: "Caterpillar 800 HP", length: "16.7 m", beam: "4.8 m", cabins: 2,
     prices: fleetPrices["sea-ray-sundancer-540"],
+    priceOnRequest: true,
     includes: [l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"), l("Fruit board and snacks", "Tabla de fruta y aperitivos", "Fruits et amuse-bouches"), l("Cava, wine, beer and soft drinks", "Cava, vino, cerveza y refrescos", "Cava, vin, bière et boissons sans alcool"), l("SUP and snorkel", "SUP y snorkel", "SUP et masque/tuba"), l("Towels and sound system", "Toallas y equipo de sonido", "Serviettes et système audio")],
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },

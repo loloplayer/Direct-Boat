@@ -21,3 +21,10 @@
 - [x] Show VAT-inclusive pricing across all boat tables and structured offers
 - [x] Update and deploy the charter assistant's fleet knowledge
 - [x] Verify all languages and publish
+
+# Final fleet and presentation fixes
+- [x] Replace Sea Ray pricing with localized price-on-request and WhatsApp availability handoff
+- [x] Replace Rinker duration pricing with €250 per hour for 1–8 hours, VAT included
+- [x] Confirm no discounts or strikethrough prices remain
+- [x] Improve home headline-area contrast and logo legibility
+- [x] Update the charter assistant, verify all languages and publish
