@@ -43,3 +43,12 @@
 - [x] Add fleet location filters and location labels throughout
 - [x] Update Contact, SEO, sitemap, structured data and assistant knowledge
 - [x] Verify EN/ES/FR, mobile, WhatsApp, AI and publish
+
+# Epic editorial redesign
+- [x] Replace generic coastline imagery with a poster extracted from real Marbella footage
+- [x] Build the shareable charter finder and duration-aware fleet filtering and sorting
+- [x] Redesign the home page around group size, fleet, departures, experiences and activities
+- [x] Add location-aware fleet cards, per-person pricing and filter-aware booking links
+- [x] Add the illustrated coastline map, editorial reveals and solid-on-scroll navigation
+- [x] Build the mobile charter finder as a bottom sheet and preserve deferred media loading
+- [x] Verify desktop, mobile, languages, pricing and publish
