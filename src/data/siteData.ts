@@ -2,6 +2,8 @@ import { activityPrices, fleetPrices, hourlyRates, type Lang, type Localized, ty
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
+const l = (en: string, es: string, fr: string): Localized => ({ en, es, fr });
+
 export interface SiteImage {
   src: string;
   srcSet?: string;
@@ -60,8 +62,6 @@ export interface Boat {
   includes: Localized[];
   experiences: string[];
 }
-
-const l = (en: string, es: string, fr: string): Localized => ({ en, es, fr });
 
 export const boats: Boat[] = [
   {
