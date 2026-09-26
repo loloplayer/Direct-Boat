@@ -1,9 +1,9 @@
 # Banús Charters rebuild
-- [ ] Centralize fleet and translations
-- [ ] Build localized routes and shared layout
-- [ ] Build pages, booking UI, cookie banner, floating actions
-- [ ] Add lead database tables and connect forms
-- [ ] Add streaming AI charter assistant
-- [ ] Add metadata, JSON-LD, sitemap, robots
-- [ ] Remove legacy public references
-- [ ] Verify desktop, mobile, database and AI
+- [x] Centralize fleet and translations
+- [x] Build localized routes and shared layout
+- [x] Build pages, booking UI, cookie banner, floating actions
+- [x] Add lead database tables and connect forms
+- [x] Add streaming AI charter assistant
+- [x] Add metadata, JSON-LD, sitemap, robots
+- [x] Remove legacy public references
+- [x] Verify desktop, mobile, database and AI
