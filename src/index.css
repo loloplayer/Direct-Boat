@@ -84,8 +84,8 @@
   .finder-field select { @apply mt-1 w-full appearance-none bg-transparent text-sm font-medium text-primary-foreground outline-none; }
   .finder-field select option { @apply bg-primary text-primary-foreground; }
   .finder-submit { @apply min-h-14 self-center md:ml-2 md:min-h-16; }
-  .editorial-tile { @apply relative aspect-[4/5] overflow-hidden bg-muted; }
-  .experience-tile { @apply relative min-h-96 overflow-hidden bg-primary lg:min-h-[32rem]; }
+  .editorial-tile { @apply relative aspect-[4/5] overflow-hidden rounded-md bg-muted; }
+  .experience-tile { @apply relative min-h-96 overflow-hidden rounded-md bg-primary lg:min-h-[32rem]; }
   .fleet-scroll { @apply -mx-6 overflow-x-auto px-6 pb-6 md:-mx-10 md:px-10; scrollbar-width: thin; scrollbar-color: hsl(var(--brass-ink)) transparent; }
   .map-label { @apply absolute flex max-w-40 flex-col border-l border-brass pl-3; }
   .map-label strong { @apply font-display text-lg text-primary-foreground; }
