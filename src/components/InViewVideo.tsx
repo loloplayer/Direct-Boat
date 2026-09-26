@@ -23,8 +23,6 @@ export default function InViewVideo({ src, poster, ...props }: Props) {
   }, []);
 
   return (
-    <video ref={ref} poster={poster} autoPlay muted loop playsInline preload="none" {...props}>
-      {active && <source src={src} type="video/mp4" />}
-    </video>
+    <video ref={ref} src={active ? src : undefined} poster={poster} autoPlay muted loop playsInline preload="none" {...props} />
   );
 }

@@ -54,7 +54,7 @@
 - [x] Verify desktop, mobile, languages, pricing and publish
 
 # Real Marbella video update
-- [ ] Replace the home hero with the La Concha catamaran video and localized desktop caption
-- [ ] Add the in-view dolphin experience and Bali onboard gallery video
-- [ ] Replace the social image and remove fake coastline media
-- [ ] Verify desktop, mobile and publish
+- [x] Replace the home hero with the La Concha catamaran video and localized desktop caption
+- [x] Add the in-view dolphin experience and Bali onboard gallery video
+- [x] Replace the social image and remove fake coastline media
+- [x] Verify desktop, mobile and publish
