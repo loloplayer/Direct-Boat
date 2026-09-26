@@ -7,7 +7,7 @@ export default function BrandMark({ inverse = false, compact = false }: { invers
       <span className="grid size-9 place-items-center rounded-sm border border-accent/70 text-accent"><Anchor className="size-4" /></span>
       <span className="flex flex-col leading-none">
         <span className="font-display text-xl font-semibold uppercase tracking-[0.12em]">Banús</span>
-        {!compact && <span className="mt-1 font-body text-[9px] uppercase tracking-[0.28em] text-accent">Charters</span>}
+        {!compact && <span className={cn("mt-1 font-body text-[10px] font-semibold uppercase tracking-[0.24em]", inverse ? "text-primary-foreground" : "text-accent")}>Charters</span>}
       </span>
     </span>
   );
