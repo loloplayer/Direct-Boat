@@ -63,4 +63,4 @@
 - [x] Define the complete semantic Banús Charters colour system
 - [x] Standardize typography, eyebrows, radii, shadows and buttons
 - [x] Unify header/footer wordmarks, favicon and social artwork
-- [ ] Verify desktop/mobile presentation and publish
+- [x] Verify desktop/mobile presentation and publish
