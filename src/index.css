@@ -56,3 +56,33 @@
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+@layer components {
+  .home-hero { @apply relative min-h-[100svh] overflow-hidden bg-primary; }
+  .hero-grain { @apply pointer-events-none absolute inset-0 opacity-[.06]; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E"); }
+  .hero-finder { @apply overflow-hidden border border-primary-foreground/25 bg-primary/65 p-2 text-primary-foreground shadow-2xl backdrop-blur-xl md:grid-cols-[1.15fr_1fr_.8fr_1.15fr_auto]; }
+  .finder-field { @apply flex min-h-16 items-center gap-3 border-b border-primary-foreground/15 px-4 md:border-b-0 md:border-r; }
+  .finder-field > svg { @apply size-4 shrink-0 text-accent; }
+  .finder-field small { @apply block text-[9px] font-semibold uppercase tracking-[.16em] text-primary-foreground/55; }
+  .finder-field select { @apply mt-1 w-full appearance-none bg-transparent text-sm font-medium text-primary-foreground outline-none; }
+  .finder-field select option { @apply bg-primary text-primary-foreground; }
+  .finder-submit { @apply min-h-14 self-center md:ml-2 md:min-h-16; }
+  .editorial-tile { @apply relative aspect-[4/5] overflow-hidden bg-muted; }
+  .experience-tile { @apply relative min-h-96 overflow-hidden bg-primary lg:min-h-[32rem]; }
+  .fleet-scroll { @apply -mx-6 overflow-x-auto px-6 pb-6 md:-mx-10 md:px-10; scrollbar-width: thin; scrollbar-color: hsl(var(--accent)) transparent; }
+  .map-label { @apply absolute flex max-w-40 flex-col border-l border-accent pl-3; }
+  .map-label strong { @apply font-display text-lg text-primary-foreground; }
+  .map-label span { @apply mt-1 text-[10px] leading-4 text-primary-foreground/55; }
+  .filter-scroll { @apply flex gap-2 overflow-x-auto pb-1; }
+  .filter-scroll label { @apply min-w-32 text-[9px] font-semibold uppercase tracking-[.12em] text-muted-foreground; }
+  .filter-scroll select, .filter-scroll input { @apply mt-1 h-10 w-full rounded-sm border border-input bg-background px-3 text-xs normal-case tracking-normal text-foreground outline-none focus:ring-1 focus:ring-ring; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 767px) {
+  .floating-actions { bottom: 5.75rem; }
+  .map-label { @apply max-w-28; }
+  .map-label strong { @apply text-sm; }
+  .map-label span { @apply hidden; }
+}
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
