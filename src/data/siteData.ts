@@ -1,4 +1,4 @@
-import { fleetPrices, sharedCatamaranPrice, type Lang, type Localized, type PriceOption } from "./fleet";
+import { fleetPrices, type Lang, type Localized, type PriceOption } from "./fleet";
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
@@ -31,13 +31,15 @@ export interface Boat {
   description: Localized;
   images: SiteImage[];
   capacity: string;
-  power: string;
+  power?: string;
   length: string;
+  year?: number;
+  configuration?: Localized;
   beam?: string;
   cabins?: number;
+  electricWc?: number;
   prices: PriceOption[];
   includes: Localized[];
-  ticket?: { price: number; times: string[]; duration: Localized };
   experiences: string[];
 }
 
@@ -54,14 +56,28 @@ export const boats: Boat[] = [
       "Un catamaran exceptionnellement spacieux pour les célébrations et les longues journées en mer.",
     ),
     images: [image("catamaran_1_aerial", 1280, 720), image("catamaran_2_marina", 1200, 1600), image("catamaran_3_dock", 1440, 1920), image("catamaran_4_salon", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920)],
-    capacity: "10 + crew",
-    power: "2×40 CV Volvo",
+    capacity: "12 + crew",
+    power: "2×40 HP Volvo",
     length: "12.50 m",
+    year: 2020,
     beam: "7.00 m",
     cabins: 4,
+    electricWc: 4,
     prices: fleetPrices["catamaran-bali-4"],
-    ticket: sharedCatamaranPrice,
-    includes: [l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"), l("Rosé, cava, beer and soft drinks", "Rosado, cava, cerveza y refrescos", "Rosé, cava, bière et boissons sans alcool"), l("Paddle surf and snorkel", "Paddle surf y snorkel", "Paddle et masque/tuba"), l("Towels and Bluetooth music", "Toallas y música Bluetooth", "Serviettes et musique Bluetooth"), l("Fuel", "Combustible", "Carburant")],
+    includes: [
+      l("Water (limited)", "Agua (cantidad limitada)", "Eau (quantité limitée)"),
+      l("Soft drinks (limited)", "Refrescos (cantidad limitada)", "Boissons sans alcool (quantité limitée)"),
+      l("Rosé wine (1 bottle)", "Vino rosado (1 botella)", "Vin rosé (1 bouteille)"),
+      l("Beer (limited)", "Cerveza (cantidad limitada)", "Bière (quantité limitée)"),
+      l("Cava (2 bottles)", "Cava (2 botellas)", "Cava (2 bouteilles)"),
+      l("Chips (limited)", "Patatas fritas (cantidad limitada)", "Chips (quantité limitée)"),
+      l("Towels", "Toallas", "Serviettes"),
+      l("Paddle surf", "Paddle surf", "Paddle"),
+      l("Snorkel", "Snorkel", "Masque et tuba"),
+      l("Bluetooth music", "Música Bluetooth", "Musique Bluetooth"),
+      l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"),
+      l("Fuel", "Combustible", "Carburant"),
+    ],
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
   {
@@ -71,10 +87,17 @@ export const boats: Boat[] = [
     description: l("Italian lines, a flybridge and effortless coastal cruising.", "Líneas italianas, flybridge y navegación costera sin esfuerzo.", "Lignes italiennes, flybridge et navigation côtière tout en douceur."),
     images: [image("azimut_2", 1974, 1317), image("azimut_3", 468, 573, 640), image("azimut_4", 910, 1137), image("azimut_5", 902, 1127), image("azimut_6", 935, 1168), image("azimut_7", 716, 894), image("azimut_8", 908, 1134), image("azimut_9", 935, 1168), image("azimut_main", 819, 1025)],
     capacity: "10",
-    power: "Flybridge",
     length: "12.30 m",
+    configuration: l("Flybridge", "Flybridge", "Flybridge"),
     prices: fleetPrices["azimut-39-fly"],
-    includes: [l("Captain", "Capitán", "Capitaine"), l("Champagne and white wine", "Champán y vino blanco", "Champagne et vin blanc"), l("Selected drinks", "Bebidas seleccionadas", "Boissons sélectionnées"), l("Paddle surf", "Paddle surf", "Paddle"), l("Insurance", "Seguro", "Assurance")],
+    includes: [
+      l("Captain", "Capitán", "Capitaine"),
+      l("Champagne (2 bottles)", "Champán (2 botellas)", "Champagne (2 bouteilles)"),
+      l("White wine (2 bottles)", "Vino blanco (2 botellas)", "Vin blanc (2 bouteilles)"),
+      l("Drinks (limited)", "Bebidas (cantidad limitada)", "Boissons (quantité limitée)"),
+      l("Paddle surf", "Paddle surf", "Paddle"),
+      l("Insurance", "Seguro", "Assurance"),
+    ],
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
   {

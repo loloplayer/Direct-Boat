@@ -15,3 +15,9 @@
 - [x] Split routes and defer the charter assistant
 - [x] Remove unused interface code and dependencies
 - [x] Verify mobile performance and publish
+
+# September fleet update
+- [x] Update Bali and Azimut central prices, specifications and inclusions
+- [x] Show VAT-inclusive pricing across all boat tables and structured offers
+- [x] Update and deploy the charter assistant's fleet knowledge
+- [x] Verify all languages and publish
