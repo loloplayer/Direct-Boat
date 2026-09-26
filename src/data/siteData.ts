@@ -31,8 +31,10 @@ export interface Boat {
   description: Localized;
   images: SiteImage[];
   capacity: string;
-  power: string;
+  power?: string;
   length: string;
+  year?: number;
+  configuration?: Localized;
   beam?: string;
   cabins?: number;
   electricWc?: number;
@@ -57,6 +59,7 @@ export const boats: Boat[] = [
     capacity: "12 + crew",
     power: "2×40 HP Volvo",
     length: "12.50 m",
+    year: 2020,
     beam: "7.00 m",
     cabins: 4,
     electricWc: 4,
@@ -84,8 +87,8 @@ export const boats: Boat[] = [
     description: l("Italian lines, a flybridge and effortless coastal cruising.", "Líneas italianas, flybridge y navegación costera sin esfuerzo.", "Lignes italiennes, flybridge et navigation côtière tout en douceur."),
     images: [image("azimut_2", 1974, 1317), image("azimut_3", 468, 573, 640), image("azimut_4", 910, 1137), image("azimut_5", 902, 1127), image("azimut_6", 935, 1168), image("azimut_7", 716, 894), image("azimut_8", 908, 1134), image("azimut_9", 935, 1168), image("azimut_main", 819, 1025)],
     capacity: "10",
-    power: "Flybridge",
     length: "12.30 m",
+    configuration: l("Flybridge", "Flybridge", "Flybridge"),
     prices: fleetPrices["azimut-39-fly"],
     includes: [
       l("Captain", "Capitán", "Capitaine"),
