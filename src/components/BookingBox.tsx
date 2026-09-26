@@ -1,4 +1,5 @@
 import { useMemo, useState, type FormEvent } from "react";
+import { useSearchParams } from "react-router-dom";
 import { MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,9 +11,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function BookingBox({ boat }: { boat: Boat }) {
   const { lang, copy } = useLanguage();
+  const [searchParams] = useSearchParams();
   const maxGuests = Number.parseInt(boat.capacity, 10);
   const firstDuration = boat.prices[0]?.label[lang] ?? copy.priceOnRequest;
-  const [form, setForm] = useState({ date: "", duration: firstDuration, guests: "2", name: "", email: "", phone: "", notes: "" });
+  const selectedHours = Number(searchParams.get("duration"));
+  const selectedDuration = boat.prices.find((price) => Number.parseInt(price.label.en, 10) === selectedHours)?.label[lang] ?? firstDuration;
+  const [form, setForm] = useState({ date: searchParams.get("date") ?? "", duration: selectedDuration, guests: searchParams.get("guests") ?? "2", name: "", email: "", phone: "", notes: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const set = (key: keyof typeof form, value: string) => setForm((current) => ({ ...current, [key]: value }));
   const message = useMemo(() => ({ en: `Hi Banús Charters, my name is ${form.name || "—"}. I am interested in ${boat.name} at ${boat.location.name.en} on ${form.date || "—"}${boat.priceOnRequest ? "" : ` for ${form.duration}`}, with ${form.guests} guests. Please confirm availability${boat.priceOnRequest ? " and send me a quote" : ""}.`, es: `Hola Banús Charters, me llamo ${form.name || "—"}. Me interesa ${boat.name} en ${boat.location.name.es} el ${form.date || "—"}${boat.priceOnRequest ? "" : `, durante ${form.duration}`}, para ${form.guests} personas. ¿Podéis confirmar disponibilidad${boat.priceOnRequest ? " y enviarme un presupuesto" : ""}?`, fr: `Bonjour Banús Charters, je m'appelle ${form.name || "—"}. Je souhaite réserver ${boat.name} à ${boat.location.name.fr} le ${form.date || "—"}${boat.priceOnRequest ? "" : `, pour ${form.duration}`}, pour ${form.guests} personnes. Pouvez-vous confirmer la disponibilité${boat.priceOnRequest ? " et m'envoyer un devis" : ""} ?` }[lang]), [form, boat, lang]);
