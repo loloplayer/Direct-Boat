@@ -38,7 +38,7 @@
 # Marbella Centre expansion
 - [ ] Add centralized locations, activity catalog and six-boat fleet data
 - [ ] Build localized Water Activities page, navigation and home/experience previews
-- [ ] Add two Marbella marina boats with detail and booking pages
+- [x] Add two Marbella marina boats with detail and booking pages
 - [ ] Generate and optimize temporary activity and boat photography
 - [ ] Add fleet location filters and location labels throughout
 - [ ] Update Contact, SEO, sitemap, structured data and assistant knowledge
