@@ -10,7 +10,7 @@ export interface SiteImage {
 }
 
 const image = (name: string, width: number, height: number, large = Math.min(width, 1200)): SiteImage => ({
-  src: `/media/${name}-${large}.webp`,
+  src: `/media/${name}-${large === 1080 ? 1200 : large}.webp`,
   srcSet: width > 640 ? `/media/${name}-640.webp 640w, /media/${name}-${large}.webp ${large}w` : undefined,
   width,
   height,
@@ -82,7 +82,7 @@ export const boats: Boat[] = [
     name: "Rinker 296 Captiva",
     type: l("Sport cruiser", "Lancha deportiva", "Bateau sportif"),
     description: l("An agile open cruiser for an easy escape along the Marbella coast.", "Una lancha ágil para una escapada sencilla por la costa de Marbella.", "Un bateau agile pour une escapade facile le long de la côte de Marbella."),
-    images: [image("rinker_main", 346, 461, 346), image("rinker", 346, 461, 346)], capacity: "10", power: "Sport cruiser", length: "9.4 m",
+    images: [image("rinker_main", 346, 461, 640), image("rinker", 346, 461, 640)], capacity: "10", power: "Sport cruiser", length: "9.4 m",
     prices: fleetPrices["rinker-296-captiva"],
     includes: [l("Captain", "Capitán", "Capitaine"), l("Welcome drink", "Bebida de bienvenida", "Boisson de bienvenue"), l("Stereo", "Equipo de música", "Système audio"), l("Fuel", "Combustible", "Carburant"), l("VAT", "IVA", "TVA")],
     experiences: ["sunset", "celebrations", "family"],
