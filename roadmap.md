@@ -10,8 +10,8 @@
 
 # Final content and performance pass
 - [x] Remove excluded company, contact and water-sport references
-- [ ] Centralize all boat prices
-- [ ] Optimize responsive imagery, hero video and fonts
-- [ ] Split routes and defer the charter assistant
-- [ ] Remove unused interface code and dependencies
-- [ ] Verify mobile performance and publish
+- [x] Centralize all boat prices
+- [x] Optimize responsive imagery, hero video and fonts
+- [x] Split routes and defer the charter assistant
+- [x] Remove unused interface code and dependencies
+- [x] Verify mobile performance and publish
