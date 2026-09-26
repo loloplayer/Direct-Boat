@@ -26,13 +26,13 @@ export default function CharterFinder() {
     <label className="finder-field"><WalletCards /><span><small>{t.budget}</small><select value={budget} onChange={(event) => setBudget(event.target.value)}><option value="any">{t.any}</option><option value="0-500">{t.up500}</option><option value="500-1000">{t.b1}</option><option value="1000-2000">{t.b2}</option><option value="2000+">{t.over2}</option></select></span></label>
     <label className="finder-field"><Clock3 /><span><small>{t.duration}</small><select value={duration} onChange={(event) => setDuration(event.target.value)}>{[1,2,3,4,6,8].map((hour) => <option key={hour} value={hour}>{hour} h</option>)}</select></span></label>
     <label className="finder-field"><MapPin /><span><small>{t.departure}</small><select value={departure} onChange={(event) => setDeparture(event.target.value)}><option value="any">{t.any}</option><option value="puerto-banus">{t.banus}</option><option value="marbella-centre">{t.centre}</option></select></span></label>
-    <Button type="button" size="lg" className="finder-submit" onClick={() => { setOpen(false); submit(); }}><Search />{t.find}</Button>
+    <Button type="button" size="lg" variant="secondary" className="finder-submit" onClick={() => { setOpen(false); submit(); }}><Search />{t.find}</Button>
   </>;
   return <>
     <div className="hero-finder hidden md:grid" aria-label={t.open}>{controls}</div>
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild><Button type="button" size="lg" className="h-14 w-full md:hidden"><Search />{t.open}</Button></SheetTrigger>
-      <SheetContent side="bottom" className="z-[70] max-h-[88svh] overflow-y-auto border-brass/30 bg-primary p-6 text-primary-foreground">
+      <SheetTrigger asChild><Button type="button" size="lg" variant="secondary" className="h-14 w-full md:hidden"><Search />{t.open}</Button></SheetTrigger>
+      <SheetContent side="bottom" className="z-[70] max-h-[88svh] rounded-t-lg overflow-y-auto border-brass/30 bg-primary p-6 text-primary-foreground">
         <SheetHeader className="mb-6 text-left"><SheetTitle className="font-display text-3xl text-primary-foreground">{t.open}</SheetTitle><SheetDescription className="text-primary-foreground/60">Banús Charters · Marbella</SheetDescription></SheetHeader>
         <div className="hero-finder border-0 bg-transparent p-0 shadow-none backdrop-blur-none" aria-label={t.open}>{controls}</div>
       </SheetContent>

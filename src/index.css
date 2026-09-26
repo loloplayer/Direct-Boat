@@ -53,7 +53,7 @@
   html { scroll-behavior: smooth; }
   body { @apply bg-background text-foreground antialiased; font-family: var(--font-body); letter-spacing: 0; }
   h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); letter-spacing: 0; }
-  ::selection { background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); }
+  ::selection { background: hsl(var(--brass-ink)); color: hsl(var(--foam)); }
 }
 
 @layer components {
@@ -86,8 +86,8 @@
   .finder-submit { @apply min-h-14 self-center md:ml-2 md:min-h-16; }
   .editorial-tile { @apply relative aspect-[4/5] overflow-hidden bg-muted; }
   .experience-tile { @apply relative min-h-96 overflow-hidden bg-primary lg:min-h-[32rem]; }
-  .fleet-scroll { @apply -mx-6 overflow-x-auto px-6 pb-6 md:-mx-10 md:px-10; scrollbar-width: thin; scrollbar-color: hsl(var(--accent)) transparent; }
-  .map-label { @apply absolute flex max-w-40 flex-col border-l border-accent pl-3; }
+  .fleet-scroll { @apply -mx-6 overflow-x-auto px-6 pb-6 md:-mx-10 md:px-10; scrollbar-width: thin; scrollbar-color: hsl(var(--brass-ink)) transparent; }
+  .map-label { @apply absolute flex max-w-40 flex-col border-l border-brass pl-3; }
   .map-label strong { @apply font-display text-lg text-primary-foreground; }
   .map-label span { @apply mt-1 text-[10px] leading-4 text-primary-foreground/55; }
   .filter-scroll { @apply flex gap-2 overflow-x-auto pb-1; }
