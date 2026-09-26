@@ -21,6 +21,17 @@ export default {
         "hero-overlay": "var(--hero-overlay)",
       },
       colors: {
+        sand: "hsl(var(--sand))",
+        foam: "hsl(var(--foam))",
+        navy: "hsl(var(--navy))",
+        brass: "hsl(var(--brass))",
+        "brass-ink": "hsl(var(--brass-ink))",
+        sea: "hsl(var(--sea))",
+        ink: "hsl(var(--ink))",
+        "ink-muted": "hsl(var(--ink-muted))",
+        line: "hsl(var(--line))",
+        success: "hsl(var(--success))",
+        alert: "hsl(var(--alert))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -66,9 +77,12 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "var(--radius-sheet)",
+        md: "var(--radius-control)",
+        sm: "var(--radius-input)",
+      },
+      boxShadow: {
+        brand: "var(--shadow-brand)",
       },
       keyframes: {
         "accordion-down": {
