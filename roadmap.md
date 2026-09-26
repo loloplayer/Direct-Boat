@@ -30,7 +30,7 @@
 - [x] Update the charter assistant, verify all languages and publish
 
 # Hourly price correction
-- [ ] Set Rinker to €250/hour and Sea Ray to €1,000/hour, VAT included
-- [ ] Update cards, booking choices, structured offers and assistant knowledge
-- [ ] Confirm no discounts or struck-through prices remain
-- [ ] Verify all languages and publish
+- [x] Set Rinker to €250/hour and Sea Ray to €1,000/hour, VAT included
+- [x] Update cards, booking choices, structured offers and assistant knowledge
+- [x] Confirm no discounts or struck-through prices remain
+- [x] Verify all languages and publish
