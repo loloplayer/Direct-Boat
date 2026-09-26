@@ -10,11 +10,12 @@ const cors = {
 
 const fleet = `
 Authoritative fleet and pricing:
-- Catamarán Bali 4.0, max 10 guests plus crew, 12.50m, 2x40 CV Volvo. Private: 2h €709; 3h €945; 4h €1087; 6h €1654; 8h €2127. Shared ticket: 2h €76.50/person at 10:00, 13:00 or 16:00. Includes captain & crew, rosé, cava, beer, soft drinks, water, paddle surf, snorkel, towels, Bluetooth music and fuel.
-- Azimut 39 Fly, max 10 guests, 12.30m. 1h €423; 2h €603; 3h €783; 4h €963; 6h €1413; 8h €1683. Includes captain, champagne, white wine, selected drinks, paddle surf and insurance.
+- Catamarán Bali 4.0 (2020), max 12 guests plus crew, 12.50m long, 7.00m beam, 2x40 HP Volvo, 4 cabins, 4 electric WC. Private: 2h €750; 3h €1000; 4h €1150; 6h €1750; 8h €2250. Includes limited water and soft drinks, 1 bottle of rosé wine, limited beer, 2 bottles of cava, limited chips, towels, paddle surf, snorkel, Bluetooth music, captain & crew, and fuel.
+- Azimut 39 Fly, max 10 guests, 12.30m, flybridge. 1h €450; 2h €650; 3h €850; 4h €1100; 6h €1550; 8h €1850. Includes captain, 2 bottles of champagne, 2 bottles of white wine, limited drinks, paddle surf and insurance.
 - Rinker 296 Captiva, max 10 guests, 9.4m. 1h €225; 2h €360; 3h €540; 4h €720; 5h €855; 6h €990; 7h €1125; 8h €1260. Includes captain, welcome drink, stereo, fuel and VAT.
 - Sea Ray Sundancer 540, max 12 guests plus crew, 16.7m. 2h €900; 4h €1620; 6h €2070; 8h €2520. Includes captain & crew, fruit and snacks, cava, wine, beer, soft drinks, SUP, snorkel, towels and sound system.
 Experiences: sunset cruises, birthdays/bachelor/bachelorette parties, family days, corporate events.
+All listed prices include VAT.
 Policies: meet in Puerto Banús; a deposit confirms and the balance is paid on board; if the captain cancels for weather/safety, free rescheduling or a full deposit refund; children are welcome within capacity and captain guidance; food/drink policy varies by boat.
 `;
 
