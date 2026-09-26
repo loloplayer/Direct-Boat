@@ -58,6 +58,10 @@
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
 @layer components {
   .home-hero { @apply relative min-h-[100svh] overflow-hidden bg-primary; }
+  .hero-video-frame { @apply absolute inset-0 overflow-hidden; }
+  .hero-video-frame p { @apply hidden; }
+  .hero-mobile-overlay { @apply absolute inset-0 bg-hero-overlay; }
+  .hero-content { @apply relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-6 pb-10 pt-32 md:px-10 md:pb-14; }
   .hero-grain { @apply pointer-events-none absolute inset-0 opacity-[.06]; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E"); }
   .hero-finder { @apply overflow-hidden border border-primary-foreground/25 bg-primary/65 p-2 text-primary-foreground shadow-2xl backdrop-blur-xl md:grid-cols-[1.15fr_1fr_.8fr_1.15fr_auto]; }
   .finder-field { @apply flex min-h-16 items-center gap-3 border-b border-primary-foreground/15 px-4 md:border-b-0 md:border-r; }
@@ -77,6 +81,18 @@
   .filter-scroll select, .filter-scroll input { @apply mt-1 h-10 w-full rounded-sm border border-input bg-background px-3 text-xs normal-case tracking-normal text-foreground outline-none focus:ring-1 focus:ring-ring; }
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 1024px) {
+  .home-hero { min-height: 54rem; }
+  .hero-video-frame { @apply inset-auto bottom-12 right-10 top-28 w-[min(34vw,28rem)] rounded-sm border border-accent/70 shadow-2xl; }
+  .hero-video-frame p { @apply absolute bottom-0 left-0 right-0 block bg-primary/80 px-5 py-3 text-[10px] font-semibold uppercase tracking-[.14em] text-primary-foreground backdrop-blur; }
+  .hero-mobile-overlay { background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 54%, hsl(var(--primary) / .2) 72%, transparent 100%); }
+  .hero-content { @apply justify-center pb-16 pt-32; padding-right: min(40vw, 34rem); }
+  .home-hero .hero-finder { @apply grid-cols-2; }
+  .home-hero .finder-field { @apply border-b border-r-0; }
+  .home-hero .finder-field:nth-child(odd) { @apply border-r; }
+  .home-hero .finder-submit { @apply col-span-2 ml-0; }
 }
 
 @media (max-width: 767px) {
