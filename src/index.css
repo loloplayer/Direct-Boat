@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face { font-family: "Cormorant Garamond"; src: url("/fonts/font-0.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url("/fonts/font-1.woff2") format("woff2"); font-weight: 500 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/font-2.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/font-3.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/font-4.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+
 @layer base {
   :root {
     --background: 39 38% 93%;
