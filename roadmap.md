@@ -36,10 +36,10 @@
 - [x] Verify all languages and publish
 
 # Marbella Centre expansion
-- [ ] Add centralized locations, activity catalog and six-boat fleet data
-- [ ] Build localized Water Activities page, navigation and home/experience previews
-- [ ] Add two Marbella marina boats with detail and booking pages
-- [ ] Generate and optimize temporary activity and boat photography
-- [ ] Add fleet location filters and location labels throughout
-- [ ] Update Contact, SEO, sitemap, structured data and assistant knowledge
-- [ ] Verify EN/ES/FR, mobile, WhatsApp, AI and publish
+- [x] Add centralized locations, activity catalog and six-boat fleet data
+- [x] Build localized Water Activities page, navigation and home/experience previews
+- [x] Add two Marbella marina boats with detail and booking pages
+- [x] Generate and optimize temporary activity and boat photography
+- [x] Add fleet location filters and location labels throughout
+- [x] Update Contact, SEO, sitemap, structured data and assistant knowledge
+- [x] Verify EN/ES/FR, mobile, WhatsApp, AI and publish
