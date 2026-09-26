@@ -44,7 +44,6 @@ export const experiences = [
   { id: "celebrations", title: { en: "Birthdays & celebrations", es: "Cumpleaños y celebraciones", fr: "Anniversaires et célébrations" }, text: { en: "Room to gather, music and a setting that feels genuinely special.", es: "Espacio para reunirse, música y un entorno que se siente realmente especial.", fr: "De l'espace, de la musique et un cadre vraiment exceptionnel." } },
   { id: "family", title: { en: "Family day", es: "Día en familia", fr: "Journée en famille" }, text: { en: "Easy swimming stops, shade and comfortable space for every generation.", es: "Paradas para nadar, sombra y comodidad para todas las edades.", fr: "Baignades, ombre et confort pour toutes les générations." } },
   { id: "corporate", title: { en: "Corporate events", es: "Eventos de empresa", fr: "Événements d'entreprise" }, text: { en: "A private setting for teams, clients and conversations away from the boardroom.", es: "Un entorno privado para equipos, clientes y conversaciones fuera de la oficina.", fr: "Un cadre privé pour les équipes, les clients et les échanges hors du bureau." } },
-  { id: "jetski", title: { en: "Jet Ski", es: "Jet Ski", fr: "Jet Ski" }, text: { en: "Thirty minutes or one hour of focused excitement on the water.", es: "Treinta minutos o una hora de emoción pura en el agua.", fr: "Trente minutes ou une heure de sensations fortes sur l'eau." } },
 ] as { id: string; title: Localized; text: Localized }[];
 
 export type SiteCopy = typeof copy.en;

@@ -1,41 +1,35 @@
-import catamaran1 from "@/assets/catamaran_1_aerial.jpg";
-import catamaran2 from "@/assets/catamaran_2_marina.jpg";
-import catamaran3 from "@/assets/catamaran_3_dock.jpg";
-import catamaran4 from "@/assets/catamaran_4_salon.jpg";
-import catamaran5 from "@/assets/catamaran_5_aperitivo.jpg";
-import azimutMain from "@/assets/azimut_main.jpg";
-import azimut2 from "@/assets/azimut_2.jpg";
-import azimut3 from "@/assets/azimut_3.jpg";
-import azimut4 from "@/assets/azimut_4.jpg";
-import azimut5 from "@/assets/azimut_5.jpg";
-import azimut6 from "@/assets/azimut_6.jpg";
-import azimut7 from "@/assets/azimut_7.jpg";
-import azimut8 from "@/assets/azimut_8.jpg";
-import azimut9 from "@/assets/azimut_9.jpg";
-import rinkerMain from "@/assets/rinker_main.jpg";
-import rinker from "@/assets/rinker.jpg";
-import searayMain from "@/assets/searay_main.jpg";
-import searay2 from "@/assets/searay_2.jpg";
-import searay3 from "@/assets/searay_3.jpg";
-import searay4 from "@/assets/searay_4.jpg";
-import searayInterior from "@/assets/searay_interior.jpg";
-import jetski1 from "@/assets/jetski1.jpg";
-import jetski2 from "@/assets/jetski2.jpg";
+import { fleetPrices, sharedCatamaranPrice, type Lang, type Localized, type PriceOption } from "./fleet";
 
-export type Lang = "en" | "es" | "fr";
-export type Localized = Record<Lang, string>;
+export type { Lang, Localized, PriceOption } from "./fleet";
 
-export interface PriceOption {
-  label: Localized;
-  price: number;
+export interface SiteImage {
+  src: string;
+  srcSet?: string;
+  width: number;
+  height: number;
 }
+
+const image = (name: string, width: number, height: number, large = Math.min(width, 1200)): SiteImage => ({
+  src: `/media/${name}-${large === 1080 ? 1200 : large}.webp`,
+  srcSet: width > 640 ? `/media/${name}-640.webp 640w, /media/${name}-${large}.webp ${large}w` : undefined,
+  width,
+  height,
+});
+
+export const siteImages = {
+  hero: image("hero-coast", 1376, 768, 1920),
+  about: image("hero-bg", 1920, 1080, 1920),
+  cta: image("cta-bg", 1920, 800),
+  gallery: [image("gallery_dolphins", 640, 480, 640), image("gallery3", 1440, 1920), image("gallery4", 1440, 1920), image("gallery5", 1080, 1920)],
+  experiences: [image("gallery4", 1440, 1920), image("gallery3", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920), image("searay_interior", 3200, 1799)],
+};
 
 export interface Boat {
   slug: string;
   name: string;
   type: Localized;
   description: Localized;
-  images: string[];
+  images: SiteImage[];
   capacity: string;
   power: string;
   length: string;
@@ -59,20 +53,14 @@ export const boats: Boat[] = [
       "Un catamarán excepcionalmente amplio para celebraciones tranquilas y largas jornadas en el mar.",
       "Un catamaran exceptionnellement spacieux pour les célébrations et les longues journées en mer.",
     ),
-    images: [catamaran1, catamaran2, catamaran3, catamaran4, catamaran5],
+    images: [image("catamaran_1_aerial", 1280, 720), image("catamaran_2_marina", 1200, 1600), image("catamaran_3_dock", 1440, 1920), image("catamaran_4_salon", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920)],
     capacity: "10 + crew",
     power: "2×40 CV Volvo",
     length: "12.50 m",
     beam: "7.00 m",
     cabins: 4,
-    prices: [
-      { label: l("2 hours", "2 horas", "2 heures"), price: 709 },
-      { label: l("3 hours", "3 horas", "3 heures"), price: 945 },
-      { label: l("4 hours", "4 horas", "4 heures"), price: 1087 },
-      { label: l("6 hours", "6 horas", "6 heures"), price: 1654 },
-      { label: l("8 hours", "8 horas", "8 heures"), price: 2127 },
-    ],
-    ticket: { price: 76.5, times: ["10:00", "13:00", "16:00"], duration: l("2 hours per person", "2 horas por persona", "2 heures par personne") },
+    prices: fleetPrices["catamaran-bali-4"],
+    ticket: sharedCatamaranPrice,
     includes: [l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"), l("Rosé, cava, beer and soft drinks", "Rosado, cava, cerveza y refrescos", "Rosé, cava, bière et boissons sans alcool"), l("Paddle surf and snorkel", "Paddle surf y snorkel", "Paddle et masque/tuba"), l("Towels and Bluetooth music", "Toallas y música Bluetooth", "Serviettes et musique Bluetooth"), l("Fuel", "Combustible", "Carburant")],
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
@@ -81,15 +69,11 @@ export const boats: Boat[] = [
     name: "Azimut 39 Fly",
     type: l("Motor yacht", "Yate a motor", "Yacht à moteur"),
     description: l("Italian lines, a flybridge and effortless coastal cruising.", "Líneas italianas, flybridge y navegación costera sin esfuerzo.", "Lignes italiennes, flybridge et navigation côtière tout en douceur."),
-    images: [azimut2, azimut3, azimut4, azimut5, azimut6, azimut7, azimut8, azimut9, azimutMain],
+    images: [image("azimut_2", 1974, 1317), image("azimut_3", 468, 573, 640), image("azimut_4", 910, 1137), image("azimut_5", 902, 1127), image("azimut_6", 935, 1168), image("azimut_7", 716, 894), image("azimut_8", 908, 1134), image("azimut_9", 935, 1168), image("azimut_main", 819, 1025)],
     capacity: "10",
     power: "Flybridge",
     length: "12.30 m",
-    prices: [
-      { label: l("1 hour", "1 hora", "1 heure"), price: 423 }, { label: l("2 hours", "2 horas", "2 heures"), price: 603 },
-      { label: l("3 hours", "3 horas", "3 heures"), price: 783 }, { label: l("4 hours", "4 horas", "4 heures"), price: 963 },
-      { label: l("6 hours", "6 horas", "6 heures"), price: 1413 }, { label: l("8 hours", "8 horas", "8 heures"), price: 1683 },
-    ],
+    prices: fleetPrices["azimut-39-fly"],
     includes: [l("Captain", "Capitán", "Capitaine"), l("Champagne and white wine", "Champán y vino blanco", "Champagne et vin blanc"), l("Selected drinks", "Bebidas seleccionadas", "Boissons sélectionnées"), l("Paddle surf", "Paddle surf", "Paddle"), l("Insurance", "Seguro", "Assurance")],
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
@@ -98,8 +82,8 @@ export const boats: Boat[] = [
     name: "Rinker 296 Captiva",
     type: l("Sport cruiser", "Lancha deportiva", "Bateau sportif"),
     description: l("An agile open cruiser for an easy escape along the Marbella coast.", "Una lancha ágil para una escapada sencilla por la costa de Marbella.", "Un bateau agile pour une escapade facile le long de la côte de Marbella."),
-    images: [rinkerMain, rinker], capacity: "10", power: "Sport cruiser", length: "9.4 m",
-    prices: [1,2,3,4,5,6,7,8].map((hours, index) => ({ label: l(`${hours} ${hours === 1 ? "hour" : "hours"}`, `${hours} ${hours === 1 ? "hora" : "horas"}`, `${hours} ${hours === 1 ? "heure" : "heures"}`), price: [225,360,540,720,855,990,1125,1260][index] })),
+    images: [image("rinker_main", 346, 461, 640), image("rinker", 346, 461, 640)], capacity: "10", power: "Sport cruiser", length: "9.4 m",
+    prices: fleetPrices["rinker-296-captiva"],
     includes: [l("Captain", "Capitán", "Capitaine"), l("Welcome drink", "Bebida de bienvenida", "Boisson de bienvenue"), l("Stereo", "Equipo de música", "Système audio"), l("Fuel", "Combustible", "Carburant"), l("VAT", "IVA", "TVA")],
     experiences: ["sunset", "celebrations", "family"],
   },
@@ -108,20 +92,10 @@ export const boats: Boat[] = [
     name: "Sea Ray Sundancer 540",
     type: l("Luxury yacht", "Yate de lujo", "Yacht de luxe"),
     description: l("Generous decks and refined interiors for milestone occasions on the Mediterranean.", "Cubiertas generosas e interiores refinados para grandes ocasiones en el Mediterráneo.", "De vastes ponts et des intérieurs raffinés pour les grandes occasions en Méditerranée."),
-    images: [searay3, searayMain, searay2, searay4, searayInterior], capacity: "12 + crew", power: "Caterpillar 800 HP", length: "16.7 m", beam: "4.8 m", cabins: 2,
-    prices: [{ label: l("2 hours", "2 horas", "2 heures"), price: 900 }, { label: l("4 hours", "4 horas", "4 heures"), price: 1620 }, { label: l("6 hours", "6 horas", "6 heures"), price: 2070 }, { label: l("8 hours", "8 horas", "8 heures"), price: 2520 }],
+    images: [image("searay_3", 792, 739, 792), image("searay_main", 768, 1371, 768), image("searay_2", 1373, 768), image("searay_4", 3152, 1799), image("searay_interior", 3200, 1799)], capacity: "12 + crew", power: "Caterpillar 800 HP", length: "16.7 m", beam: "4.8 m", cabins: 2,
+    prices: fleetPrices["sea-ray-sundancer-540"],
     includes: [l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"), l("Fruit board and snacks", "Tabla de fruta y aperitivos", "Fruits et amuse-bouches"), l("Cava, wine, beer and soft drinks", "Cava, vino, cerveza y refrescos", "Cava, vin, bière et boissons sans alcool"), l("SUP and snorkel", "SUP y snorkel", "SUP et masque/tuba"), l("Towels and sound system", "Toallas y equipo de sonido", "Serviettes et système audio")],
     experiences: ["sunset", "celebrations", "family", "corporate"],
-  },
-  {
-    slug: "jet-ski",
-    name: "Jet Ski",
-    type: l("Jet Ski", "Jet Ski", "Jet Ski"),
-    description: l("A fast, guided burst of adrenaline just outside Puerto Banús.", "Una dosis rápida y guiada de adrenalina frente a Puerto Banús.", "Une parenthèse rapide et guidée d'adrénaline au large de Puerto Banús."),
-    images: [jetski1, jetski2], capacity: "1–2", power: "130 CV", length: "3.4 m",
-    prices: [{ label: l("30 minutes", "30 minutos", "30 minutes"), price: 108 }, { label: l("1 hour", "1 hora", "1 heure"), price: 170 }],
-    includes: [l("Safety equipment", "Equipo de seguridad", "Équipement de sécurité"), l("Briefing", "Briefing", "Briefing")],
-    experiences: ["jetski"],
   },
 ];
 

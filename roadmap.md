@@ -7,3 +7,11 @@
 - [x] Add metadata, JSON-LD, sitemap, robots
 - [x] Remove legacy public references
 - [x] Verify desktop, mobile, database and AI
+
+# Final content and performance pass
+- [x] Remove excluded company, contact and water-sport references
+- [x] Centralize all boat prices
+- [x] Optimize responsive imagery, hero video and fonts
+- [x] Split routes and defer the charter assistant
+- [x] Remove unused interface code and dependencies
+- [x] Verify mobile performance and publish
