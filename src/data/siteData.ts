@@ -187,6 +187,6 @@ export const waterActivities: WaterActivity[] = [
 ];
 
 export const WHATSAPP_NUMBER = "34664575058";
-export const SITE_URL = "https://sea-dreams-maker.lovable.app";
+export const SITE_URL = "https://banuscharters.com";
 export const getBoat = (slug?: string) => boats.find((boat) => boat.slug === slug);
 export const money = (value: number, lang: Lang) => new Intl.NumberFormat(lang === "en" ? "en-GB" : lang, { style: "currency", currency: "EUR", maximumFractionDigits: value % 1 ? 2 : 0 }).format(value);
