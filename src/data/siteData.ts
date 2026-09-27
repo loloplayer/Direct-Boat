@@ -186,7 +186,7 @@ export const waterActivities: WaterActivity[] = [
   { id: "eco", title: l("Eco activities", "Actividades eco", "Activités éco"), description: l("Explore the calm water by SUP, pedal boat, kayak or a shared SUP Yoga session.", "Explora el mar en SUP, hidropedal, kayak o con una sesión compartida de SUP Yoga.", "Explorez une mer calme en SUP, pédalo, kayak ou lors d'une séance de SUP Yoga."), image: siteImages.activities.eco, prices: activityPrices.eco, location: locations["the-point"] },
 ];
 
-export const WHATSAPP_NUMBER = "34600746712";
+export const WHATSAPP_NUMBER = "34664575058";
 export const SITE_URL = "https://sea-dreams-maker.lovable.app";
 export const getBoat = (slug?: string) => boats.find((boat) => boat.slug === slug);
 export const money = (value: number, lang: Lang) => new Intl.NumberFormat(lang === "en" ? "en-GB" : lang, { style: "currency", currency: "EUR", maximumFractionDigits: value % 1 ? 2 : 0 }).format(value);

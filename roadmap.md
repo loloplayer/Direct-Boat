@@ -64,3 +64,8 @@
 - [x] Standardize typography, eyebrows, radii, shadows and buttons
 - [x] Unify header/footer wordmarks, favicon and social artwork
 - [x] Verify desktop/mobile presentation and publish
+
+# WhatsApp contact correction
+- [x] Replace the previous number across links, contact details and structured data
+- [x] Update the charter assistant handoff and contact guidance
+- [x] Verify the corrected number and publish
