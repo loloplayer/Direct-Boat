@@ -68,4 +68,4 @@
 # WhatsApp contact correction
 - [x] Replace the previous number across links, contact details and structured data
 - [x] Update the charter assistant handoff and contact guidance
-- [ ] Verify the corrected number and publish
+- [x] Verify the corrected number and publish
