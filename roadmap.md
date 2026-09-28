@@ -106,4 +106,4 @@
 - [x] Add date, start time, priced duration and guests WhatsApp booking
 - [x] Redesign boat galleries, lightbox, details and mobile booking bar
 - [x] Compact fleet cards and two-point coastline section
-- [ ] Verify responsive views, redeploy assistant and publish
+- [x] Verify responsive views, redeploy assistant and publish
