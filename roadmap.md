@@ -78,6 +78,6 @@
 - [x] Add the Google reviews link and verify key pages at 390px
 
 # The Point flyer
-- [ ] Save the supplied flyer unchanged at its public URL
-- [ ] Add localized flyer presentation and referral buttons to Activities and Home
-- [ ] Verify responsive presentation and referral messages, then publish
+- [x] Save the supplied flyer unchanged at its public URL
+- [x] Add localized flyer presentation and referral buttons to Activities and Home
+- [x] Verify responsive presentation and referral messages, then publish
