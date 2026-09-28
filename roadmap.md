@@ -85,4 +85,4 @@
 # The Point referral delivery fix
 - [x] Execute referral inserts with a persistent background request
 - [x] Add localized general flyer enquiry messages
-- [ ] Verify anonymous insertion, remove the test row and publish
+- [x] Verify anonymous insertion, remove the test row and publish
