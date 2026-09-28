@@ -51,11 +51,10 @@ export const siteVideos = {
   onboardCatamaran: { src: "/videos/onboard-catamaran.mp4", poster: { src: "/videos/onboard-catamaran-poster.webp", width: 1080, height: 1920 } },
 } satisfies Record<string, SiteVideo>;
 
-export type LocationId = "puerto-banus" | "marbella-centre" | "the-point";
+export type LocationId = "puerto-banus" | "the-point";
 export interface ServiceLocation { id: LocationId; name: Localized; shortName: Localized; address: Localized; latitude: number; longitude: number }
 export const locations: Record<LocationId, ServiceLocation> = {
   "puerto-banus": { id: "puerto-banus", name: l("Puerto Banús", "Puerto Banús", "Puerto Banús"), shortName: l("Puerto Banús", "Puerto Banús", "Puerto Banús"), address: l("Puerto Banús, Marbella", "Puerto Banús, Marbella", "Puerto Banús, Marbella"), latitude: 36.487, longitude: -4.953 },
-  "marbella-centre": { id: "marbella-centre", name: l("Puerto Deportivo de Marbella", "Puerto Deportivo de Marbella", "Puerto Deportivo de Marbella"), shortName: l("Marbella Centre", "Marbella Centro", "Centre de Marbella"), address: l("Marbella town centre marina", "Puerto deportivo del centro de Marbella", "Port de plaisance du centre de Marbella"), latitude: 36.507, longitude: -4.886 },
   "the-point": { id: "the-point", name: l("The Point beach, Marbella", "The Point beach, Marbella", "The Point beach, Marbella"), shortName: l("The Point beach", "The Point beach", "The Point beach"), address: l("Marbella centre, 15 min from Puerto Banús", "Marbella centro, a 15 min de Puerto Banús", "Centre de Marbella, à 15 min de Puerto Banús"), latitude: 36.507, longitude: -4.878 },
 };
 
@@ -156,15 +155,6 @@ export const boats: Boat[] = [
     prices: fleetPrices["princess-v48-wow"],
     includes: [l("VAT included (21%)", "IVA incluido (21%)", "TVA incluse (21 %)")],
     experiences: ["sunset", "celebrations", "family", "corporate"],
-  },
-  {
-    slug: "saxdor-200-sport",
-    name: "Saxdor 200 Sport",
-    type: l("Modern open boat", "Barco abierto moderno", "Bateau open moderne"),
-    description: l("A nimble modern open boat with T-top for an easy coastal escape from central Marbella.", "Un barco abierto moderno y ágil con T-top para recorrer la costa desde Marbella centro.", "Un bateau open moderne et agile avec T-top pour longer la côte depuis le centre de Marbella."),
-    images: [image("saxdor-200-sport", 1500, 1125)], location: locations["marbella-centre"], capacity: l("6 guests", "6 personas", "6 invités"), maxGuests: 6, prices: fleetPrices["saxdor-200-sport"],
-    includes: [l("Skipper", "Patrón", "Skipper"), l("Drinks", "Bebidas", "Boissons"), l("Snacks", "Aperitivos", "Snacks")],
-    experiences: ["sunset", "family"],
   },
 ];
 

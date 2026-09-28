@@ -33,14 +33,6 @@ export const fleetPrices: Record<string, PriceOption[]> = {
     { label: label("7 hours", "7 horas", "7 heures"), price: 2750 },
     { label: label("8 hours", "8 horas", "8 heures"), price: 2950 },
   ],
-  "saxdor-200-sport": [
-    { label: label("1 hour", "1 hora", "1 heure"), price: 280 },
-    { label: label("2 hours", "2 horas", "2 heures"), price: 400 },
-    { label: label("3 hours", "3 horas", "3 heures"), price: 550 },
-    { label: label("4 hours", "4 horas", "4 heures"), price: 650 },
-    { label: label("6 hours", "6 horas", "6 heures"), price: 900 },
-    { label: label("8 hours", "8 horas", "8 heures"), price: 1200 },
-  ],
 };
 
 export const activityPrices: Record<string, PriceOption[]> = {
