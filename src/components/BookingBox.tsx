@@ -13,7 +13,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export default function BookingBox({ boat }: { boat: Boat }) {
   const { lang, copy } = useLanguage();
   const [searchParams] = useSearchParams();
-  const maxGuests = Number.parseInt(boat.capacity, 10);
+  const maxGuests = boat.maxGuests;
   const firstDuration = boat.prices[0]?.label[lang] ?? copy.priceOnRequest;
   const selectedHours = Number(searchParams.get("duration"));
   const selectedDuration = boat.prices.find((price) => Number.parseInt(price.label.en, 10) === selectedHours)?.label[lang] ?? firstDuration;

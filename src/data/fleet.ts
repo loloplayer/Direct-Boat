@@ -24,11 +24,6 @@ export const fleetPrices: Record<string, PriceOption[]> = {
     { label: label("6 hours", "6 horas", "6 heures"), price: 1550 },
     { label: label("8 hours", "8 horas", "8 heures"), price: 1850 },
   ],
-  "rinker-296-captiva": Array.from({ length: 8 }, (_, index) => {
-    const hours = index + 1;
-    return { label: label(`${hours} ${hours === 1 ? "hour" : "hours"}`, `${hours} ${hours === 1 ? "hora" : "horas"}`, `${hours} ${hours === 1 ? "heure" : "heures"}`), price: 250 * hours };
-  }),
-  "sea-ray-sundancer-540": [],
   "cruisers-yachts-39": [
     { label: label("1 hour", "1 hora", "1 heure"), price: 400 },
     { label: label("2 hours", "2 horas", "2 heures"), price: 600 },
@@ -45,10 +40,6 @@ export const fleetPrices: Record<string, PriceOption[]> = {
     { label: label("6 hours", "6 horas", "6 heures"), price: 900 },
     { label: label("8 hours", "8 horas", "8 heures"), price: 1200 },
   ],
-};
-
-export const hourlyRates: Record<string, number> = {
-  "rinker-296-captiva": 250,
 };
 
 export const activityPrices: Record<string, PriceOption[]> = {
