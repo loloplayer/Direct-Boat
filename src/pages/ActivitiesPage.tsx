@@ -15,11 +15,14 @@ function ActivityCard({ activity }: { activity: WaterActivity }) {
 }
 
 function FlyerSlot() {
+  const { lang } = useLanguage();
   // Partner flyer slot: shown only once /media/the-point-flyer.jpg exists.
   const src = "/media/the-point-flyer.jpg"; const [ok, setOk] = useState(false);
   useEffect(() => { const img = new Image(); img.onload = () => setOk(true); img.src = src; }, []);
   if (!ok) return null;
-  return <section className="pt-10 md:pt-16"><div className="mx-auto max-w-7xl px-5 md:px-10"><a href={src} target="_blank" rel="noreferrer"><img src={src} alt="The Point beach water activities price list" loading="lazy" className="w-full rounded-md border border-border shadow-brand" /></a></div></section>;
+  const title = { en: "The Point beach · full price list", es: "The Point beach · lista de precios completa", fr: "The Point beach · liste complète des prix" }[lang];
+  const button = { en: "Book with The Point on WhatsApp", es: "Reservar con The Point por WhatsApp", fr: "Réserver avec The Point sur WhatsApp" }[lang];
+  return <section className="pt-10 md:pt-16"><div className="mx-auto max-w-7xl px-5 md:px-10"><h2 className="mb-6 font-display text-4xl md:text-5xl">{title}</h2><a href={src} target="_blank" rel="noreferrer" aria-label={`${title} — open full size`} className="block touch-pinch-zoom"><img src={src} alt="The Point beach water activities price list" width="1080" height="768" loading="lazy" className="w-full rounded-md border border-border shadow-brand" /></a><Button asChild size="lg" className="mt-5 w-full md:w-auto"><a href={`https://wa.me/34622264991`} target="_blank" rel="noreferrer" onClick={(event) => { event.currentTarget.href = trackAndGetThePointUrl(lang, "Flyer / general enquiry", "", ""); }}><MessageCircle className="size-4" />{button}</a></Button></div></section>;
 }
 
 export default function ActivitiesPage() { const { lang, copy } = useLanguage(); return <PageShell><Seo lang={lang} page="activities" path="/activities" /><section className="bg-primary pb-16 pt-32 text-primary-foreground md:pb-20 md:pt-40"><div className="mx-auto max-w-7xl px-5 md:px-10"><p className="section-kicker">The Point beach · Marbella</p><h1 className="max-w-4xl font-display text-5xl md:text-7xl">{copy.activitiesTitle}</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-primary-foreground/75">{copy.activitiesIntro}</p></div></section><FlyerSlot /><section className="py-16 md:py-28"><div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-10">{waterActivities.map((activity) => <ActivityCard key={activity.id} activity={activity} />)}</div></section></PageShell>; }
