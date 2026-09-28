@@ -100,3 +100,10 @@
 - [x] Execute referral inserts with a persistent background request
 - [x] Add localized general flyer enquiry messages
 - [x] Verify anonymous insertion, remove the test row and publish
+
+## Three-boat Puerto Banús fleet and booking redesign
+- [x] Remove Saxdor and Marbella-centre boat departure paths
+- [x] Add date, start time, priced duration and guests WhatsApp booking
+- [x] Redesign boat galleries, lightbox, details and mobile booking bar
+- [x] Compact fleet cards and two-point coastline section
+- [x] Verify responsive views, redeploy assistant and publish

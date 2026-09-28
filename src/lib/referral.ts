@@ -54,14 +54,3 @@ export function trackAndGetThePointUrl(lang: Lang, activity: string, people: str
   return `https://wa.me/${THE_POINT_WHATSAPP}?text=${encodeURIComponent(thePointMessage(lang, code, activity, people, date))}`;
 }
 
-/** Boats at Puerto Deportivo de Marbella are operated and booked by our partner The Point. */
-export const isThePointBoat = (boat: { location: { id: string } }) => boat.location.id === "marbella-centre";
-export const thePointBoatCopy = {
-  en: { book: "Book with The Point on WhatsApp", note: "Operated and booked by our partner The Point · Marbella centre marina" },
-  es: { book: "Reservar con The Point por WhatsApp", note: "Gestionado y reservado por nuestro socio The Point · Puerto Deportivo de Marbella" },
-  fr: { book: "Réserver avec The Point sur WhatsApp", note: "Géré et réservé par notre partenaire The Point · port de Marbella centre" },
-} as const;
-/** Opens The Point WhatsApp for a partner boat, recording the referral first. */
-export const openThePointBoat = (lang: Lang, boatName: string, duration: string, people: string, date: string) => {
-  window.open(trackAndGetThePointUrl(lang, `${boatName}${duration ? ` · ${duration}` : ""}`, people, date), "_blank", "noopener");
-};
