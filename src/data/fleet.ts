@@ -24,13 +24,14 @@ export const fleetPrices: Record<string, PriceOption[]> = {
     { label: label("6 hours", "6 horas", "6 heures"), price: 1550 },
     { label: label("8 hours", "8 horas", "8 heures"), price: 1850 },
   ],
-  "cruisers-yachts-39": [
-    { label: label("1 hour", "1 hora", "1 heure"), price: 400 },
-    { label: label("2 hours", "2 horas", "2 heures"), price: 600 },
-    { label: label("3 hours", "3 horas", "3 heures"), price: 800 },
-    { label: label("4 hours", "4 horas", "4 heures"), price: 1000 },
-    { label: label("6 hours", "6 horas", "6 heures"), price: 1500 },
-    { label: label("8 hours", "8 horas", "8 heures"), price: 1800 },
+  "princess-v48-wow": [
+    { label: label("2 hours", "2 horas", "2 heures"), price: 1200 },
+    { label: label("3 hours", "3 horas", "3 heures"), price: 1500 },
+    { label: label("4 hours", "4 horas", "4 heures"), price: 1900 },
+    { label: label("5 hours", "5 horas", "5 heures"), price: 2250 },
+    { label: label("6 hours", "6 horas", "6 heures"), price: 2500 },
+    { label: label("7 hours", "7 horas", "7 heures"), price: 2750 },
+    { label: label("8 hours", "8 horas", "8 heures"), price: 2950 },
   ],
   "saxdor-200-sport": [
     { label: label("1 hour", "1 hora", "1 heure"), price: 280 },
