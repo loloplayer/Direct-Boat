@@ -1,4 +1,4 @@
-import { activityPrices, fleetPrices, hourlyRates, type Lang, type Localized, type PriceOption } from "./fleet";
+import { activityPrices, fleetPrices, type Lang, type Localized, type PriceOption } from "./fleet";
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
@@ -28,7 +28,7 @@ export const siteImages = {
   about: image("catamaran_2_marina", 1200, 1600),
   cta: image("azimut_2", 1974, 1317),
   gallery: [image("gallery_dolphins", 640, 480, 640), image("gallery3", 1440, 1920), image("gallery4", 1440, 1920), image("gallery5", 1080, 1920)],
-  experiences: [image("gallery4", 1440, 1920), image("gallery3", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920), image("searay_interior", 3200, 1799)],
+  experiences: [image("gallery4", 1440, 1920), image("gallery3", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920), image("azimut_4", 910, 1137)],
   activities: {
     "jet-ski": image("jetski1", 1200, 800),
     parasailing: image("activity-parasailing", 1536, 1024),
@@ -60,7 +60,8 @@ export interface Boat {
   images: SiteImage[];
   featuredVideo?: SiteVideo;
   location: ServiceLocation;
-  capacity: string;
+  capacity: Localized;
+  maxGuests: number;
   power?: string;
   length?: string;
   year?: number;
@@ -88,7 +89,8 @@ export const boats: Boat[] = [
     images: [image("catamaran_1_aerial", 1280, 720), image("catamaran_2_marina", 1200, 1600), image("catamaran_3_dock", 1440, 1920), image("catamaran_4_salon", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920)],
     featuredVideo: siteVideos.onboardCatamaran,
     location: locations["puerto-banus"],
-    capacity: "12 + crew",
+    capacity: l("10 guests + 2 crew", "10 personas + 2 de tripulación", "10 invités + 2 membres d'équipage"),
+    maxGuests: 10,
     power: "2×40 HP Volvo",
     length: "12.50 m",
     year: 2020,
@@ -119,7 +121,8 @@ export const boats: Boat[] = [
     description: l("Italian lines, a flybridge and effortless coastal cruising.", "Líneas italianas, flybridge y navegación costera sin esfuerzo.", "Lignes italiennes, flybridge et navigation côtière tout en douceur."),
     images: [image("azimut_2", 1974, 1317), image("azimut_3", 468, 573, 640), image("azimut_4", 910, 1137), image("azimut_5", 902, 1127), image("azimut_6", 935, 1168), image("azimut_7", 716, 894), image("azimut_8", 908, 1134), image("azimut_9", 935, 1168), image("azimut_main", 819, 1025)],
     location: locations["puerto-banus"],
-    capacity: "10",
+    capacity: l("10 guests", "10 personas", "10 invités"),
+    maxGuests: 10,
     length: "12.30 m",
     configuration: l("Flybridge", "Flybridge", "Flybridge"),
     prices: fleetPrices["azimut-39-fly"],
@@ -134,35 +137,11 @@ export const boats: Boat[] = [
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
   {
-    slug: "rinker-296-captiva",
-    name: "Rinker 296 Captiva",
-    type: l("Sport cruiser", "Lancha deportiva", "Bateau sportif"),
-    description: l("An agile open cruiser for an easy escape along the Marbella coast.", "Una lancha ágil para una escapada sencilla por la costa de Marbella.", "Un bateau agile pour une escapade facile le long de la côte de Marbella."),
-    images: [image("rinker_main", 346, 461, 640), image("rinker", 346, 461, 640)], capacity: "10", power: "Sport cruiser", length: "9.4 m",
-    location: locations["puerto-banus"],
-    prices: fleetPrices["rinker-296-captiva"],
-    hourlyRate: hourlyRates["rinker-296-captiva"],
-    includes: [l("Captain", "Capitán", "Capitaine"), l("Welcome drink", "Bebida de bienvenida", "Boisson de bienvenue"), l("Stereo", "Equipo de música", "Système audio"), l("Fuel", "Combustible", "Carburant"), l("VAT", "IVA", "TVA")],
-    experiences: ["sunset", "celebrations", "family"],
-  },
-  {
-    slug: "sea-ray-sundancer-540",
-    name: "Sea Ray Sundancer 540",
-    type: l("Luxury yacht", "Yate de lujo", "Yacht de luxe"),
-    description: l("Generous decks and refined interiors for milestone occasions on the Mediterranean.", "Cubiertas generosas e interiores refinados para grandes ocasiones en el Mediterráneo.", "De vastes ponts et des intérieurs raffinés pour les grandes occasions en Méditerranée."),
-    images: [image("searay_3", 792, 739, 1200), image("searay_main", 768, 1371, 1200), image("searay_2", 1373, 768), image("searay_4", 3152, 1799), image("searay_interior", 3200, 1799)], capacity: "12 + crew", power: "Caterpillar 800 HP", length: "16.7 m", beam: "4.8 m", cabins: 2,
-    location: locations["puerto-banus"],
-    prices: fleetPrices["sea-ray-sundancer-540"],
-    priceOnRequest: true,
-    includes: [l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"), l("Fruit board and snacks", "Tabla de fruta y aperitivos", "Fruits et amuse-bouches"), l("Cava, wine, beer and soft drinks", "Cava, vino, cerveza y refrescos", "Cava, vin, bière et boissons sans alcool"), l("SUP and snorkel", "SUP y snorkel", "SUP et masque/tuba"), l("Towels and sound system", "Toallas y equipo de sonido", "Serviettes et système audio")],
-    experiences: ["sunset", "celebrations", "family", "corporate"],
-  },
-  {
     slug: "cruisers-yachts-39",
     name: "Cruisers Yachts 39",
     type: l("Sport cruiser yacht", "Yate deportivo", "Yacht sport cruiser"),
     description: l("A refined sport cruiser for sociable days departing from Marbella's town centre marina.", "Un yate deportivo elegante para disfrutar en grupo desde el puerto del centro de Marbella.", "Un yacht sportif raffiné pour des journées conviviales au départ du port du centre de Marbella."),
-    images: [image("cruisers-yachts-39", 1536, 1024)], location: locations["marbella-centre"], capacity: "12", prices: fleetPrices["cruisers-yachts-39"],
+    images: [image("cruisers-yachts-39", 1536, 1024)], location: locations["marbella-centre"], capacity: l("12 guests", "12 personas", "12 invités"), maxGuests: 12, prices: fleetPrices["cruisers-yachts-39"],
     includes: [l("Skipper", "Patrón", "Skipper"), l("Drinks", "Bebidas", "Boissons"), l("Snacks", "Aperitivos", "Snacks")],
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
@@ -171,7 +150,7 @@ export const boats: Boat[] = [
     name: "Saxdor 200 Sport",
     type: l("Modern open boat", "Barco abierto moderno", "Bateau open moderne"),
     description: l("A nimble modern open boat with T-top for an easy coastal escape from central Marbella.", "Un barco abierto moderno y ágil con T-top para recorrer la costa desde Marbella centro.", "Un bateau open moderne et agile avec T-top pour longer la côte depuis le centre de Marbella."),
-    images: [image("saxdor-200-sport", 1536, 1024)], location: locations["marbella-centre"], capacity: "6", prices: fleetPrices["saxdor-200-sport"],
+    images: [image("saxdor-200-sport", 1500, 1125)], location: locations["marbella-centre"], capacity: l("6 guests", "6 personas", "6 invités"), maxGuests: 6, prices: fleetPrices["saxdor-200-sport"],
     includes: [l("Skipper", "Patrón", "Skipper"), l("Drinks", "Bebidas", "Boissons"), l("Snacks", "Aperitivos", "Snacks")],
     experiences: ["sunset", "family"],
   },

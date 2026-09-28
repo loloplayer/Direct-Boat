@@ -82,6 +82,12 @@
 - [x] Add localized flyer presentation and referral buttons to Activities and Home
 - [x] Verify responsive presentation and referral messages, then publish
 
+# Four-boat fleet update
+- [ ] Remove Rinker and Sea Ray from data, discovery, SEO and assistant knowledge
+- [ ] Update Bali capacity in all languages and structured data
+- [ ] Replace Saxdor imagery with the supplied real photo
+- [ ] Verify retired URL redirects and four-boat layouts, then publish
+
 # The Point referral delivery fix
 - [x] Execute referral inserts with a persistent background request
 - [x] Add localized general flyer enquiry messages
