@@ -1,3 +1,11 @@
+# Princess V48 and fleet refresh
+
+- [x] Add supplied Princess V48 and water activities imagery with responsive WebP variants
+- [x] Remove Cruisers Yachts 39 and preserve old-detail fallback to the localized fleet page
+- [x] Add Princess V48 · WOW specifications, prices, booking, sitemap, and group-size discovery
+- [x] Replace Jet Ski imagery and remove unused Jet Ski photo files
+- [x] Deploy updated charter assistant, run one build check, and publish
+
 # Banús Charters rebuild
 - [x] Centralize fleet and translations
 - [x] Build localized routes and shared layout
