@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Banús Charters
 
-TODO: Document your project here
+Private yacht charters in Puerto Banús, Marbella.
