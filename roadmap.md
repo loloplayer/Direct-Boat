@@ -69,3 +69,10 @@
 - [x] Replace the previous number across links, contact details and structured data
 - [x] Update the charter assistant handoff and contact guidance
 - [x] Verify the corrected number and publish
+
+# Mobile premium polish
+- [x] Rebuild the mobile hero, inline charter finder and trust layout
+- [x] Refine floating actions, cookie consent and reveal behavior
+- [x] Replace the mobile coastline map and prevent horizontal overflow
+- [x] Add mobile fleet swipe guidance and sharpen responsive images
+- [x] Add the Google reviews link and verify key pages at 390px
