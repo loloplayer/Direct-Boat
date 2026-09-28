@@ -76,3 +76,8 @@
 - [x] Replace the mobile coastline map and prevent horizontal overflow
 - [x] Add mobile fleet swipe guidance and sharpen responsive images
 - [x] Add the Google reviews link and verify key pages at 390px
+
+# The Point flyer
+- [x] Save the supplied flyer unchanged at its public URL
+- [x] Add localized flyer presentation and referral buttons to Activities and Home
+- [x] Verify responsive presentation and referral messages, then publish
