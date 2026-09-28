@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_referrals: {
+        Row: {
+          activity: string | null
+          created_at: string
+          id: string
+          lang: string | null
+          page: string | null
+          ref_code: string
+          referrer: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          activity?: string | null
+          created_at?: string
+          id?: string
+          lang?: string | null
+          page?: string | null
+          ref_code: string
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          activity?: string | null
+          created_at?: string
+          id?: string
+          lang?: string | null
+          page?: string | null
+          ref_code?: string
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       booking_requests: {
         Row: {
           boat_slug: string
