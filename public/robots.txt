@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /social/
+
 
 Sitemap: https://banuscharters.com/sitemap.xml
