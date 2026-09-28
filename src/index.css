@@ -139,3 +139,4 @@
   .reveal { transform: translateY(14px); transition-duration: .55s; }
 }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+#lovable-badge{display:none!important;visibility:hidden!important}
