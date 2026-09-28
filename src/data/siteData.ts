@@ -168,8 +168,8 @@ export const boats: Boat[] = [
       l("Fuel", "Combustible", "Carburant"),
       l("VAT included (21%)", "IVA incluido (21%)", "TVA incluse (21 %)"),
     ],
-
     experiences: ["sunset", "celebrations", "family", "corporate"],
+
   },
 ];
 
