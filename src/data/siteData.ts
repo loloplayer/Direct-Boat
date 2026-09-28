@@ -23,12 +23,19 @@ const image = (name: string, width: number, height: number, large = Math.min(wid
   height,
 });
 
+const hi = (name: string, width: number, height: number): SiteImage => ({
+  src: `/media/${name}-1200.webp`,
+  srcSet: `/media/${name}-640.webp 640w, /media/${name}-1200.webp 1200w, /media/${name}-2000.webp 2000w`,
+  width,
+  height,
+});
+
 export const siteImages = {
   hero: { src: "/videos/hero-catamaran-la-concha-poster.webp", width: 1080, height: 1920 },
-  about: image("catamaran_2_marina", 1200, 1600),
-  cta: image("azimut_2", 1974, 1317),
+  about: hi("catamaran-la-concha", 1500, 2000),
+  cta: hi("catamaran-cover", 2400, 1800),
   gallery: [image("gallery_dolphins", 640, 480, 640), image("gallery3", 1440, 1920), image("gallery4", 1440, 1920), image("gallery5", 1080, 1920)],
-  experiences: [image("gallery4", 1440, 1920), image("gallery3", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920), image("azimut_4", 910, 1137)],
+  experiences: [image("gallery4", 1440, 1920), image("gallery3", 1440, 1920), hi("catamaran-group-bow", 2400, 1800), image("azimut_4", 910, 1137)],
   activities: {
     "jet-ski": image("jetski1", 1200, 800),
     parasailing: image("activity-parasailing", 1536, 1024),
@@ -86,7 +93,7 @@ export const boats: Boat[] = [
       "Un catamarán excepcionalmente amplio para celebraciones tranquilas y largas jornadas en el mar.",
       "Un catamaran exceptionnellement spacieux pour les célébrations et les longues journées en mer.",
     ),
-    images: [image("catamaran_1_aerial", 1280, 720), image("catamaran_2_marina", 1200, 1600), image("catamaran_3_dock", 1440, 1920), image("catamaran_4_salon", 1440, 1920), image("catamaran_5_aperitivo", 1440, 1920)],
+    images: [hi("catamaran-cover", 2400, 1800), hi("catamaran-aerial-beach", 2400, 1800), hi("catamaran-la-concha", 1500, 2000), hi("catamaran-group-bow", 2400, 1800), hi("catamaran-clouds", 1500, 2000), hi("catamaran-side", 2400, 1800), hi("catamaran-salon-view", 1500, 2000), hi("catamaran-interior", 1125, 2000)],
     featuredVideo: siteVideos.onboardCatamaran,
     location: locations["puerto-banus"],
     capacity: l("10 guests + 2 crew", "10 personas + 2 de tripulación", "10 invités + 2 membres d'équipage"),
@@ -119,7 +126,7 @@ export const boats: Boat[] = [
     name: "Azimut 39 Fly",
     type: l("Motor yacht", "Yate a motor", "Yacht à moteur"),
     description: l("Italian lines, a flybridge and effortless coastal cruising.", "Líneas italianas, flybridge y navegación costera sin esfuerzo.", "Lignes italiennes, flybridge et navigation côtière tout en douceur."),
-    images: [image("azimut_2", 1974, 1317), image("azimut_3", 468, 573, 640), image("azimut_4", 910, 1137), image("azimut_5", 902, 1127), image("azimut_6", 935, 1168), image("azimut_7", 716, 894), image("azimut_8", 908, 1134), image("azimut_9", 935, 1168), image("azimut_main", 819, 1025)],
+    images: [hi("azimut-cover", 2400, 1800), hi("azimut-portrait", 1500, 2000), image("azimut_2", 1974, 1317), image("azimut_4", 910, 1137), image("azimut_5", 902, 1127), image("azimut_6", 935, 1168), image("azimut_8", 908, 1134), image("azimut_9", 935, 1168)],
     location: locations["puerto-banus"],
     capacity: l("10 guests", "10 personas", "10 invités"),
     maxGuests: 10,
