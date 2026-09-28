@@ -153,8 +153,23 @@ export const boats: Boat[] = [
     maxGuests: 14,
     length: "14.9 m",
     prices: fleetPrices["princess-v48-wow"],
-    includes: [l("VAT included (21%)", "IVA incluido (21%)", "TVA incluse (21 %)")],
+    includes: [
+      l("Water (limited)", "Agua (cantidad limitada)", "Eau (quantité limitée)"),
+      l("Soft drinks (limited)", "Refrescos (cantidad limitada)", "Boissons sans alcool (quantité limitée)"),
+      l("Rosé wine (1 bottle)", "Vino rosado (1 botella)", "Vin rosé (1 bouteille)"),
+      l("Beer (limited)", "Cerveza (cantidad limitada)", "Bière (quantité limitée)"),
+      l("Cava (2 bottles)", "Cava (2 botellas)", "Cava (2 bouteilles)"),
+      l("Chips (limited)", "Patatas fritas (cantidad limitada)", "Chips (quantité limitée)"),
+      l("Towels", "Toallas", "Serviettes"),
+      l("Paddle surf", "Paddle surf", "Paddle"),
+      l("Snorkel", "Snorkel", "Masque et tuba"),
+      l("Bluetooth music", "Música Bluetooth", "Musique Bluetooth"),
+      l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"),
+      l("Fuel", "Combustible", "Carburant"),
+      l("VAT included (21%)", "IVA incluido (21%)", "TVA incluse (21 %)"),
+    ],
     experiences: ["sunset", "celebrations", "family", "corporate"],
+
   },
 ];
 
