@@ -81,3 +81,8 @@
 - [x] Save the supplied flyer unchanged at its public URL
 - [x] Add localized flyer presentation and referral buttons to Activities and Home
 - [x] Verify responsive presentation and referral messages, then publish
+
+# The Point referral delivery fix
+- [x] Execute referral inserts with a persistent background request
+- [x] Add localized general flyer enquiry messages
+- [ ] Verify anonymous insertion, remove the test row and publish
