@@ -31,7 +31,7 @@ const hi = (name: string, width: number, height: number): SiteImage => ({
 });
 
 export const siteImages = {
-  hero: { src: "/videos/hero-catamaran-la-concha-poster.webp", width: 1080, height: 1920 },
+  hero: { src: "/videos/hero-banus-poster.webp", width: 1080, height: 1920 },
   about: hi("catamaran-la-concha", 1500, 2000),
   cta: hi("catamaran-cover", 2400, 1800),
   gallery: [image("gallery_dolphins", 640, 480, 640), image("gallery3", 1440, 1920), image("gallery4", 1440, 1920), image("gallery5", 1080, 1920)],
@@ -46,7 +46,7 @@ export const siteImages = {
 };
 
 export const siteVideos = {
-  hero: { src: "/videos/hero-catamaran-la-concha.mp4", poster: { src: "/videos/hero-catamaran-la-concha-poster.webp", width: 1080, height: 1920 } },
+  hero: { src: "/videos/hero-banus.mp4", poster: { src: "/videos/hero-banus-poster.webp", width: 1080, height: 1920 } },
   dolphins: { src: "/videos/dolphins-marbella.mp4", poster: { src: "/videos/dolphins-marbella-poster.webp", width: 1080, height: 1920 } },
   onboardCatamaran: { src: "/videos/onboard-catamaran.mp4", poster: { src: "/videos/onboard-catamaran-poster.webp", width: 1080, height: 1920 } },
 } satisfies Record<string, SiteVideo>;
