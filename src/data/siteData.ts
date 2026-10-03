@@ -92,7 +92,7 @@ export const boats: Boat[] = [
       "Un catamarán excepcionalmente amplio para celebraciones tranquilas y largas jornadas en el mar.",
       "Un catamaran exceptionnellement spacieux pour les célébrations et les longues journées en mer.",
     ),
-    images: [hi("catamaran-cover", 2400, 1800), hi("catamaran-drone-swim", 1500, 2000), hi("catamaran-sailing", 1500, 2000), hi("catamaran-group-bow", 2400, 1800), hi("catamaran-interior", 1125, 2000), hi("catamaran-salon-view", 1500, 2000), hi("catamaran-food", 1500, 2000), hi("catamaran-dj", 1500, 2000), hi("catamaran-sunset", 1500, 2000), hi("catamaran-la-concha", 1500, 2000)],
+    images: [hi("catamaran-cover", 2400, 1800), hi("catamaran-drone-swim", 1500, 2000), hi("catamaran-group-bow", 2400, 1800), hi("catamaran-sailing", 1500, 2000), hi("catamaran-interior", 1125, 2000), hi("catamaran-salon-view", 1500, 2000), hi("catamaran-food", 1500, 2000), hi("catamaran-dj", 1500, 2000), hi("catamaran-sunset", 1500, 2000), hi("catamaran-la-concha", 1500, 2000)],
     featuredVideo: siteVideos.onboardCatamaran,
     location: locations["puerto-banus"],
     capacity: l("10 guests + 2 crew", "10 personas + 2 de tripulación", "10 invités + 2 membres d'équipage"),
