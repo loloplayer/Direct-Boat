@@ -125,7 +125,7 @@ export const boats: Boat[] = [
     name: "Azimut 39 Fly",
     type: l("Motor yacht", "Yate a motor", "Yacht à moteur"),
     description: l("Italian lines, a flybridge and effortless coastal cruising.", "Líneas italianas, flybridge y navegación costera sin esfuerzo.", "Lignes italiennes, flybridge et navigation côtière tout en douceur."),
-    images: [hi("azimut-cover", 2400, 1800), image("azimut-aerial", 632, 791, 632), image("azimut_2", 1974, 1317), image("azimut_9", 935, 1168, 1200), image("azimut_4", 910, 1137, 1200), image("azimut_6", 935, 1168, 1200), image("azimut_5", 902, 1127, 1200), image("azimut_8", 908, 1134, 1200)],
+    images: [image("azimut_2", 1974, 1317), image("azimut_5", 902, 1127, 1200), image("azimut_9", 935, 1168, 1200), hi("azimut-cover", 2400, 1800), image("azimut-aerial", 632, 791, 632), image("azimut_4", 910, 1137, 1200), image("azimut_6", 935, 1168, 1200), image("azimut_8", 908, 1134, 1200)],
     location: locations["puerto-banus"],
     capacity: l("10 guests", "10 personas", "10 invités"),
     maxGuests: 10,
