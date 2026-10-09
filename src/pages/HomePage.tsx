@@ -1,3 +1,4 @@
+import HeroVideo from "@/components/HeroVideo";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, MessageCircle, Star, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,7 +28,7 @@ export default function HomePage() {
   const localBusiness = { "@context": "https://schema.org", "@type": "LocalBusiness", name: "Banús Charters", description: "Private yacht charters and water activities in Marbella", url: `https://banuscharters.com/${lang}`, telephone: "+34664575058", address: { "@type": "PostalAddress", addressLocality: "Marbella", addressRegion: "Málaga", addressCountry: "ES" }, areaServed: [{ "@type": "Place", name: "Puerto Banús" }, { "@type": "Place", name: "The Point beach, Marbella" }] };
   const groups = [{ title: t.small, range: "2–6", guests: 4, image: boats[0].images[1] }, { title: t.medium, range: "7–10", guests: 8, image: boats[1].images[0] }, { title: t.large, range: "11–14", guests: 14, image: boats[2].images[0] }];
   return <PageShell><Seo lang={lang} jsonLd={localBusiness} />
-    <section className="home-hero"><div className="hero-video-frame"><video className="h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster={siteVideos.hero.poster.src} aria-label="Banús Charters catamaran with La Concha mountain in Marbella"><source src={siteVideos.hero.src} type="video/mp4" /></video><p>{t.live}</p></div><div className="hero-mobile-overlay" /><div className="hero-grain" />
+    <section className="home-hero"><div className="hero-video-frame"><HeroVideo className="h-full w-full object-cover" src={siteVideos.hero.src} poster={siteVideos.hero.poster.src} aria-label="Banús Charters catamaran with La Concha mountain in Marbella" /><p>{t.live}</p></div><div className="hero-mobile-overlay" /><div className="hero-grain" />
       <div className="hero-content"><div className="animate-fade-in"><p className="section-kicker text-brass">{t.eyebrow}</p><h1 className="font-display text-6xl font-medium leading-[.86] text-primary-foreground sm:text-7xl lg:text-8xl xl:text-9xl">{copy.heroTitle}</h1><p className="mt-6 max-w-xl text-base leading-7 text-primary-foreground/85 md:text-lg">{copy.heroText}</p><div className="mt-10"><CharterFinder /></div></div></div>
     </section>
     <section className="bg-primary px-4 pb-5 pt-4 md:hidden"><CharterFinder mobile /></section>
