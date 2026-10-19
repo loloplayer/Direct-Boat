@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Instagram, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BrandMark from "./BrandMark";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Lang } from "@/data/siteData";
+
+const instagramLabel = { en: "Banús Charters on Instagram", es: "Banús Charters en Instagram", fr: "Banús Charters sur Instagram", de: "Banús Charters auf Instagram" };
 
 export default function SiteHeader() {
   const { lang, setLang, copy } = useLanguage();
@@ -24,6 +26,7 @@ export default function SiteHeader() {
         </nav>
         <div className="hidden items-center gap-4 lg:flex">
           <div className="flex" aria-label="Language selector">{(["en", "es", "fr", "de"] as Lang[]).map((item) => <Button key={item} variant="ghost" size="sm" onClick={() => setLang(item)} className={`h-8 px-2 text-[10px] uppercase ${item === lang ? "text-brass" : "text-primary-foreground/65"}`}>{item}</Button>)}</div>
+          <a href="https://www.instagram.com/banuscharters/" target="_blank" rel="noopener" aria-label={instagramLabel[lang]} className="inline-flex text-primary-foreground/65 transition-colors hover:text-brass"><Instagram className="size-5" strokeWidth={1.5} aria-hidden="true" /></a>
           <Button asChild size="sm" variant="secondary"><Link to={`/${lang}/contact`}>{copy.askAvailability}</Link></Button>
         </div>
         <Button variant="ghost" size="icon" className="text-primary-foreground lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">{open ? <X /> : <Menu />}</Button>
