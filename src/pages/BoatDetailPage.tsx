@@ -8,6 +8,9 @@ import { getBoat, money, SITE_URL } from "@/data/siteData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import InViewVideo from "@/components/InViewVideo";
+import SharedCatamaranTrip from "@/components/SharedCatamaranTrip";
+import { sharedTripOffer } from "@/lib/sharedTrip";
+import { sharedCatamaranTrip } from "@/data/siteData";
 
 const pageText = {
   en: { photos: "Photos", onboard: "On board", book: "Book on WhatsApp" },
@@ -24,6 +27,7 @@ export default function BoatDetailPage() {
   const t = pageText[lang];
   const lowest = Math.min(...boat.prices.map((price) => price.price));
   const offers = boat.prices.map((price) => ({ "@type": "Offer", priceCurrency: "EUR", price: price.price, url: `${SITE_URL}/${lang}/fleet/${boat.slug}`, description: `${price.label[lang]} · ${copy.vatIncluded}`, priceSpecification: { "@type": "UnitPriceSpecification", priceCurrency: "EUR", price: price.price, valueAddedTaxIncluded: true } }));
+  if (boat.slug === sharedCatamaranTrip.boatSlug) offers.push(sharedTripOffer(lang));
   const schema = { "@context": "https://schema.org", "@type": "Product", name: boat.name, description: boat.description[lang], image: boat.images.map((image) => `${SITE_URL}${image.src}`), brand: { "@type": "Brand", name: "Banús Charters" }, additionalProperty: [{ "@type": "PropertyValue", name: copy.capacity, value: boat.capacity[lang] }], location: { "@type": "Place", name: boat.location.name[lang], address: boat.location.address[lang], geo: { "@type": "GeoCoordinates", latitude: boat.location.latitude, longitude: boat.location.longitude } }, offers };
   const gallery = boat.images.filter((image, index, all) => all.findIndex((item) => item.src === image.src) === index);
   return <PageShell><Seo lang={lang} title={`${boat.name} | Banús Charters`} description={boat.description[lang]} path={`/fleet/${boat.slug}`} jsonLd={schema} />
