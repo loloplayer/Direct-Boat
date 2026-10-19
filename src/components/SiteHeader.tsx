@@ -31,7 +31,7 @@ export default function SiteHeader() {
         </div>
         <Button variant="ghost" size="icon" className="text-primary-foreground lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">{open ? <X /> : <Menu />}</Button>
       </div>
-      {open && <div className="border-t border-border bg-background px-5 py-6 lg:hidden"><nav className="flex flex-col gap-1">{links.map(([label, path]) => <Button key={path} asChild variant="ghost" className="justify-start"><Link to={`/${lang}/${path}`}>{label}</Link></Button>)}<div className="mt-4 flex gap-2">{(["en", "es", "fr", "de"] as Lang[]).map((item) => <Button key={item} variant={item === lang ? "default" : "outline"} size="sm" onClick={() => setLang(item)}>{item.toUpperCase()}</Button>)}</div></nav></div>}
+      {open && <div className="border-t border-border bg-background px-5 py-6 lg:hidden"><nav className="flex flex-col gap-1">{links.map(([label, path]) => <Button key={path} asChild variant="ghost" className="justify-start"><Link to={`/${lang}/${path}`}>{label}</Link></Button>)}<div className="mt-4 flex gap-2">{(["en", "es", "fr", "de"] as Lang[]).map((item) => <Button key={item} variant={item === lang ? "default" : "outline"} size="sm" onClick={() => setLang(item)}>{item.toUpperCase()}</Button>)}<a href="https://www.instagram.com/banuscharters/" target="_blank" rel="noopener" aria-label={instagramLabel[lang]} className="ml-auto inline-flex items-center text-primary-foreground/70"><Instagram className="size-5" strokeWidth={1.5} aria-hidden="true" /></a></div></nav></div>}
     </header>
   );
 }
