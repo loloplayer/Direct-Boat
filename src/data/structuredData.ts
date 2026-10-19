@@ -6,4 +6,5 @@ export const businessSchema = (lang: Lang) => ({
  address: { "@type": "PostalAddress", streetAddress: "Puerto Banús", postalCode: "29660", addressLocality: "Marbella", addressRegion: "Málaga", addressCountry: "ES" },
  geo: { "@type": "GeoCoordinates", latitude: locations["puerto-banus"].latitude, longitude: locations["puerto-banus"].longitude },
  areaServed: { "@type": "City", name: "Marbella" }, priceRange: "€€€",
+ sameAs: ["https://www.instagram.com/banuscharters/", "https://www.tiktok.com/@banuscharters"],
 });
