@@ -8,3 +8,4 @@ Project fleet-capacity rule: Store both localized capacity display copy and a nu
 Project SEO rule: A shared route registry drives localized alternatives, sitemap and bounded production prerendering so crawlable HTML and browser navigation cannot drift.
 Project content rule: Localized intent guides use centralized vessel data and price tables rather than copied rates, so editorial pages remain accurate when fleet prices change.
 Project build rule: Production builds must fail if any registered route cannot prerender its canonical and main H1; transient build-only rendering is not an application backend.
+Project shared-trip rule: Reuse the shared ticket component and centralized trip data for home, Bali details and offers; generate the assistant's local knowledge module from that data at build time and redeploy charter-chat after changes, so ticket rates have one editable source.

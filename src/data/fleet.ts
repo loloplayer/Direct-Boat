@@ -6,6 +6,9 @@ export interface PriceOption {
   price: number;
 }
 
+// The only editable shared-trip price; server knowledge is generated from this value.
+export const sharedTripPrice = 50;
+
 const germanPriceLabel = (en: string) => en.replace(/Jet ski circuit/g, "Jet Ski Rundkurs").replace(/Jet ski tour/g, "Jet Ski Tour").replace(/minimum 2 jet skis/g, "mindestens 2 Jet Skis").replace(/minimum 2 people/g, "mindestens 2 Personen").replace(/per person/g, "pro Person").replace(/Water ski/g, "Wasserski").replace(/Pedal boat/g, "Tretboot").replace(/Knee board/g, "Kneeboard").replace(/SUP \(paddle surf\)/g, "SUP (Stand-up-Paddling)").replace(/(\d+) hours/g, "$1 Stunden").replace(/1 hour/g, "1 Stunde").replace(/(\d+) people/g, "$1 Personen").replace(/1 person/g, "1 Person");
 const label = (en: string, es: string, fr: string): Localized => ({ en, es, fr, de: germanPriceLabel(en) });
 
