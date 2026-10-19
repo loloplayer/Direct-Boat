@@ -13,6 +13,7 @@ const pageText = {
   en: { photos: "Photos", onboard: "On board", book: "Book on WhatsApp" },
   es: { photos: "Fotos", onboard: "A bordo", book: "Reservar por WhatsApp" },
   fr: { photos: "Photos", onboard: "À bord", book: "Réserver sur WhatsApp" },
+  de: {"photos": "Fotos", "onboard": "An Bord", "book": "Über WhatsApp buchen"},
 } as const;
 
 export default function BoatDetailPage() {

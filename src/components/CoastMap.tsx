@@ -4,6 +4,7 @@ const labels = {
   en: { title: "Two ways into the Mediterranean", text: "Private charters from Puerto Banús and water activities at The Point beach.", banus: "Private yachts", point: "Water activities with our partner", note: "On a clear day you can see Gibraltar and Africa." },
   es: { title: "Dos puertas al Mediterráneo", text: "Charters privados desde Puerto Banús y actividades acuáticas en The Point beach.", banus: "Yates privados", point: "Actividades acuáticas con nuestro socio", note: "En un día claro se ven Gibraltar y África." },
   fr: { title: "Deux accès à la Méditerranée", text: "Charters privés depuis Puerto Banús et activités nautiques à The Point beach.", banus: "Yachts privés", point: "Activités nautiques avec notre partenaire", note: "Par temps clair, Gibraltar et l’Afrique sont visibles." },
+  de: {"title": "Zwei Wege aufs Mittelmeer", "text": "Private Charter ab Puerto Banús und Wasseraktivitäten am The Point beach.", "banus": "Private Yachten", "point": "Wasseraktivitäten bei unserem Partner", "note": "An klaren Tagen sind Gibraltar und Afrika zu sehen."},
 } as const;
 
 export default function CoastMap() {

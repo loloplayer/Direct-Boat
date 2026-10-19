@@ -8,6 +8,7 @@ const labels = {
   en: { guests: "Guests", budget: "Budget", duration: "Duration", departure: "Departure", find: "Find my boat", any: "Any", up500: "Up to €500", b1: "€500–1,000", b2: "€1,000–2,000", over2: "€2,000+", banus: "Puerto Banús", open: "Find your boat" },
   es: { guests: "Personas", budget: "Presupuesto", duration: "Duración", departure: "Salida", find: "Encuentra mi barco", any: "Cualquiera", up500: "Hasta €500", b1: "€500–1.000", b2: "€1.000–2.000", over2: "€2.000+", banus: "Puerto Banús", open: "Encuentra tu barco" },
   fr: { guests: "Personnes", budget: "Budget", duration: "Durée", departure: "Départ", find: "Trouver mon bateau", any: "Tous", up500: "Jusqu’à 500 €", b1: "500–1 000 €", b2: "1 000–2 000 €", over2: "2 000 €+", banus: "Puerto Banús", open: "Trouvez votre bateau" },
+  de: {"guests": "Gäste", "budget": "Budget", "duration": "Dauer", "departure": "Abfahrt", "find": "Mein Boot finden", "any": "Alle", "up500": "Bis 500 €", "b1": "500–1.000 €", "b2": "1.000–2.000 €", "over2": "Ab 2.000 €", "banus": "Puerto Banús", "open": "Finden Sie Ihr Boot"},
 } as const;
 
 export default function CharterFinder({ mobile = false }: { mobile?: boolean }) {

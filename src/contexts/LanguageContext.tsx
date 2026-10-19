@@ -15,7 +15,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const segment = location.pathname.split("/")[1];
-  const lang: Lang = segment === "es" || segment === "fr" ? segment : "en";
+  const lang: Lang = segment === "es" || segment === "fr" || segment === "de" ? segment : "en";
   const setLang = (next: Lang) => {
     const parts = location.pathname.split("/");
     parts[1] = next;
