@@ -1,3 +1,4 @@
+import { businessSchema } from "@/data/structuredData";
 import HeroVideo from "@/components/HeroVideo";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, MessageCircle, Star, Users } from "lucide-react";
@@ -26,7 +27,7 @@ const homeText = {
 
 export default function HomePage() {
   const { lang, copy } = useLanguage(); const t = homeText[lang];
-  const localBusiness = { "@context": "https://schema.org", "@type": "LocalBusiness", name: "Banús Charters", description: "Private yacht charters and water activities in Marbella", url: `https://banuscharters.com/${lang}`, telephone: "+34664575058", address: { "@type": "PostalAddress", addressLocality: "Marbella", addressRegion: "Málaga", addressCountry: "ES" }, areaServed: [{ "@type": "Place", name: "Puerto Banús" }, { "@type": "Place", name: "The Point beach, Marbella" }] };
+  const localBusiness = businessSchema(lang);
   const groups = [{ title: t.small, range: "2–6", guests: 4, image: boats[0].images[1] }, { title: t.medium, range: "7–10", guests: 8, image: boats[1].images[0] }, { title: t.large, range: "11–14", guests: 14, image: boats[2].images[0] }];
   return <PageShell><Seo lang={lang} jsonLd={localBusiness} />
     <section className="home-hero"><div className="hero-video-frame"><HeroVideo className="h-full w-full object-cover" src={siteVideos.hero.src} poster={siteVideos.hero.poster.src} aria-label="Banús Charters catamaran with La Concha mountain in Marbella" /><p>{t.live}</p></div><div className="hero-mobile-overlay" /><div className="hero-grain" />

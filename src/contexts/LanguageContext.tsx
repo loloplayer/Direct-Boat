@@ -1,5 +1,6 @@
 import { createContext, useContext, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { findLanding, localizedTripPath } from "@/data/landingPages";
 import type { Lang } from "@/data/siteData";
 import { getCopy } from "@/data/content";
 
@@ -17,6 +18,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const segment = location.pathname.split("/")[1];
   const lang: Lang = segment === "es" || segment === "fr" || segment === "de" ? segment : "en";
   const setLang = (next: Lang) => {
+    const trip = findLanding(lang, location.pathname.split("/")[2] ?? "");
+    if (trip) { navigate(`${localizedTripPath(trip, next)}${location.search}${location.hash}`); return; }
     const parts = location.pathname.split("/");
     parts[1] = next;
     navigate(`${parts.join("/")}${location.search}${location.hash}`);
