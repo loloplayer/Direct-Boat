@@ -1,5 +1,10 @@
 # Princess V48 and fleet refresh
 
+## Shared catamaran tickets
+- [ ] Add localized home band and Bali detail box with ticket booking
+- [ ] Centralize ticket data and structured Offer, update and deploy assistant
+- [ ] Verify ticket rules and booking flow
+
 - [x] Add supplied Princess V48 and water activities imagery with responsive WebP variants
 - [x] Remove Cruisers Yachts 39 and preserve old-detail fallback to the localized fleet page
 - [x] Add Princess V48 · WOW specifications, prices, booking, sitemap, and group-size discovery
