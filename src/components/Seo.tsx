@@ -19,7 +19,7 @@ export default function Seo({ lang, page = "home", title, description, path = ""
   const resolvedTitle = title ?? meta.title;
   const shortTitle = resolvedTitle.length < 60 ? resolvedTitle : resolvedTitle.replace(" | Banús Charters", "");
   const c = getCopy(lang);
-  const crumbs = [{ "@type": "ListItem", position: 1, name: c.nav.home, item: `${SITE_URL}/${lang}` }];
+  const crumbs: { "@type": string; position: number; name: string; item: string }[] = [{ "@type": "ListItem", position: 1, name: c.nav.home, item: `${SITE_URL}/${lang}` }];
   if (path.startsWith("/fleet/")) crumbs.push({ "@type": "ListItem", position: 2, name: c.nav.fleet, item: `${SITE_URL}/${lang}/fleet` });
   if (path) crumbs.push({ "@type": "ListItem", position: crumbs.length + 1, name: shortTitle.replace(" | Banús Charters", ""), item: url });
   const schemas = [...(jsonLd ? Array.isArray(jsonLd) ? jsonLd : [jsonLd] : []), ...(path ? [{ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: crumbs }] : [])];
