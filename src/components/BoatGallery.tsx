@@ -8,9 +8,10 @@ const labels = {
   en: { all: "View all photos", close: "Close photos", previous: "Previous photo", next: "Next photo" },
   es: { all: "Ver todas las fotos", close: "Cerrar fotos", previous: "Foto anterior", next: "Foto siguiente" },
   fr: { all: "Voir toutes les photos", close: "Fermer les photos", previous: "Photo précédente", next: "Photo suivante" },
+  de: {"all": "Alle Fotos ansehen", "close": "Fotos schließen", "previous": "Vorheriges Foto", "next": "Nächstes Foto"},
 } as const;
 
-export default function BoatGallery({ images, boatName, lang }: { images: SiteImage[]; boatName: string; lang: "en" | "es" | "fr" }) {
+export default function BoatGallery({ images, boatName, lang }: { images: SiteImage[]; boatName: string; lang: "en" | "es" | "fr" | "de" }) {
   const unique = images.filter((image, index, all) => all.findIndex((item) => item.src === image.src) === index);
   const [active, setActive] = useState<number | null>(null);
   const touchX = useRef(0);

@@ -11,17 +11,20 @@ export const makeRefCode = () => Array.from(crypto.getRandomValues(new Uint8Arra
 export const thePointMessage = (lang: Lang, code: string, activity: string, people: string, date: string) => {
   if (activity === GENERAL_ENQUIRY) {
     return {
+      de: `Guten Tag. Ich komme über die Website von Banús Charters (Referenz BC-${code}) und möchte Informationen zu Ihren Wasseraktivitäten.`,
       en: `Hi! I'm coming from the Banús Charters website (ref BC-${code}). I'd like information about your water activities.`,
       es: `¡Hola! Vengo de parte de la web de Banús Charters (ref BC-${code}). Me gustaría información sobre vuestras actividades acuáticas.`,
       fr: `Bonjour ! Je viens du site de Banús Charters (réf BC-${code}). J'aimerais des informations sur vos activités nautiques.`,
     }[lang];
   }
   const details = {
+    de: `${people ? ` für ${people} Personen` : ""}${date ? ` am ${date}` : ""}`,
     en: `${people ? ` for ${people} people` : ""}${date ? ` on ${date}` : ""}`,
     es: `${people ? ` para ${people} personas` : ""}${date ? ` el ${date}` : ""}`,
     fr: `${people ? ` pour ${people} personnes` : ""}${date ? ` le ${date}` : ""}`,
   }[lang];
   return {
+    de: `Guten Tag. Ich komme über die Website von Banús Charters (Referenz BC-${code}) und möchte ${activity}${details} buchen.`,
     en: `Hi! I'm coming from the Banús Charters website (ref BC-${code}). I'd like to book ${activity}${details}.`,
     es: `¡Hola! Vengo de parte de la web de Banús Charters (ref BC-${code}). Me gustaría reservar ${activity}${details}.`,
     fr: `Bonjour ! Je viens du site de Banús Charters (réf BC-${code}). Je souhaite réserver ${activity}${details}.`,

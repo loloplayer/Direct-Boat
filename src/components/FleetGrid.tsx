@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { boatBookingUrl, durationHours } from "@/lib/boatBooking";
 
 export interface FleetSelection { guests?: number; duration?: number; date?: string }
-const text = { en: { details: "Details", book: "Book on WhatsApp" }, es: { details: "Detalles", book: "Reservar por WhatsApp" }, fr: { details: "Détails", book: "Réserver sur WhatsApp" } } as const;
+const text = { de: { details: "Details", book: "Über WhatsApp buchen" }, en: { details: "Details", book: "Book on WhatsApp" }, es: { details: "Detalles", book: "Reservar por WhatsApp" }, fr: { details: "Détails", book: "Réserver sur WhatsApp" } } as const;
 export const priceForDuration = (boat: Boat, duration?: number) => boat.prices.find((price) => durationHours(price) === (duration ?? 2))?.price;
 
 export default function FleetGrid({ limit, items, selection }: { limit?: number; items?: Boat[]; horizontal?: boolean; selection?: FleetSelection }) {

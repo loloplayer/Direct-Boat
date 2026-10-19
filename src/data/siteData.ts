@@ -2,7 +2,13 @@ import { activityPrices, fleetPrices, type Lang, type Localized, type PriceOptio
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
-const l = (en: string, es: string, fr: string): Localized => ({ en, es, fr });
+import { germanLabels } from "./german";
+
+const l = (en: string, es: string, fr: string): Localized => {
+  const de = germanLabels[en];
+  if (de === undefined) throw new Error(`Missing German fleet translation: ${en}`);
+  return { en, es, fr, de };
+};
 
 export interface SiteImage {
   src: string;
@@ -54,7 +60,7 @@ export const siteVideos = {
 export type LocationId = "puerto-banus" | "the-point";
 export interface ServiceLocation { id: LocationId; name: Localized; shortName: Localized; address: Localized; latitude: number; longitude: number }
 export const locations: Record<LocationId, ServiceLocation> = {
-  "puerto-banus": { id: "puerto-banus", name: l("Puerto Banús", "Puerto Banús", "Puerto Banús"), shortName: l("Puerto Banús", "Puerto Banús", "Puerto Banús"), address: l("Puerto Banús, Marbella", "Puerto Banús, Marbella", "Puerto Banús, Marbella"), latitude: 36.487, longitude: -4.953 },
+  "puerto-banus": { id: "puerto-banus", name: l("Puerto Banús", "Puerto Banús", "Puerto Banús"), shortName: l("Puerto Banús", "Puerto Banús", "Puerto Banús"), address: l("Puerto Banús, Marbella", "Puerto Banús, Marbella", "Puerto Banús, Marbella"), latitude: 36.483611, longitude: -4.950556 },
   "the-point": { id: "the-point", name: l("The Point beach, Marbella", "The Point beach, Marbella", "The Point beach, Marbella"), shortName: l("The Point beach", "The Point beach", "The Point beach"), address: l("Marbella centre, 15 min from Puerto Banús", "Marbella centro, a 15 min de Puerto Banús", "Centre de Marbella, à 15 min de Puerto Banús"), latitude: 36.507, longitude: -4.878 },
 };
 

@@ -2,6 +2,7 @@ import type { Lang } from "@/data/siteData";
 import { WHATSAPP_NUMBER } from "@/data/siteData";
 
 const greetings: Record<Lang, string> = {
+  de: "Guten Tag, Banús Charters. Ich möchte mich bei der Auswahl einer Charterfahrt ab Puerto Banús beraten lassen.",
   en: "Hi Banús Charters, I would like help choosing a charter in Puerto Banús.",
   es: "Hola Banús Charters, me gustaría ayuda para elegir un charter en Puerto Banús.",
   fr: "Bonjour Banús Charters, j'aimerais être conseillé pour choisir un charter à Puerto Banús.",

@@ -19,6 +19,7 @@ export const boatBookingMessage = (lang: Lang, boat: Boat, option: PriceOption, 
   const duration = `${durationHours(option)} h (${new Intl.NumberFormat(lang === "en" ? "en-GB" : lang, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(option.price)})`;
   const values = { date: formatBookingDate(date, lang), time: time || "—", duration, guests };
   return {
+    de: `Guten Tag, ich möchte ${boat.name} buchen. Datum: ${values.date} · Abfahrtszeit: ${values.time} · Dauer: ${values.duration} · Gäste: ${values.guests}. Ist das Boot verfügbar?`,
     en: `Hi, I would like to book the ${boat.name}. Date: ${values.date} · Start time: ${values.time} · Duration: ${values.duration} · Guests: ${values.guests}. Is it available?`,
     es: `Hola, quiero reservar el ${boat.name}. Fecha: ${values.date} · Hora: ${values.time} · Duración: ${values.duration} · Personas: ${values.guests}. ¿Está disponible?`,
     fr: `Bonjour, je souhaite réserver le ${boat.name}. Date : ${values.date} · Heure : ${values.time} · Durée : ${values.duration} · Personnes : ${values.guests}. Est-il disponible ?`,
