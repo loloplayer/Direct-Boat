@@ -19,8 +19,26 @@ describe("Shared catamaran ticket rules", () => {
     expect(() => sharedTripMessage("en", "", 11)).toThrow();
     expect(() => sharedTripMessage("en", "", 0)).toThrow();
   });
-  it("includes professional skipper, swim stop and paddle/snorkel equipment", () => {
-    expect(sharedCatamaranTrip.includes.map((item) => item.en)).toEqual(["Professional skipper", "Swim stop", "Paddle board & snorkel gear"]);
+  it("lists the six shared-trip inclusions in the exact order shown on site", () => {
+    expect(sharedCatamaranTrip.includes.map((item) => item.en)).toEqual([
+      "Professional skipper",
+      "Welcome drinks (water & soft drinks)",
+      "Swim stop (weather permitting)",
+      "Paddle board & snorkel gear",
+      "Music on board",
+      "Dolphin spotting along the coast (sightings not guaranteed)",
+    ]);
+  });
+  it("states the meeting point, pay-on-the-day rule and towel note in all four languages", () => {
+    expect(sharedCatamaranTrip.meetingPoint.en).toBe("Meeting point: Pontoon 5, next to Michael Kors, Puerto Banús");
+    expect(sharedCatamaranTrip.meetingPoint.es).toContain("Pontón 5");
+    expect(sharedCatamaranTrip.meetingPoint.fr).toContain("Pontoon 5");
+    expect(sharedCatamaranTrip.meetingPoint.de).toContain("Pontoon 5");
+    for (const lang of ["en", "es", "fr", "de"] as const) {
+      expect(sharedCatamaranTrip.payment[lang]).toMatch(/prepayment|pago anticipado|prépaiement|Vorauszahlung/);
+      expect(sharedCatamaranTrip.bring[lang].length).toBeGreaterThan(10);
+      expect(sharedCatamaranTrip.sunset[lang]).toMatch(/sunset|atardecer|coucher du soleil|Sonnenuntergang/i);
+    }
   });
   it("routes all four ticket booking languages to Banús Charters with the actual selection", () => {
     for (const lang of ["en", "es", "fr", "de"] as const) {
