@@ -51,6 +51,15 @@ export const siteImages = {
   },
 };
 
+export const instagramImages: SiteImage[] = [
+  image("gallery_dolphins", 640, 480, 640),
+  hi("catamaran-sunset", 1500, 2000),
+  hi("catamaran-group-bow", 2400, 1800),
+  hi("princess-v48-1", 2016, 1134),
+  hi("catamaran-drone-swim", 1500, 2000),
+  hi("azimut-cover", 2400, 1800),
+];
+
 export const siteVideos = {
   hero: { src: "/videos/hero-banus-v2.mp4", poster: { src: "/videos/hero-banus-v2-poster.webp", width: 1080, height: 1920 } },
   dolphins: { src: "/videos/dolphins-marbella.mp4", poster: { src: "/videos/dolphins-marbella-poster.webp", width: 1080, height: 1920 } },
