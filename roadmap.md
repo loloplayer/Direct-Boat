@@ -109,9 +109,9 @@
 - [x] Verify responsive views, redeploy assistant and publish
 
 ## Four-language search expansion
-- [ ] Translate all public content and booking messages into German
-- [ ] Add six localized search-intent pages and footer links
-- [ ] Complete business, boat and breadcrumb structured data
-- [ ] Generate crawlable route HTML and multilingual sitemap at build time
-- [ ] Update and deploy German assistant support
-- [ ] Verify German booking, all routes and built HTML
+- [x] Translate all public content and booking messages into German
+- [x] Add six localized search-intent pages and footer links
+- [x] Complete business, boat and breadcrumb structured data
+- [x] Generate crawlable route HTML and multilingual sitemap at build time
+- [x] Update and deploy German assistant support
+- [x] Verify German booking, all routes and built HTML
