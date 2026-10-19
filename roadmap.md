@@ -91,10 +91,10 @@
 - [x] Verify responsive presentation and referral messages, then publish
 
 # Four-boat fleet update
-- [ ] Remove Rinker and Sea Ray from data, discovery, SEO and assistant knowledge
-- [ ] Update Bali capacity in all languages and structured data
-- [ ] Replace Saxdor imagery with the supplied real photo
-- [ ] Verify retired URL redirects and four-boat layouts, then publish
+- [x] Remove Rinker and Sea Ray from data, discovery, SEO and assistant knowledge (superseded by three-boat fleet)
+- [x] Update Bali capacity in all languages and structured data
+- [x] Replace Saxdor imagery with the supplied real photo (boat subsequently removed)
+- [x] Verify retired URL redirects and layouts
 
 # The Point referral delivery fix
 - [x] Execute referral inserts with a persistent background request
@@ -107,3 +107,11 @@
 - [x] Redesign boat galleries, lightbox, details and mobile booking bar
 - [x] Compact fleet cards and two-point coastline section
 - [x] Verify responsive views, redeploy assistant and publish
+
+## Four-language search expansion
+- [ ] Translate all public content and booking messages into German
+- [ ] Add six localized search-intent pages and footer links
+- [ ] Complete business, boat and breadcrumb structured data
+- [ ] Generate crawlable route HTML and multilingual sitemap at build time
+- [ ] Update and deploy German assistant support
+- [ ] Verify German booking, all routes and built HTML
