@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin, MessageCircle, ShipWheel, Waves, LifeBuoy } from "lucide-react";
+import { Banknote, Binoculars, GlassWater, MapPin, MessageCircle, Music2, ShipWheel, Waves, LifeBuoy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ResponsiveImage from "./ResponsiveImage";
@@ -13,7 +13,7 @@ const text = {
   fr: { kicker: "Sortie partagée", title: "Sortie partagée en catamaran", person: "personne", from: "À partir de", season: "Tarif basse saison", note: "Vous partagez le bateau avec d’autres passagers.", max: "Max.", guests: "personnes", times: "Horaires sur demande · confirmés par WhatsApp selon disponibilité", book: "Réserver des places", also: "Également disponible en sortie partagée" },
   de: { kicker: "Geteilte Tour", title: "Geteilte Katamarantour", person: "Person", from: "Ab", season: "Preis in der Nebensaison", note: "Sie teilen das Boot mit anderen Gästen.", max: "Max.", guests: "Gäste", times: "Zeiten auf Anfrage · Bestätigung per WhatsApp je nach Verfügbarkeit", book: "Tickets buchen", also: "Auch als geteilte Tour verfügbar" },
 };
-const icons = [ShipWheel, Waves, LifeBuoy];
+const icons = [ShipWheel, GlassWater, Waves, LifeBuoy, Music2, Binoculars];
 export default function SharedCatamaranTrip({ compact = false }: { compact?: boolean }) {
   const { lang, copy } = useLanguage();
   const t = text[lang];
@@ -26,8 +26,13 @@ export default function SharedCatamaranTrip({ compact = false }: { compact?: boo
     <p className="mt-4 font-display text-3xl">{!compact && `${t.from} `}{money(trip.price, lang)} <span className="font-body text-base">/ {t.person}</span></p>
     <p className="mt-1 text-xs text-muted-foreground">{t.season} · {copy.vatIncluded}</p>
     <p className="mt-4 text-sm text-muted-foreground">{t.note}</p>
-    {!compact && <ul className="mt-5 grid gap-3">{trip.includes.map((item, index) => { const Icon = icons[index]; return <li key={item.en} className="flex items-center gap-3 text-sm">{Icon && <Icon className="size-4 shrink-0 text-brass-ink" strokeWidth={1.5} />}{item[lang]}</li>; })}</ul>}
-    <p className="mt-5 text-sm leading-6 text-muted-foreground">{t.max} {trip.maxGuests} {t.guests} · {t.times}</p>
+    {!compact && <>
+      <ul className="mt-5 grid gap-3 sm:grid-cols-2">{trip.includes.map((item, index) => { const Icon = icons[index]; return <li key={item.en} className="flex items-center gap-3 text-sm">{Icon && <Icon className="size-4 shrink-0 text-brass-ink" strokeWidth={1.5} />}{item[lang]}</li>; })}</ul>
+      <p className="mt-5 flex items-start gap-3 text-sm text-muted-foreground"><MapPin className="mt-0.5 size-4 shrink-0 text-brass-ink" strokeWidth={1.5} />{trip.meetingPoint[lang]}</p>
+      <p className="mt-3 flex items-start gap-3 text-sm text-muted-foreground"><Banknote className="mt-0.5 size-4 shrink-0 text-brass-ink" strokeWidth={1.5} />{trip.payment[lang]}</p>
+      <p className="mt-3 text-sm text-muted-foreground">{trip.bring[lang]}</p>
+    </>}
+    <p className="mt-5 text-sm leading-6 text-muted-foreground">{t.max} {trip.maxGuests} {t.guests} · {t.times} · {trip.sunset[lang]}</p>
     <div className="mt-5 grid grid-cols-2 gap-3">
       <label className="min-w-0 text-xs font-medium">{copy.fields.date}<Input type="date" value={date} onChange={(event) => setDate(event.target.value)} className="mt-1 w-full min-w-0" /></label>
       <label className="min-w-0 text-xs font-medium">{copy.fields.guests}<select className="mt-1 h-10 w-full rounded-sm border border-input bg-background px-3 text-sm" value={guests} onChange={(event) => setGuests(Number(event.target.value))}>{Array.from({ length: trip.maxGuests }, (_, i) => <option key={i + 1} value={i + 1}>{i + 1}</option>)}</select></label>
