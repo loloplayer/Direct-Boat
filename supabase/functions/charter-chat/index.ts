@@ -1,4 +1,5 @@
 import { createOpenAI } from "npm:@ai-sdk/openai";
+import { sharedTripKnowledge } from "./shared-trip.generated.ts";
 import { convertToModelMessages, streamText, type UIMessage } from "npm:ai";
 import { createLovableAiGatewayRunIdFetch, getLovableAiGatewayRunId, withLovableAiGatewayRunIdHeader } from "../_shared/run-id.ts";
 
@@ -17,6 +18,7 @@ Water activities — ALL at The Point beach, Marbella centre, 15 min from Puerto
 - Jet ski circuit: 20m €70, 30m €95, 45m €140, 1h €170. Jet ski tour: 1h €170 per jet ski, minimum 2 jet skis. Spark/Spark Trixx: 20m €80, 30m €105, 45m €150, 1h €180. Super Jet: 20m €70, 30m €95, 45m €140, 1h €170.
 - Parasailing: 1 person €80, 2 €120, 3 €160. Towables (Crazy Sofa, Banana, Airstream, Crazy Bull, Flyfish Extreme, Crazy Octopus): 15m €25 per person. Watersports (Flyboard, water ski, wakeboard, knee board): 15m €75 per person. Eco activities (SUP, pedal boat, kayak, SUP Yoga): €35 per hour; SUP Yoga minimum 2 people.
 Experiences: sunset cruises, birthdays/bachelor/bachelorette parties, family days, corporate events.
+${sharedTripKnowledge}
 All listed prices include VAT.
 Policies: the meeting point is the exact location listed for each boat or activity; a deposit confirms and the balance is paid on board; if the captain cancels for weather/safety, free rescheduling or a full deposit refund; children are welcome within capacity and captain guidance; food/drink policy varies by boat.
 `;
