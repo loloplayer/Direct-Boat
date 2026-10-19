@@ -1,3 +1,4 @@
+import { prerenderPlugin } from "./scripts/prerender-plugin";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -11,7 +12,7 @@ export default defineConfig(() => ({
       overlay: false,
     },
   },
-  plugins: [react()],
+  plugins: [react(), prerenderPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
