@@ -6,7 +6,8 @@ import { publicRoutes, generateSitemap } from "../src/data/routes";
 const MAX_PRERENDER_PAGES = 200;
 export async function writeStaticPages(output: string, template: string, root: string) {
  if (publicRoutes.length > MAX_PRERENDER_PAGES) throw new Error("Prerender route cap exceeded");
- const renderer = await createServer({ configFile: false, root, plugins: [react()], resolve: { alias: { "@": resolve(root, "src") } }, server: { middlewareMode: true }, appType: "custom", logLevel: "error" });
+  // Production JSX runtime: build mode sets NODE_ENV=production, where jsxDEV is unavailable.
+  const renderer = await createServer({ configFile: false, root, plugins: [], esbuild: { jsx: "automatic", jsxDev: false }, resolve: { alias: { "@": resolve(root, "src") } }, server: { middlewareMode: true }, appType: "custom", logLevel: "error" });
  try {
   const { renderRoute } = await renderer.ssrLoadModule("/src/prerender.tsx");
   // Route metadata owns the head; retain only shared charset/viewport/fonts/favicon/assets.
