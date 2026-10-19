@@ -1,4 +1,4 @@
-import { activityPrices, fleetPrices, type Lang, type Localized, type PriceOption } from "./fleet";
+import { activityPrices, fleetPrices, sharedTripPrice, type Lang, type Localized, type PriceOption } from "./fleet";
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
@@ -198,6 +198,15 @@ export const waterActivities: WaterActivity[] = [
 ];
 
 export const WHATSAPP_NUMBER = "34664575058";
+export const sharedCatamaranTrip = {
+  boatSlug: "catamaran-bali-4", boatName: "Catamarán Bali 4.0", durationHours: 2, maxGuests: 10,
+  price: sharedTripPrice, location: locations["puerto-banus"], image: hi("catamaran-group-bow", 2400, 1800),
+  includes: [
+    { en: "Professional skipper", es: "Patrón profesional", fr: "Skipper professionnel", de: "Professioneller Skipper" },
+    { en: "Swim stop", es: "Parada para nadar", fr: "Pause baignade", de: "Badestopp" },
+    { en: "Paddle board & snorkel gear", es: "Paddle surf y equipo de snorkel", fr: "Paddle et équipement de snorkeling", de: "Paddleboard und Schnorchelausrüstung" },
+  ] satisfies Localized[],
+};
 export const SITE_URL = "https://banuscharters.com";
 export const getBoat = (slug?: string) => boats.find((boat) => boat.slug === slug);
 export const money = (value: number, lang: Lang) => new Intl.NumberFormat(lang === "en" ? "en-GB" : lang, { style: "currency", currency: "EUR", maximumFractionDigits: value % 1 ? 2 : 0 }).format(value);
