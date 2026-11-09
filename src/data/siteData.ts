@@ -1,4 +1,16 @@
-import { activityPrices, fleetPrices, sharedTripPrice, type Lang, type Localized, type PriceOption } from "./fleet";
+import sundancer_640 from "../assets/fleet/sundancer-640.webp.asset.json";
+import sundancer_1200 from "../assets/fleet/sundancer-1200.webp.asset.json";
+import sundancer_2000 from "../assets/fleet/sundancer-2000.webp.asset.json";
+import sea_ray_260_640 from "../assets/fleet/sea-ray-260-640.webp.asset.json";
+import sea_ray_260_1200 from "../assets/fleet/sea-ray-260-1200.webp.asset.json";
+import sea_ray_260_2000 from "../assets/fleet/sea-ray-260-2000.webp.asset.json";
+import jet_ski_three_640 from "../assets/fleet/jet-ski-three-640.webp.asset.json";
+import jet_ski_three_1200 from "../assets/fleet/jet-ski-three-1200.webp.asset.json";
+import jet_ski_three_2000 from "../assets/fleet/jet-ski-three-2000.webp.asset.json";
+import jet_ski_two_640 from "../assets/fleet/jet-ski-two-640.webp.asset.json";
+import jet_ski_two_1200 from "../assets/fleet/jet-ski-two-1200.webp.asset.json";
+import jet_ski_two_2000 from "../assets/fleet/jet-ski-two-2000.webp.asset.json";
+import { activityPrices, fleetPrices, sharedTripPrice, jetSkiAddonPrice, type Lang, type Localized, type PriceOption } from "./fleet";
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
@@ -35,6 +47,13 @@ const hi = (name: string, width: number, height: number): SiteImage => ({
   width,
   height,
 });
+
+const newFleetImages: Record<string, SiteImage> = {
+  "sundancer": { src: sundancer_1200.url, srcSet: `${sundancer_640.url} 640w, ${sundancer_1200.url} 1200w, ${sundancer_2000.url} 2000w`, width: 2400, height: 1599 },
+  "sea-ray-260": { src: sea_ray_260_1200.url, srcSet: `${sea_ray_260_640.url} 640w, ${sea_ray_260_1200.url} 1200w, ${sea_ray_260_2000.url} 2000w`, width: 1620, height: 2160 },
+  "jet-ski-three": { src: jet_ski_three_1200.url, srcSet: `${jet_ski_three_640.url} 640w, ${jet_ski_three_1200.url} 1200w, ${jet_ski_three_2000.url} 2000w`, width: 1600, height: 1200 },
+  "jet-ski-two": { src: jet_ski_two_1200.url, srcSet: `${jet_ski_two_640.url} 640w, ${jet_ski_two_1200.url} 1200w, ${jet_ski_two_2000.url} 2000w`, width: 1200, height: 1600 },
+};
 
 export const siteImages = {
   hero: { src: "/videos/hero-banus-v2-poster.webp", width: 1080, height: 1920 },
@@ -95,7 +114,28 @@ export interface Boat {
   priceOnRequest?: boolean;
   includes: Localized[];
   experiences: string[];
+  category?: "catamaran" | "yacht" | "motorboat";
+  affordable?: boolean;
 }
+
+export const privateCharterIncludes: Localized[] = [
+  { en: "Skipper and crew", es: "Patrón y tripulación", fr: "Skipper et équipage", de: "Skipper und Crew" },
+  { en: "Fuel", es: "Combustible", fr: "Carburant", de: "Kraftstoff" },
+  { en: "Water", es: "Agua", fr: "Eau", de: "Wasser" },
+  { en: "Soft drinks and two bottles of cava", es: "Refrescos y dos botellas de cava", fr: "Boissons sans alcool et deux bouteilles de cava", de: "Softdrinks und zwei Flaschen Cava" },
+  { en: "Snacks and crisps", es: "Aperitivos y patatas fritas", fr: "Snacks et chips", de: "Snacks und Chips" },
+  { en: "Towels", es: "Toallas", fr: "Serviettes", de: "Handtücher" },
+  { en: "Paddle board", es: "Paddle surf", fr: "Paddle", de: "Paddleboard" },
+  { en: "Snorkelling gear", es: "Equipo de snorkel", fr: "Équipement de snorkeling", de: "Schnorchelausrüstung" },
+  { en: "Bluetooth music", es: "Música Bluetooth", fr: "Musique Bluetooth", de: "Bluetooth-Musik" },
+];
+export const pontoon5Location: ServiceLocation = { ...locations["puerto-banus"],
+  name: { en: "Puerto Banús · Pontoon 5", es: "Puerto Banús · Pontón 5", fr: "Puerto Banús · Ponton 5", de: "Puerto Banús · Steg 5" },
+  address: { en: "Pontoon 5, Puerto Banús, Marbella", es: "Pontón 5, Puerto Banús, Marbella", fr: "Ponton 5, Puerto Banús, Marbella", de: "Steg 5, Puerto Banús, Marbella" },
+};
+export const jetSkiAddon = { price: jetSkiAddonPrice,
+  text: { en: "Add a jet ski to your boat", es: "Añade un Jet Ski a tu barco", fr: "Ajoutez un Jet Ski à votre bateau", de: "Ergänzen Sie Ihre Bootsfahrt um einen Jet Ski" } satisfies Localized,
+};
 
 export const boats: Boat[] = [
   {
@@ -119,20 +159,7 @@ export const boats: Boat[] = [
     cabins: 4,
     electricWc: 4,
     prices: fleetPrices["catamaran-bali-4"],
-    includes: [
-      l("Water (limited)", "Agua (cantidad limitada)", "Eau (quantité limitée)"),
-      l("Soft drinks (limited)", "Refrescos (cantidad limitada)", "Boissons sans alcool (quantité limitée)"),
-      l("Rosé wine (1 bottle)", "Vino rosado (1 botella)", "Vin rosé (1 bouteille)"),
-      l("Beer (limited)", "Cerveza (cantidad limitada)", "Bière (quantité limitée)"),
-      l("Cava (2 bottles)", "Cava (2 botellas)", "Cava (2 bouteilles)"),
-      l("Chips (limited)", "Patatas fritas (cantidad limitada)", "Chips (quantité limitée)"),
-      l("Towels", "Toallas", "Serviettes"),
-      l("Paddle surf", "Paddle surf", "Paddle"),
-      l("Snorkel", "Snorkel", "Masque et tuba"),
-      l("Bluetooth music", "Música Bluetooth", "Musique Bluetooth"),
-      l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"),
-      l("Fuel", "Combustible", "Carburant"),
-    ],
+    includes: privateCharterIncludes,
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
   {
@@ -147,14 +174,7 @@ export const boats: Boat[] = [
     length: "12.30 m",
     configuration: l("Flybridge", "Flybridge", "Flybridge"),
     prices: fleetPrices["azimut-39-fly"],
-    includes: [
-      l("Captain", "Capitán", "Capitaine"),
-      l("Champagne (2 bottles)", "Champán (2 botellas)", "Champagne (2 bouteilles)"),
-      l("White wine (2 bottles)", "Vino blanco (2 botellas)", "Vin blanc (2 bouteilles)"),
-      l("Drinks (limited)", "Bebidas (cantidad limitada)", "Boissons (quantité limitée)"),
-      l("Paddle surf", "Paddle surf", "Paddle"),
-      l("Insurance", "Seguro", "Assurance"),
-    ],
+    includes: privateCharterIncludes,
     experiences: ["sunset", "celebrations", "family", "corporate"],
   },
   {
@@ -168,28 +188,38 @@ export const boats: Boat[] = [
     maxGuests: 14,
     length: "14.9 m",
     prices: fleetPrices["princess-v48-wow"],
-    includes: [
-      l("Water (limited)", "Agua (cantidad limitada)", "Eau (quantité limitée)"),
-      l("Soft drinks (limited)", "Refrescos (cantidad limitada)", "Boissons sans alcool (quantité limitée)"),
-      l("Rosé wine (1 bottle)", "Vino rosado (1 botella)", "Vin rosé (1 bouteille)"),
-      l("Beer (limited)", "Cerveza (cantidad limitada)", "Bière (quantité limitée)"),
-      l("Cava (2 bottles)", "Cava (2 botellas)", "Cava (2 bouteilles)"),
-      l("Chips (limited)", "Patatas fritas (cantidad limitada)", "Chips (quantité limitée)"),
-      l("Towels", "Toallas", "Serviettes"),
-      l("Paddle surf", "Paddle surf", "Paddle"),
-      l("Snorkel", "Snorkel", "Masque et tuba"),
-      l("Bluetooth music", "Música Bluetooth", "Musique Bluetooth"),
-      l("Captain & crew", "Capitán y tripulación", "Capitaine et équipage"),
-      l("Fuel", "Combustible", "Carburant"),
-      l("VAT included (21%)", "IVA incluido (21%)", "TVA incluse (21 %)"),
-    ],
+    includes: privateCharterIncludes,
     experiences: ["sunset", "celebrations", "family", "corporate"],
 
   },
+  {
+    slug: "sea-ray-sundancer-540", name: "Sea Ray Sundancer 540", category: "yacht",
+    type: { en: "Motor yacht", es: "Yate a motor", fr: "Yacht à moteur", de: "Motoryacht" },
+    description: { en: "A 16-metre motor yacht for up to 12 guests, with private charters from 2 to 8 hours departing Puerto Banús, Pontoon 5.", es: "Un yate a motor de 16 metros para hasta 12 personas, con charters privados de 2 a 8 horas desde Puerto Banús, Pontón 5.", fr: "Un yacht à moteur de 16 mètres pour 12 invités maximum, en charter privé de 2 à 8 heures au départ de Puerto Banús, ponton 5.", de: "Eine 16 Meter lange Motoryacht für bis zu 12 Gäste. Private Charterfahrten von 2 bis 8 Stunden ab Puerto Banús, Steg 5." },
+    images: [newFleetImages.sundancer], location: pontoon5Location,
+    capacity: { en: "12 guests", es: "12 personas", fr: "12 invités", de: "12 Gäste" }, maxGuests: 12, length: "16 m",
+    prices: fleetPrices["sea-ray-sundancer-540"], includes: privateCharterIncludes, experiences: ["sunset", "celebrations", "family", "corporate"],
+  },
+  {
+    slug: "sea-ray-260", name: "Sea Ray 260", category: "motorboat", affordable: true,
+    type: { en: "Motorboat", es: "Lancha a motor", fr: "Bateau à moteur", de: "Motorboot" },
+    description: { en: "Our most affordable private boat for up to 8 guests. Enjoy 1 to 4 hours from Puerto Banús, with skipper and fuel included.", es: "Nuestro barco privado más económico, para hasta 8 personas. Disfruta de 1 a 4 horas desde Puerto Banús, con patrón y combustible incluidos.", fr: "Notre bateau privé le plus abordable, pour 8 invités maximum. Profitez de 1 à 4 heures au départ de Puerto Banús, skipper et carburant inclus.", de: "Unser günstigstes Privatboot für bis zu 8 Gäste. Genießen Sie 1 bis 4 Stunden ab Puerto Banús, inklusive Skipper und Kraftstoff." },
+    images: [newFleetImages["sea-ray-260"]], location: locations["puerto-banus"],
+    capacity: { en: "8 guests", es: "8 personas", fr: "8 invités", de: "8 Gäste" }, maxGuests: 8,
+    prices: fleetPrices["sea-ray-260"], includes: privateCharterIncludes, experiences: ["sunset", "celebrations", "family"],
+  },
 ];
 
-export interface WaterActivity { id: string; title: Localized; description: Localized; image: SiteImage; prices: PriceOption[]; location: ServiceLocation }
+export interface WaterActivity { id: string; title: Localized; description: Localized; image: SiteImage; prices: PriceOption[]; location: ServiceLocation; slug?: string; booking?: "company" | "the-point"; images?: SiteImage[]; maxPeople?: number; minimumAge?: number; licenceRequired?: boolean }
+export const jetSkiRide: WaterActivity = {
+  id: "private-jet-ski", slug: "jet-ski", booking: "company",
+  title: { en: "Jet Ski ride", es: "Paseo en Jet Ski", fr: "Sortie en Jet Ski", de: "Jet Ski Fahrt" },
+  description: { en: "Ride with an instructor, with up to 2 people per Jet Ski. No licence needed. Minimum age: 18.", es: "Disfruta con un instructor, hasta 2 personas por Jet Ski. No necesitas licencia. Edad mínima: 18 años.", fr: "Profitez d'une sortie avec un moniteur, jusqu'à 2 personnes par Jet Ski. Sans permis. Âge minimum : 18 ans.", de: "Fahren Sie mit einem Instruktor, mit bis zu 2 Personen pro Jet Ski. Kein Führerschein erforderlich. Mindestalter: 18 Jahre." },
+  image: newFleetImages["jet-ski-three"], images: [newFleetImages["jet-ski-three"], newFleetImages["jet-ski-two"]],
+  location: locations["puerto-banus"], prices: activityPrices["private-jet-ski"], maxPeople: 2, minimumAge: 18, licenceRequired: false,
+};
 export const waterActivities: WaterActivity[] = [
+  jetSkiRide,
   { id: "jet-ski", title: l("Jet Ski", "Jet Ski", "Jet Ski"), description: l("Choose a circuit session, a guided tour, Spark or Super Jet experience.", "Elige una sesión en circuito, una ruta guiada o una experiencia Spark o Super Jet.", "Choisissez une session sur circuit, une randonnée guidée ou une expérience Spark ou Super Jet."), image: siteImages.activities["jet-ski"], prices: activityPrices["jet-ski"], location: locations["the-point"] },
   { id: "parasailing", title: l("Parasailing", "Parasailing", "Parachute ascensionnel"), description: l("Rise above the Mediterranean solo or together for panoramic views of Marbella.", "Sobrevuela el Mediterráneo solo o acompañado y contempla Marbella desde el aire.", "Prenez de la hauteur seul ou à plusieurs pour admirer Marbella depuis la mer."), image: siteImages.activities.parasailing, prices: activityPrices.parasailing, location: locations["the-point"] },
   { id: "towables", title: l("Towables", "Arrastrables", "Bouées tractées"), description: l("Fast, fun 15-minute rides with six inflatable styles to choose from.", "Diversión a toda velocidad durante 15 minutos con seis hinchables para elegir.", "Quinze minutes de sensations avec six bouées différentes au choix."), image: siteImages.activities.towables, prices: activityPrices.towables, location: locations["the-point"] },

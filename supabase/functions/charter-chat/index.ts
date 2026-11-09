@@ -1,4 +1,5 @@
 import { createOpenAI } from "npm:@ai-sdk/openai";
+import { fleetKnowledge } from "./fleet.generated.ts";
 import { sharedTripKnowledge } from "./shared-trip.generated.ts";
 import { convertToModelMessages, streamText, type UIMessage } from "npm:ai";
 import { createLovableAiGatewayRunIdFetch, getLovableAiGatewayRunId, withLovableAiGatewayRunIdHeader } from "../_shared/run-id.ts";
@@ -10,13 +11,7 @@ const cors = {
 };
 
 const fleet = `
-Authoritative fleet and pricing:
-- Catamarán Bali 4.0 (2020), at Puerto Banús, max 10 guests plus 2 crew, 12.50m long, 7.00m beam, 2x40 HP Volvo, 4 cabins, 4 electric WC. Private: 2h €750; 3h €1000; 4h €1150; 6h €1750; 8h €2250. Includes limited water and soft drinks, 1 bottle of rosé wine, limited beer, 2 bottles of cava, limited chips, towels, paddle surf, snorkel, Bluetooth music, captain & crew, and fuel.
-- Azimut 39 Fly, at Puerto Banús, max 10 guests, 12.30m, flybridge. 1h €450; 2h €650; 3h €850; 4h €1100; 6h €1550; 8h €1850. Includes captain, 2 bottles of champagne, 2 bottles of white wine, limited drinks, paddle surf and insurance.
-- Princess V48 · WOW, at Puerto Banús, max 14 guests, 14.9m long. 2h €1200; 3h €1500; 4h €1900; 5h €2250; 6h €2500; 7h €2750; 8h €2950. Includes limited water and soft drinks, 1 bottle of rosé wine, limited beer, 2 bottles of cava, limited chips, towels, paddle surf, snorkel, Bluetooth music, captain & crew, and fuel. VAT included (21%). Availability and bookings are confirmed by Banús Charters on WhatsApp +34 664 57 50 58.
-Water activities — ALL at The Point beach, Marbella centre, 15 min from Puerto Banús:
-- Jet ski circuit: 20m €70, 30m €95, 45m €140, 1h €170. Jet ski tour: 1h €170 per jet ski, minimum 2 jet skis. Spark/Spark Trixx: 20m €80, 30m €105, 45m €150, 1h €180. Super Jet: 20m €70, 30m €95, 45m €140, 1h €170.
-- Parasailing: 1 person €80, 2 €120, 3 €160. Towables (Crazy Sofa, Banana, Airstream, Crazy Bull, Flyfish Extreme, Crazy Octopus): 15m €25 per person. Watersports (Flyboard, water ski, wakeboard, knee board): 15m €75 per person. Eco activities (SUP, pedal boat, kayak, SUP Yoga): €35 per hour; SUP Yoga minimum 2 people.
+${fleetKnowledge}
 Experiences: sunset cruises, birthdays/bachelor/bachelorette parties, family days, corporate events.
 ${sharedTripKnowledge}
 All listed prices include VAT.
@@ -36,7 +31,7 @@ Deno.serve(async (request) => {
     const provider = createOpenAI({ baseURL: "https://ai.gateway.lovable.dev/v1", apiKey, headers: { "Lovable-API-Key": apiKey, "X-Lovable-AIG-SDK": "vercel-ai-sdk" }, fetch: run.fetch });
     const result = streamText({
       model: provider.responses("openai/gpt-6-astra"),
-      system: `You are the Banús Charters concierge. Always reply in the same language the guest used in their most recent message (for example: Spanish → Spanish, English → English, French → French, German → German, Italian → Italian, Dutch → Dutch). If the language of the message is unclear (e.g. only a number, emoji or a boat name), reply in ${lang === "de" ? "German (natural, polite Sie-form)" : lang === "es" ? "Spanish" : lang === "fr" ? "French" : "English"}. Be concise, warm and expert. Recommend only from the authoritative fleet and activities below based on group size, budget and occasion. Always state the exact location whenever recommending. Never invent or estimate prices, inclusions or availability. All boats (Bali 4.0, Azimut 39 Fly and Princess V48 · WOW) depart from Puerto Banús; availability and bookings are confirmed by Banús Charters on WhatsApp at +34 664 57 50 58. Water activities are NOT booked by Banús Charters: they take place at The Point beach, Marbella centre, and must be booked directly with The Point on WhatsApp at +34 622 26 49 91, mentioning Banús Charters. Banús Charters is a booking intermediary; charters are operated and insured by licensed boat companies. When useful, ask one focused question. Never claim a booking is confirmed. In German, always use the polite Sie-form.\n${fleet}`,
+      system: `You are the Banús Charters concierge. Always reply in the same language the guest used in their most recent message (for example: Spanish → Spanish, English → English, French → French, German → German, Italian → Italian, Dutch → Dutch). If the language of the message is unclear (e.g. only a number, emoji or a boat name), reply in ${lang === "de" ? "German (natural, polite Sie-form)" : lang === "es" ? "Spanish" : lang === "fr" ? "French" : "English"}. Be concise, warm and expert. Recommend only from the authoritative fleet and activities below based on group size, budget and occasion. Always state the exact location whenever recommending. Never invent or estimate prices, inclusions or availability. All private boats depart from Puerto Banús, with the exact meeting point stated in their data; availability and bookings are confirmed by Banús Charters on WhatsApp at +34 664 57 50 58. The company Jet Ski ride and private-charter Jet Ski add-on are booked through Banús Charters WhatsApp +34 664 57 50 58 at Puerto Banús. Other water activities at The Point beach, Marbella centre, must be booked directly with The Point on WhatsApp +34 622 26 49 91, mentioning Banús Charters. Never mix the two Jet Ski catalogs or booking channels. Banús Charters is a booking intermediary; charters are operated and insured by licensed boat companies. When useful, ask one focused question. Never claim a booking is confirmed. In German, always use the polite Sie-form.\n${fleet}`,
       messages: await convertToModelMessages(body.messages),
       abortSignal: request.signal,
       providerOptions: { openai: { forceReasoning: true, reasoningEffort: "low", reasoningSummary: "auto", store: false, include: ["reasoning.encrypted_content"] } },

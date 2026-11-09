@@ -120,3 +120,9 @@
 - [x] Generate crawlable route HTML and multilingual sitemap at build time
 - [x] Update and deploy German assistant support
 - [x] Verify German booking, all routes and built HTML
+
+## November Sea Ray and Jet Ski expansion
+- [x] Add centralized boats, prices, images and private-charter inclusions in four languages
+- [x] Add company-booked Jet Ski detail, activity card and private-charter extras
+- [x] Integrate home, fleet, booking selector, SEO and generated assistant knowledge
+- [x] Deploy assistant and verify tests, booking flow, build and prerender

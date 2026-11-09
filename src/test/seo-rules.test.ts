@@ -10,12 +10,12 @@ import { getCopy } from "../data/content";
 describe("Four-language charter rules", () => {
  it("supports exactly English, Spanish, French and German", () => {
   expect(LANGUAGES).toEqual(["en", "es", "fr", "de"]);
-  expect(publicRoutes).toHaveLength(80);
-  expect(new Set(publicRoutes).size).toBe(80);
+  expect(publicRoutes).toHaveLength(92);
+  expect(new Set(publicRoutes).size).toBe(92);
  });
  it("preserves current fleet, prices and guest limits", () => {
   expect(boats.map((boat) => [boat.slug, boat.maxGuests, Math.min(...boat.prices.map((price) => price.price))])).toEqual([
-   ["catamaran-bali-4",10,750],["azimut-39-fly",10,450],["princess-v48-wow",14,1200],
+   ["catamaran-bali-4",10,750],["azimut-39-fly",10,450],["princess-v48-wow",14,1200],["sea-ray-sundancer-540",12,1000],["sea-ray-260",8,250],
   ]);
   expect(boats.every((boat) => boat.location.id === "puerto-banus")).toBe(true);
  });
@@ -43,9 +43,9 @@ describe("Four-language charter rules", () => {
  });
  it("has four-language alternates and editorial lastmod dates in the sitemap", () => {
   const sitemap = generateSitemap();
-  expect((sitemap.match(/<url>/g) ?? []).length).toBe(80);
-  expect((sitemap.match(/hreflang="de"/g) ?? []).length).toBe(80);
-  expect((sitemap.match(/hreflang="x-default"/g) ?? []).length).toBe(80);
+  expect((sitemap.match(/<url>/g) ?? []).length).toBe(92);
+  expect((sitemap.match(/hreflang="de"/g) ?? []).length).toBe(92);
+  expect((sitemap.match(/hreflang="x-default"/g) ?? []).length).toBe(92);
   expect(routeModifiedAt("/de/boot-mieten-puerto-banus")).toBe("2026-10-19");
   expect(routeModifiedAt("/not-a-page")).toBeUndefined();
   expect(sitemap).not.toContain("/social/");

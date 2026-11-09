@@ -4,6 +4,7 @@ import { resolve, dirname } from "node:path";
 import react from "@vitejs/plugin-react-swc";
 import { publicRoutes, generateSitemap } from "../src/data/routes";
 import { writeSharedTripKnowledge } from "./shared-trip-knowledge";
+import { writeFleetKnowledge } from "./fleet-knowledge";
 const MAX_PRERENDER_PAGES = 200;
 export async function writeStaticPages(output: string, template: string, root: string) {
  if (publicRoutes.length > MAX_PRERENDER_PAGES) throw new Error("Prerender route cap exceeded");
@@ -33,6 +34,6 @@ export function prerenderPlugin(): Plugin {
  return {
   name: "charter-static-pages", apply: "build", enforce: "post",
   configResolved(config) { root = config.root; output = resolve(root, config.build.outDir); },
-  async closeBundle() { await writeSharedTripKnowledge(root); await writeStaticPages(output, await readFile(resolve(output,"index.html"),"utf8"), root); },
+  async closeBundle() { await writeSharedTripKnowledge(root); await writeFleetKnowledge(root); await writeStaticPages(output, await readFile(resolve(output,"index.html"),"utf8"), root); },
  };
 }

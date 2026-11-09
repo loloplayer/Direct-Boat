@@ -9,6 +9,7 @@ import { PromptInput, PromptInputFooter, PromptInputSubmit, PromptInputTextarea 
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
+import { boats } from "@/data/siteData";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const getText = (message: UIMessage) => message.parts.filter((part) => part.type === "text").map((part) => part.text).join(" ");
@@ -26,7 +27,7 @@ export default function CharterChat() {
     const transcript = messages.map(getText).join(" ").slice(0, 1000);
     const contact = transcript.match(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|(?:\+?\d[\d\s-]{7,}\d)/)?.[0];
     const name = transcript.match(/(?:my name is|me llamo|je m'appelle|ich heiße|mein name ist)\s+([A-Za-zÀ-ÿ '-]{2,40})/i)?.[1]?.trim();
-    const boat = ["Catamarán Bali 4.0", "Azimut 39 Fly", "Princess V48 · WOW"].find((item) => transcript.toLowerCase().includes(item.toLowerCase()));
+    const boat = boats.map(boat => boat.name).find((item) => transcript.toLowerCase().includes(item.toLowerCase()));
     const date = transcript.match(/\b(?:\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?|\d{4}-\d{2}-\d{2})\b/)?.[0];
     const signature = [contact, name, boat, date].filter(Boolean).join("|");
     if (!signature || signature === savedSignature.current) return;

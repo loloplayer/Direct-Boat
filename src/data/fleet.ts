@@ -8,6 +8,7 @@ export interface PriceOption {
 
 // The only editable shared-trip price; server knowledge is generated from this value.
 export const sharedTripPrice = 50;
+export const jetSkiAddonPrice = 200;
 
 const germanPriceLabel = (en: string) => en.replace(/Jet ski circuit/g, "Jet Ski Rundkurs").replace(/Jet ski tour/g, "Jet Ski Tour").replace(/minimum 2 jet skis/g, "mindestens 2 Jet Skis").replace(/minimum 2 people/g, "mindestens 2 Personen").replace(/per person/g, "pro Person").replace(/Water ski/g, "Wasserski").replace(/Pedal boat/g, "Tretboot").replace(/Knee board/g, "Kneeboard").replace(/SUP \(paddle surf\)/g, "SUP (Stand-up-Paddling)").replace(/(\d+) hours/g, "$1 Stunden").replace(/1 hour/g, "1 Stunde").replace(/(\d+) people/g, "$1 Personen").replace(/1 person/g, "1 Person");
 const label = (en: string, es: string, fr: string): Localized => ({ en, es, fr, de: germanPriceLabel(en) });
@@ -37,9 +38,25 @@ export const fleetPrices: Record<string, PriceOption[]> = {
     { label: label("7 hours", "7 horas", "7 heures"), price: 2750 },
     { label: label("8 hours", "8 horas", "8 heures"), price: 2950 },
   ],
+  "sea-ray-sundancer-540": [
+    { label: label("2 hours", "2 horas", "2 heures"), price: 1000 },
+    { label: label("4 hours", "4 horas", "4 heures"), price: 1800 },
+    { label: label("6 hours", "6 horas", "6 heures"), price: 2300 },
+    { label: label("8 hours", "8 horas", "8 heures"), price: 2800 },
+  ],
+  "sea-ray-260": [
+    { label: label("1 hour", "1 hora", "1 heure"), price: 250 },
+    { label: label("2 hours", "2 horas", "2 heures"), price: 370 },
+    { label: label("3 hours", "3 horas", "3 heures"), price: 450 },
+    { label: label("4 hours", "4 horas", "4 heures"), price: 550 },
+  ],
 };
 
 export const activityPrices: Record<string, PriceOption[]> = {
+  "private-jet-ski": [
+    { label: { en: "30 min", es: "30 min", fr: "30 min", de: "30 Min." }, price: 110 },
+    { label: label("1 hour", "1 hora", "1 heure"), price: 180 },
+  ],
   "jet-ski": [
     { label: label("Jet ski circuit · 20 min", "Jet ski en circuito · 20 min", "Jet ski sur circuit · 20 min"), price: 70 },
     { label: label("Jet ski circuit · 30 min", "Jet ski en circuito · 30 min", "Jet ski sur circuit · 30 min"), price: 95 },

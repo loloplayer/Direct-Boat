@@ -1,6 +1,6 @@
 import { boats, SITE_URL, type Lang } from "./siteData";
 import { landingPages, LANGUAGES, localizedTripPath } from "./landingPages";
-export const standardPaths = ["", "/fleet", "/experiences", "/activities", "/faq", "/about", "/contact", "/legal", "/privacy", "/cookies", "/terms"];
+export const standardPaths = ["", "/fleet", "/experiences", "/activities", "/activities/jet-ski", "/faq", "/about", "/contact", "/legal", "/privacy", "/cookies", "/terms"];
 export const routeGroups = [
  ...standardPaths.map((path) => Object.fromEntries(LANGUAGES.map((lang) => [lang, `/${lang}${path}`])) as Record<Lang, string>),
  ...boats.map((boat) => Object.fromEntries(LANGUAGES.map((lang) => [lang, `/${lang}/fleet/${boat.slug}`])) as Record<Lang, string>),
