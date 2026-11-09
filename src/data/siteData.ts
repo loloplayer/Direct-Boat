@@ -4,13 +4,7 @@ import sundancer_2000 from "../assets/fleet/sundancer-2000.webp.asset.json";
 import sea_ray_260_640 from "../assets/fleet/sea-ray-260-640.webp.asset.json";
 import sea_ray_260_1200 from "../assets/fleet/sea-ray-260-1200.webp.asset.json";
 import sea_ray_260_2000 from "../assets/fleet/sea-ray-260-2000.webp.asset.json";
-import jet_ski_three_640 from "../assets/fleet/jet-ski-three-640.webp.asset.json";
-import jet_ski_three_1200 from "../assets/fleet/jet-ski-three-1200.webp.asset.json";
-import jet_ski_three_2000 from "../assets/fleet/jet-ski-three-2000.webp.asset.json";
-import jet_ski_two_640 from "../assets/fleet/jet-ski-two-640.webp.asset.json";
-import jet_ski_two_1200 from "../assets/fleet/jet-ski-two-1200.webp.asset.json";
-import jet_ski_two_2000 from "../assets/fleet/jet-ski-two-2000.webp.asset.json";
-import { activityPrices, fleetPrices, sharedTripPrice, jetSkiAddonPrice, type Lang, type Localized, type PriceOption } from "./fleet";
+import { activityPrices, fleetPrices, sharedTripPrice, type Lang, type Localized, type PriceOption } from "./fleet";
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
@@ -51,8 +45,6 @@ const hi = (name: string, width: number, height: number): SiteImage => ({
 const newFleetImages: Record<string, SiteImage> = {
   "sundancer": { src: sundancer_1200.url, srcSet: `${sundancer_640.url} 640w, ${sundancer_1200.url} 1200w, ${sundancer_2000.url} 2000w`, width: 2400, height: 1599 },
   "sea-ray-260": { src: sea_ray_260_1200.url, srcSet: `${sea_ray_260_640.url} 640w, ${sea_ray_260_1200.url} 1200w, ${sea_ray_260_2000.url} 2000w`, width: 1620, height: 2160 },
-  "jet-ski-three": { src: jet_ski_three_1200.url, srcSet: `${jet_ski_three_640.url} 640w, ${jet_ski_three_1200.url} 1200w, ${jet_ski_three_2000.url} 2000w`, width: 1600, height: 1200 },
-  "jet-ski-two": { src: jet_ski_two_1200.url, srcSet: `${jet_ski_two_640.url} 640w, ${jet_ski_two_1200.url} 1200w, ${jet_ski_two_2000.url} 2000w`, width: 1200, height: 1600 },
 };
 
 export const siteImages = {
@@ -62,7 +54,6 @@ export const siteImages = {
   gallery: [image("gallery_dolphins", 640, 480, 640), image("gallery3", 1440, 1920), image("gallery4", 1440, 1920), image("gallery5", 1080, 1920, 1200)],
   experiences: [image("gallery4", 1440, 1920), image("gallery3", 1440, 1920), hi("catamaran-group-bow", 2400, 1800), image("azimut_4", 910, 1137, 1200)],
   activities: {
-    "jet-ski": hi("water-activities-real", 2400, 1800),
     parasailing: image("activity-parasailing", 1536, 1024),
     towables: image("activity-towables", 1536, 1024),
     watersports: image("activity-watersports", 1536, 1024),
@@ -132,9 +123,6 @@ export const privateCharterIncludes: Localized[] = [
 export const pontoon5Location: ServiceLocation = { ...locations["puerto-banus"],
   name: { en: "Puerto Banús · Pontoon 5", es: "Puerto Banús · Pontón 5", fr: "Puerto Banús · Ponton 5", de: "Puerto Banús · Steg 5" },
   address: { en: "Pontoon 5, Puerto Banús, Marbella", es: "Pontón 5, Puerto Banús, Marbella", fr: "Ponton 5, Puerto Banús, Marbella", de: "Steg 5, Puerto Banús, Marbella" },
-};
-export const jetSkiAddon = { price: jetSkiAddonPrice,
-  text: { en: "Add a jet ski to your boat", es: "Añade un Jet Ski a tu barco", fr: "Ajoutez un Jet Ski à votre bateau", de: "Ergänzen Sie Ihre Bootsfahrt um einen Jet Ski" } satisfies Localized,
 };
 
 export const boats: Boat[] = [
@@ -211,16 +199,7 @@ export const boats: Boat[] = [
 ];
 
 export interface WaterActivity { id: string; title: Localized; description: Localized; image: SiteImage; prices: PriceOption[]; location: ServiceLocation; slug?: string; booking?: "company" | "the-point"; images?: SiteImage[]; maxPeople?: number; minimumAge?: number; licenceRequired?: boolean }
-export const jetSkiRide: WaterActivity = {
-  id: "private-jet-ski", slug: "jet-ski", booking: "company",
-  title: { en: "Jet Ski ride", es: "Paseo en Jet Ski", fr: "Sortie en Jet Ski", de: "Jet Ski Fahrt" },
-  description: { en: "Ride with an instructor, with up to 2 people per Jet Ski. No licence needed. Minimum age: 18.", es: "Disfruta con un instructor, hasta 2 personas por Jet Ski. No necesitas licencia. Edad mínima: 18 años.", fr: "Profitez d'une sortie avec un moniteur, jusqu'à 2 personnes par Jet Ski. Sans permis. Âge minimum : 18 ans.", de: "Fahren Sie mit einem Instruktor, mit bis zu 2 Personen pro Jet Ski. Kein Führerschein erforderlich. Mindestalter: 18 Jahre." },
-  image: newFleetImages["jet-ski-three"], images: [newFleetImages["jet-ski-three"], newFleetImages["jet-ski-two"]],
-  location: locations["puerto-banus"], prices: activityPrices["private-jet-ski"], maxPeople: 2, minimumAge: 18, licenceRequired: false,
-};
 export const waterActivities: WaterActivity[] = [
-  jetSkiRide,
-  { id: "jet-ski", title: l("Jet Ski", "Jet Ski", "Jet Ski"), description: l("Choose a circuit session, a guided tour, Spark or Super Jet experience.", "Elige una sesión en circuito, una ruta guiada o una experiencia Spark o Super Jet.", "Choisissez une session sur circuit, une randonnée guidée ou une expérience Spark ou Super Jet."), image: siteImages.activities["jet-ski"], prices: activityPrices["jet-ski"], location: locations["the-point"] },
   { id: "parasailing", title: l("Parasailing", "Parasailing", "Parachute ascensionnel"), description: l("Rise above the Mediterranean solo or together for panoramic views of Marbella.", "Sobrevuela el Mediterráneo solo o acompañado y contempla Marbella desde el aire.", "Prenez de la hauteur seul ou à plusieurs pour admirer Marbella depuis la mer."), image: siteImages.activities.parasailing, prices: activityPrices.parasailing, location: locations["the-point"] },
   { id: "towables", title: l("Towables", "Arrastrables", "Bouées tractées"), description: l("Fast, fun 15-minute rides with six inflatable styles to choose from.", "Diversión a toda velocidad durante 15 minutos con seis hinchables para elegir.", "Quinze minutes de sensations avec six bouées différentes au choix."), image: siteImages.activities.towables, prices: activityPrices.towables, location: locations["the-point"] },
   { id: "watersports", title: l("Watersports", "Deportes acuáticos", "Sports nautiques"), description: l("Try flyboard, water ski, wakeboard or knee board with expert guidance.", "Prueba flyboard, esquí acuático, wakeboard o kneeboard con asistencia experta.", "Essayez le flyboard, le ski nautique, le wakeboard ou le kneeboard avec un encadrement expert."), image: siteImages.activities.watersports, prices: activityPrices.watersports, location: locations["the-point"] },

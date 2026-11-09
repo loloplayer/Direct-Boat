@@ -10,4 +10,4 @@ Project content rule: Localized intent guides use centralized vessel data and pr
 Project build rule: Production builds must fail if any registered route cannot prerender its canonical and main H1; transient build-only rendering is not an application backend.
 Project shared-trip rule: Reuse the shared ticket component and centralized trip data for home, Bali details and offers; generate the assistant's local knowledge module from that data at build time and redeploy charter-chat after changes, so ticket rates have one editable source.
 Project catalog knowledge rule: Generate private fleet and activity assistant knowledge from the central catalog during production builds and before function deployment, so booking channels, inclusions and rates cannot drift.
-Project activity booking rule: Activity records identify company booking or The Point referral; reuse the activity card for standalone activity details without routing company bookings through partner tracking.
+Project activity booking rule: Remaining water activity cards use The Point referral tracking, so partner inquiries keep the correct booking channel.

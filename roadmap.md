@@ -126,3 +126,8 @@
 - [x] Add company-booked Jet Ski detail, activity card and private-charter extras
 - [x] Integrate home, fleet, booking selector, SEO and generated assistant knowledge
 - [x] Deploy assistant and verify tests, booking flow, build and prerender
+
+## Remove Jet Ski only
+- [x] Remove Jet Ski catalogs, extras, routes, images and localized references
+- [x] Preserve both Sea Ray records and all remaining prices
+- [x] Regenerate and redeploy assistant, verify tests, build and prerender

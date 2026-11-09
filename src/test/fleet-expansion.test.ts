@@ -1,8 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { boats, getBoat, jetSkiRide, jetSkiAddon, privateCharterIncludes, sharedCatamaranTrip } from "../data/siteData";
-import { fleetPrices } from "../data/fleet";
-import { publicRoutes } from "../data/routes";
-import { activityBookingUrl, activityOffers } from "../lib/activityBooking";
+import { boats, getBoat, waterActivities, privateCharterIncludes, sharedCatamaranTrip } from "../data/siteData";
+import { fleetPrices, activityPrices } from "../data/fleet";
+import { publicRoutes, generateSitemap } from "../data/routes";
 import { boatBookingUrl } from "../lib/boatBooking";
 import { fleetKnowledge } from "../../scripts/fleet-knowledge";
 
@@ -31,13 +30,12 @@ describe("November fleet rules", () => {
     expect(privateCharterIncludes.map(i => i.en)).toEqual(["Skipper and crew", "Fuel", "Water", "Soft drinks and two bottles of cava", "Snacks and crisps", "Towels", "Paddle board", "Snorkelling gear", "Bluetooth music"]);
     for (const boat of boats) expect(boat.includes).toEqual(privateCharterIncludes);
   });
-  it("enforces the Jet Ski age, capacity, licence and price rules", () => {
-    expect(jetSkiRide.minimumAge).toBe(18);
-    expect(jetSkiRide.maxPeople).toBe(2);
-    expect(jetSkiRide.licenceRequired).toBe(false);
-    expect(jetSkiRide.prices.map(p => p.price)).toEqual([110,180]);
-    expect(jetSkiAddon.price).toBe(200);
-    expect(activityOffers(jetSkiRide,"en").map(o => o.price)).toEqual([110,180]);
+  it("removes Jet Ski products, prices, routes and assistant offers", () => {
+    expect(waterActivities.map(a => a.id)).toEqual(["parasailing", "towables", "watersports", "eco"]);
+    expect(Object.keys(activityPrices)).toEqual(["parasailing", "towables", "watersports", "eco"]);
+    expect(publicRoutes.some(route => /jet.?ski/i.test(route))).toBe(false);
+    expect(generateSitemap()).not.toMatch(/jet.?ski/i);
+    expect(fleetKnowledge).not.toMatch(/jet.?ski|EUR 200 per hour/i);
   });
   it.each(["en", "es", "fr", "de"] as const)("registers and books additions in %s", lang => {
     for (const slug of ["sea-ray-sundancer-540", "sea-ray-260"]) {
@@ -46,16 +44,10 @@ describe("November fleet rules", () => {
       if (!boat) throw new Error("Boat missing");
       expect(boatBookingUrl(lang,boat,boat.prices[0],2)).toMatch(/^https:\/\/wa.me\/34664575058\?text=/);
     }
-    expect(publicRoutes).toContain(`/${lang}/activities/jet-ski`);
-    const url = activityBookingUrl(lang,jetSkiRide,jetSkiRide.prices[0].label[lang],"2","2026-11-20");
-    expect(url).toMatch(/^https:\/\/wa.me\/34664575058\?text=/);
-    expect(decodeURIComponent(url)).toContain(jetSkiRide.title[lang]);
   });
   it("generates assistant facts from central data", () => {
     expect(fleetKnowledge).toContain("Sea Ray Sundancer 540");
     expect(fleetKnowledge).toContain("1 hour EUR 250");
-    expect(fleetKnowledge).toContain("EUR 200 per hour");
-    expect(fleetKnowledge).toContain("minimum age 18");
     expect(fleetKnowledge).not.toContain("bottles of champagne");
   });
 });

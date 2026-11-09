@@ -8,9 +8,8 @@ export interface PriceOption {
 
 // The only editable shared-trip price; server knowledge is generated from this value.
 export const sharedTripPrice = 50;
-export const jetSkiAddonPrice = 200;
 
-const germanPriceLabel = (en: string) => en.replace(/Jet ski circuit/g, "Jet Ski Rundkurs").replace(/Jet ski tour/g, "Jet Ski Tour").replace(/minimum 2 jet skis/g, "mindestens 2 Jet Skis").replace(/minimum 2 people/g, "mindestens 2 Personen").replace(/per person/g, "pro Person").replace(/Water ski/g, "Wasserski").replace(/Pedal boat/g, "Tretboot").replace(/Knee board/g, "Kneeboard").replace(/SUP \(paddle surf\)/g, "SUP (Stand-up-Paddling)").replace(/(\d+) hours/g, "$1 Stunden").replace(/1 hour/g, "1 Stunde").replace(/(\d+) people/g, "$1 Personen").replace(/1 person/g, "1 Person");
+const germanPriceLabel = (en: string) => en.replace(/minimum 2 people/g, "mindestens 2 Personen").replace(/per person/g, "pro Person").replace(/Water ski/g, "Wasserski").replace(/Pedal boat/g, "Tretboot").replace(/Knee board/g, "Kneeboard").replace(/SUP \(paddle surf\)/g, "SUP (Stand-up-Paddling)").replace(/(\d+) hours/g, "$1 Stunden").replace(/1 hour/g, "1 Stunde").replace(/(\d+) people/g, "$1 Personen").replace(/1 person/g, "1 Person");
 const label = (en: string, es: string, fr: string): Localized => ({ en, es, fr, de: germanPriceLabel(en) });
 
 export const fleetPrices: Record<string, PriceOption[]> = {
@@ -53,25 +52,6 @@ export const fleetPrices: Record<string, PriceOption[]> = {
 };
 
 export const activityPrices: Record<string, PriceOption[]> = {
-  "private-jet-ski": [
-    { label: { en: "30 min", es: "30 min", fr: "30 min", de: "30 Min." }, price: 110 },
-    { label: label("1 hour", "1 hora", "1 heure"), price: 180 },
-  ],
-  "jet-ski": [
-    { label: label("Jet ski circuit · 20 min", "Jet ski en circuito · 20 min", "Jet ski sur circuit · 20 min"), price: 70 },
-    { label: label("Jet ski circuit · 30 min", "Jet ski en circuito · 30 min", "Jet ski sur circuit · 30 min"), price: 95 },
-    { label: label("Jet ski circuit · 45 min", "Jet ski en circuito · 45 min", "Jet ski sur circuit · 45 min"), price: 140 },
-    { label: label("Jet ski circuit · 1 hour", "Jet ski en circuito · 1 hora", "Jet ski sur circuit · 1 heure"), price: 170 },
-    { label: label("Jet ski tour · 1 hour · minimum 2 jet skis", "Ruta en jet ski · 1 hora · mínimo 2 jet skis", "Randonnée jet ski · 1 heure · minimum 2 jet skis"), price: 170 },
-    { label: label("Spark / Spark Trixx · 20 min", "Spark / Spark Trixx · 20 min", "Spark / Spark Trixx · 20 min"), price: 80 },
-    { label: label("Spark / Spark Trixx · 30 min", "Spark / Spark Trixx · 30 min", "Spark / Spark Trixx · 30 min"), price: 105 },
-    { label: label("Spark / Spark Trixx · 45 min", "Spark / Spark Trixx · 45 min", "Spark / Spark Trixx · 45 min"), price: 150 },
-    { label: label("Spark / Spark Trixx · 1 hour", "Spark / Spark Trixx · 1 hora", "Spark / Spark Trixx · 1 heure"), price: 180 },
-    { label: label("Super Jet · 20 min", "Super Jet · 20 min", "Super Jet · 20 min"), price: 70 },
-    { label: label("Super Jet · 30 min", "Super Jet · 30 min", "Super Jet · 30 min"), price: 95 },
-    { label: label("Super Jet · 45 min", "Super Jet · 45 min", "Super Jet · 45 min"), price: 140 },
-    { label: label("Super Jet · 1 hour", "Super Jet · 1 hora", "Super Jet · 1 heure"), price: 170 },
-  ],
   parasailing: [
     { label: label("1 person", "1 persona", "1 personne"), price: 80 },
     { label: label("2 people", "2 personas", "2 personnes"), price: 120 },

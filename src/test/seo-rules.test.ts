@@ -10,8 +10,8 @@ import { getCopy } from "../data/content";
 describe("Four-language charter rules", () => {
  it("supports exactly English, Spanish, French and German", () => {
   expect(LANGUAGES).toEqual(["en", "es", "fr", "de"]);
-  expect(publicRoutes).toHaveLength(92);
-  expect(new Set(publicRoutes).size).toBe(92);
+  expect(publicRoutes).toHaveLength(88);
+  expect(new Set(publicRoutes).size).toBe(88);
  });
  it("preserves current fleet, prices and guest limits", () => {
   expect(boats.map((boat) => [boat.slug, boat.maxGuests, Math.min(...boat.prices.map((price) => price.price))])).toEqual([
@@ -33,7 +33,7 @@ describe("Four-language charter rules", () => {
  });
  it("keeps German activity handoff as a tracked The Point inquiry", () => {
   expect(thePointMessage("de","AB12","Flyer / general enquiry","","")).toBe("Guten Tag. Ich komme über die Website von Banús Charters (Referenz BC-AB12) und möchte Informationen zu Ihren Wasseraktivitäten.");
-  expect(thePointMessage("de","AB12","Jet Ski","2","2026-10-25")).toContain("Jet Ski für 2 Personen am 2026-10-25");
+  expect(thePointMessage("de","AB12","Parasailing","2","2026-10-25")).toContain("Parasailing für 2 Personen am 2026-10-25");
  });
  it("uses translated cross-language paths rather than untranslated German slugs", () => {
   const page = landingPages.find((item) => item.id === "rental");
@@ -43,9 +43,9 @@ describe("Four-language charter rules", () => {
  });
  it("has four-language alternates and editorial lastmod dates in the sitemap", () => {
   const sitemap = generateSitemap();
-  expect((sitemap.match(/<url>/g) ?? []).length).toBe(92);
-  expect((sitemap.match(/hreflang="de"/g) ?? []).length).toBe(92);
-  expect((sitemap.match(/hreflang="x-default"/g) ?? []).length).toBe(92);
+  expect((sitemap.match(/<url>/g) ?? []).length).toBe(88);
+  expect((sitemap.match(/hreflang="de"/g) ?? []).length).toBe(88);
+  expect((sitemap.match(/hreflang="x-default"/g) ?? []).length).toBe(88);
   expect(routeModifiedAt("/de/boot-mieten-puerto-banus")).toBe("2026-10-19");
   expect(routeModifiedAt("/not-a-page")).toBeUndefined();
   expect(sitemap).not.toContain("/social/");
