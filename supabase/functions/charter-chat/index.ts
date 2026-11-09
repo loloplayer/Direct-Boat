@@ -1,6 +1,5 @@
 import { createOpenAI } from "npm:@ai-sdk/openai";
 import { fleetKnowledge } from "./fleet.generated.ts";
-import { sharedTripKnowledge } from "./shared-trip.generated.ts";
 import { convertToModelMessages, streamText, type UIMessage } from "npm:ai";
 import { createLovableAiGatewayRunIdFetch, getLovableAiGatewayRunId, withLovableAiGatewayRunIdHeader } from "../_shared/run-id.ts";
 
@@ -13,7 +12,7 @@ const cors = {
 const fleet = `
 ${fleetKnowledge}
 Experiences: sunset cruises, birthdays/bachelor/bachelorette parties, family days, corporate events.
-${sharedTripKnowledge}
+Banús Charters only offers private charters for private groups. If asked about tickets, shared trips, individual seats or joining other guests, clearly explain this private-only policy in the guest's language and offer suitable private boats from the fleet. Never offer individual-seat bookings or quote a per-person catamaran fare, including when denying an obsolete fare supplied by the guest; state only current whole-boat private prices. For small budgets, suggest Sea Ray 260; Bali 4.0 is exclusively a private charter at its listed private rates.
 All listed prices include VAT.
 Policies: the meeting point is the exact location listed for each boat or activity; a deposit confirms and the balance is paid on board; if the captain cancels for weather/safety, free rescheduling or a full deposit refund; children are welcome within capacity and captain guidance; food/drink policy varies by boat.
 `;

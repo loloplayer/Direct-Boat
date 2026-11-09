@@ -4,7 +4,7 @@ import sundancer_2000 from "../assets/fleet/sundancer-2000.webp.asset.json";
 import sea_ray_260_640 from "../assets/fleet/sea-ray-260-640.webp.asset.json";
 import sea_ray_260_1200 from "../assets/fleet/sea-ray-260-1200.webp.asset.json";
 import sea_ray_260_2000 from "../assets/fleet/sea-ray-260-2000.webp.asset.json";
-import { activityPrices, fleetPrices, sharedTripPrice, type Lang, type Localized, type PriceOption } from "./fleet";
+import { activityPrices, fleetPrices, type Lang, type Localized, type PriceOption } from "./fleet";
 
 export type { Lang, Localized, PriceOption } from "./fleet";
 
@@ -207,22 +207,6 @@ export const waterActivities: WaterActivity[] = [
 ];
 
 export const WHATSAPP_NUMBER = "34664575058";
-export const sharedCatamaranTrip = {
-  boatSlug: "catamaran-bali-4", boatName: "Catamarán Bali 4.0", durationHours: 2, maxGuests: 10,
-  price: sharedTripPrice, location: locations["puerto-banus"], image: hi("catamaran-group-bow", 2400, 1800),
-  includes: [
-    { en: "Professional skipper", es: "Patrón profesional", fr: "Skipper professionnel", de: "Professioneller Skipper" },
-    { en: "Welcome drinks (water & soft drinks)", es: "Bebidas de bienvenida (agua y refrescos)", fr: "Boissons de bienvenue (eau et softs)", de: "Willkommensgetränke (Wasser & Softdrinks)" },
-    { en: "Swim stop (weather permitting)", es: "Parada para nadar (según el clima)", fr: "Pause baignade (selon la météo)", de: "Badestopp (witterungsabhängig)" },
-    { en: "Paddle board & snorkel gear", es: "Paddle surf y equipo de snorkel", fr: "Paddle et équipement de snorkeling", de: "Paddleboard und Schnorchelausrüstung" },
-    { en: "Music on board", es: "Música a bordo", fr: "Musique à bord", de: "Musik an Bord" },
-    { en: "Dolphin spotting along the coast (sightings not guaranteed)", es: "Avistamiento de delfines por la costa (no garantizado)", fr: "Observation des dauphins le long de la côte (non garantie)", de: "Delfinbeobachtung entlang der Küste (Sichtungen nicht garantiert)" },
-  ] satisfies Localized[],
-  meetingPoint: { en: "Meeting point: Pontoon 5, next to Michael Kors, Puerto Banús", es: "Punto de encuentro: Pontón 5, junto a Michael Kors, Puerto Banús", fr: "Point de rendez-vous : Pontoon 5, à côté de Michael Kors, Puerto Banús", de: "Treffpunkt: Pontoon 5, neben Michael Kors, Puerto Banús" } satisfies Localized,
-  payment: { en: "No prepayment – pay on the day, in person", es: "Sin pago anticipado – se abona el mismo día, en persona", fr: "Pas de prépaiement – paiement sur place le jour même", de: "Keine Vorauszahlung – Bezahlung am Tag vor Ort" } satisfies Localized,
-  bring: { en: "Bring a towel. You're welcome to bring your own food and drinks.", es: "Trae una toalla. Puedes traer tu propia comida y bebida.", fr: "Apportez une serviette. Vous pouvez apporter vos propres repas et boissons.", de: "Bringen Sie ein Handtuch mit. Eigene Speisen und Getränke sind willkommen." } satisfies Localized,
-  sunset: { en: "Sunset departures on request", es: "Salidas al atardecer bajo petición", fr: "Départs au coucher du soleil sur demande", de: "Sonnenuntergangsabfahrten auf Anfrage" } satisfies Localized,
-};
 export const SITE_URL = "https://banuscharters.com";
 export const getBoat = (slug?: string) => boats.find((boat) => boat.slug === slug);
 export const money = (value: number, lang: Lang) => new Intl.NumberFormat(lang === "en" ? "en-GB" : lang, { style: "currency", currency: "EUR", maximumFractionDigits: value % 1 ? 2 : 0 }).format(value);
