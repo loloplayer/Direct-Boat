@@ -49,7 +49,7 @@ describe("November fleet rules", () => {
       expect(publicRoutes).toContain(`/${lang}/fleet/${slug}`);
       const boat = getBoat(slug);
       if (!boat) throw new Error("Boat missing");
-      expect(boatBookingUrl(lang,boat,boat.prices[0],2)).toMatch(/^https:\/\/wa.me\/34664575058\?text=/);
+      expect(boatBookingUrl(lang,boat,boat.prices[0],2)).toMatch(/^https:\/\/wa.me\/34600637118\?text=/);
     }
   });
   it("generates assistant facts from central data", () => {

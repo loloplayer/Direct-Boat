@@ -29,7 +29,7 @@ describe("Four-language charter rules", () => {
   expect(message).toContain("Abfahrtszeit: 11:00");
   expect(message).toContain(`Dauer: 4 h (${money(1900,"de")})`);
   expect(message).toContain("Gäste: 8");
-  expect(boatBookingUrl("de",boat,price,8)).toMatch(/^https:\/\/wa.me\/34664575058\?text=/);
+  expect(boatBookingUrl("de",boat,price,8)).toMatch(/^https:\/\/wa.me\/34600637118\?text=/);
  });
  it("keeps German activity handoff as a tracked The Point inquiry", () => {
   expect(thePointMessage("de","AB12","Flyer / general enquiry","","")).toBe("Guten Tag. Ich komme über die Website von Banús Charters (Referenz BC-AB12) und möchte Informationen zu Ihren Wasseraktivitäten.");

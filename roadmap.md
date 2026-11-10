@@ -131,3 +131,7 @@
 - [x] Remove Jet Ski catalogs, extras, routes, images and localized references
 - [x] Preserve both Sea Ray records and all remaining prices
 - [x] Regenerate and redeploy assistant, verify tests, build and prerender
+
+## Business phone update
+- [x] Replace business phone in all languages, booking links, structured data, assistant and memories
+- [x] Run tests, prerender all routes, scan for old phone and redeploy charter-chat
